@@ -1,2 +1,7 @@
 # JS-Drum-Machine
-Browser-based drum machine built with Javascript.
+
+This is a simple drum machine app built with Javascript.
+
+Simply press the letter keys indicated to trigger the corresponding sounds.
+
+Enjoy!
