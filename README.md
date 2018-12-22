@@ -8,6 +8,6 @@ https://marcusmcb.github.io/JS-Drum-Machine/
 
 ### Using the drum machine:
 
-Simply press the corresponding letter keys on your keyboard to trigger the corresponding sounds.
+Simply press the letters on your keyboard to trigger the corresponding sounds.
 
 Enjoy!
