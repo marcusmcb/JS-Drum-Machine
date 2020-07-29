@@ -14,7 +14,7 @@ html {
 .keys {
   display: flex;
   flex: 1;
-  min-height: 50vh;
+  min-height: 70vh;
   align-items: center;
   justify-content: center;
 }
