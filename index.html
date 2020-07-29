@@ -47,8 +47,8 @@
   </div>
   
   <div class="kits">
-    <button type="button" class="kit">KIT A</button>
-    <button type="button" class="kit">KIT B</button>
+    <button type="button" class="kit" id="akit">KIT A</button>
+    <button type="button" class="kit" id="bkit">KIT B</button>
   </div>
 
   <audio data-key="65" src="sounds/clap.wav"></audio>
@@ -75,6 +75,10 @@
     key.classList.add('playing');
     audio.currentTime = 0;
     audio.play();
+  }
+
+  function changeKit(e) {
+   
   }
 
   const keys = Array.from(document.querySelectorAll('.key'));
