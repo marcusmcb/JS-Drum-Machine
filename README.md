@@ -10,4 +10,6 @@ https://marcusmcb.github.io/JS-Drum-Machine/
 
 Simply press the letters on your keyboard to trigger the corresponding sounds.
 
+Functionality to the drum kit selector buttons currently in development, FYI.
+
 Enjoy!
