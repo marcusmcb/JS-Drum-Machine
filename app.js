@@ -24,7 +24,16 @@ $(document).ready(function() {
 
   // tentative function to change drum kits
   function changeKit(e) {
-    
+    // let clap = document.getElementById('clap')
+    //  ^ one for each element in the kit
+    //
+    //  check to see which kit is marked active
+    //
+    // if kit a = active
+    //    clap.src='sounds/kit_a/clap.wav'
+    //    clap.load()
+    //
+    //  could possibly use a for loop to add the sound folder dynamically via string interpolation
   }
 
   const keys = Array.from(document.querySelectorAll(".key"));
