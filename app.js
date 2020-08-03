@@ -34,7 +34,14 @@ $(document).ready(function() {
     //    clap.src='sounds/kit_a/clap.wav'
     //    clap.load()
     //
-    //  could possibly use a for loop to add the sound folder dynamically via string interpolation
+    //  
+    //  let soundkit = document.querySelectorAll("audio");
+    //  for (i = 0; i < soundkit.length; i++) {
+    //    console.log(soundkit.src)
+    //
+    //    check for active kit & change srcs in audio elements via string interpolation
+    // }
+    //  
   }
 
   const keys = Array.from(document.querySelectorAll(".key"));
