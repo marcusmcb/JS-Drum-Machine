@@ -45,8 +45,7 @@ function changeKit() {
 
 function loadKit() {
   let kit = document.querySelectorAll("audio");
-    for (i = 0; i < kit.length; i++) {
-      console.log(kit[i])
+    for (i = 0; i < kit.length; i++) {      
       kit[i].load()
     }
 }
