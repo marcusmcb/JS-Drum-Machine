@@ -5,8 +5,6 @@ $(document).ready(function () {
   $("button").on("click", function () {
     $("button").removeClass("active");
     $(this).addClass("active");
-
-    // trigger corresponding kit change?
     changeKit();
     loadKit();    
   });
@@ -33,17 +31,10 @@ keys.forEach((key) => key.addEventListener("transitionend", removeTransition));
 window.addEventListener("keydown", playSound);
 
 function changeKit() {
-  // grab "active" kit to use as var in string substitution
-  let activeKit = document.querySelector(".active").id;
-  console.log(activeKit);
-
-  // regex to aid w/drum kit swap
+  let activeKit = document.querySelector(".active").id;  
   let regex = /kit_\w/gi;
-
-  // find all source tags to update
   let audioElements = document.querySelectorAll("source");
-  for (i = 0; i < audioElements.length; i++) {
-    console.log(audioElements[i])
+  for (i = 0; i < audioElements.length; i++) {    
     let currentSourcePath = audioElements[i].src;
     let newSourcePath = currentSourcePath.replace(regex, activeKit);
     audioElements[i].src = newSourcePath;
