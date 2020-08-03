@@ -5,7 +5,9 @@
     <title>JS Drum Machine</title>
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
+    <!-- div for drum pad row -->
     <div class="keys">
       <div data-key="65" class="key">
         <kbd>A</kbd>
@@ -45,11 +47,13 @@
       </div>
     </div>
 
+    <!-- div for kit selector buttons -->
     <div class="kits">
       <button type="button" class="kit active" id="kit_a">KIT A</button>
       <button type="button" class="kit" id="kit_b">KIT B</button>
     </div>
 
+    <!-- audio elements for individual drum pads -->
     <audio data-key="83" id="data-key-83">
       <source src="sounds/kit_a/hihat.wav" />
     </audio>
@@ -89,9 +93,10 @@
     <script
       src="https://code.jquery.com/jquery-3.5.1.js"
       integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous">
+    </script>
 
     <script src="app.js"></script>
+    
   </body>
 </html>

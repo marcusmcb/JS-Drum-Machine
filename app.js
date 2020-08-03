@@ -36,17 +36,14 @@ $(document).ready(function() {
   // tentative function to change drum kits
   function changeKit() {
     
-    let activeKit = document.querySelector(".active")
-    activeKit = activeKit.id
+    // grab "active" kit to use as var in string substitution
+    let activeKit = document.querySelector(".active").id
     console.log(activeKit)
 
-    let soundkit = []
     let audioElements = document.querySelectorAll("source");    
     for (i = 0; i < audioElements.length; i++) {
-      console.log(audioElements[i].src)
-      soundkit.push(audioElements[i].src)        
-    };
-    console.log(soundkit)
+      console.log(audioElements[i].src)             
+      };    
     }
 
 
