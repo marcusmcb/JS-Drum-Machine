@@ -1,9 +1,7 @@
 // click handler to determine active drum kit
-// NOTE: this will apply to all future buttons added even if they're not kit selectors
-
 $(document).ready(function () {
-  $("button").on("click", function () {
-    $("button").removeClass("active");
+  $(".kit").on("click", function () {
+    $(".kit").removeClass("active");
     $(this).addClass("active");
     changeKit();
     loadKit();    
@@ -30,6 +28,7 @@ const keys = Array.from(document.querySelectorAll(".key"));
 keys.forEach((key) => key.addEventListener("transitionend", removeTransition));
 window.addEventListener("keydown", playSound);
 
+// function to swap kits on button click
 function changeKit() {
   let activeKit = document.querySelector(".active").id;  
   let regex = /kit_\w/gi;
@@ -43,6 +42,7 @@ function changeKit() {
   }
 }
 
+// function to load currently selected kit
 function loadKit() {
   let kit = document.querySelectorAll("audio");
     for (i = 0; i < kit.length; i++) {      
