@@ -1,10 +1,12 @@
 // click handler to determine active drum kit
+// NOTE: this will apply to all future buttons added even if they're not kit selectors
+
 $(document).ready(function() {
     $('button').on('click', function() {
       $('button').removeClass('active');
       $(this).addClass('active');
 
-      // trigger corresponding kit change
+      // trigger corresponding kit change?
       changeKit();      
     });
   });
@@ -25,16 +27,30 @@ $(document).ready(function() {
     audio.play();
   }
 
+  const keys = Array.from(document.querySelectorAll(".key"));
+  keys.forEach((key) =>
+    key.addEventListener("transitionend", removeTransition)
+  );
+  window.addEventListener("keydown", playSound);
+
   // tentative function to change drum kits
   function changeKit() {
-    let soundkit = []
-    let audioElement = document.querySelectorAll("audio");    
-    for (i = 0; i < audioElement.length; i++) {
-      console.log(audioElement)        
-    };
     
-    // possibly use a for-each statement instead
-    //
+    let activeKit = document.querySelector(".active")
+    activeKit = activeKit.id
+    console.log(activeKit)
+
+    let soundkit = []
+    let audioElements = document.querySelectorAll("source");    
+    for (i = 0; i < audioElements.length; i++) {
+      console.log(audioElements[i].src)
+      soundkit.push(audioElements[i].src)        
+    };
+    console.log(soundkit)
+    }
+
+
+
     // let clap = document.getElementById('clap')
     //  ^ one for each element in the kit
     //
@@ -50,12 +66,6 @@ $(document).ready(function() {
     //    console.log(soundkit.src)
     //
     //    check for active kit & change srcs in audio elements via string interpolation
-    // }
+    //  use on-click trigger function for each kit in HTML?
     //  
-  }
-
-  const keys = Array.from(document.querySelectorAll(".key"));
-  keys.forEach((key) =>
-    key.addEventListener("transitionend", removeTransition)
-  );
-  window.addEventListener("keydown", playSound);
+  
