@@ -8,6 +8,7 @@ $(document).ready(function () {
 
     // trigger corresponding kit change?
     changeKit();
+    loadKit();    
   });
 });
 
@@ -31,7 +32,6 @@ const keys = Array.from(document.querySelectorAll(".key"));
 keys.forEach((key) => key.addEventListener("transitionend", removeTransition));
 window.addEventListener("keydown", playSound);
 
-// tentative function to change drum kits
 function changeKit() {
   // grab "active" kit to use as var in string substitution
   let activeKit = document.querySelector(".active").id;
@@ -43,8 +43,19 @@ function changeKit() {
   // find all source tags to update
   let audioElements = document.querySelectorAll("source");
   for (i = 0; i < audioElements.length; i++) {
+    console.log(audioElements[i])
     let currentSourcePath = audioElements[i].src;
     let newSourcePath = currentSourcePath.replace(regex, activeKit);
-    console.log(newSourcePath)    
+    audioElements[i].src = newSourcePath;
+    audioElements[i].src = audioElements[i].src.split("-Machine/")[1]    
+    console.log(newSourcePath, audioElements[i]);
   }
+}
+
+function loadKit() {
+  let kit = document.querySelectorAll("audio");
+    for (i = 0; i < kit.length; i++) {
+      console.log(kit[i])
+      kit[i].load()
+    }
 }
