@@ -3,7 +3,9 @@ $(document).ready(function() {
     $('button').on('click', function() {
       $('button').removeClass('active');
       $(this).addClass('active');
-      // code for kit change goes here?
+
+      // trigger corresponding kit change
+      changeKit();      
     });
   });
 
@@ -24,7 +26,15 @@ $(document).ready(function() {
   }
 
   // tentative function to change drum kits
-  function changeKit(e) {
+  function changeKit() {
+    let soundkit = []
+    let audioElement = document.querySelectorAll("audio");    
+    for (i = 0; i < audioElement.length; i++) {
+      console.log(audioElement)        
+    };
+    
+    // possibly use a for-each statement instead
+    //
     // let clap = document.getElementById('clap')
     //  ^ one for each element in the kit
     //
