@@ -36,34 +36,15 @@ function changeKit() {
   // grab "active" kit to use as var in string substitution
   let activeKit = document.querySelector(".active").id;
   console.log(activeKit);
+
+  // regex to aid w/drum kit swap
   let regex = /kit_\w/gi;
+
+  // find all source tags to update
   let audioElements = document.querySelectorAll("source");
   for (i = 0; i < audioElements.length; i++) {
     let currentSourcePath = audioElements[i].src;
     let newSourcePath = currentSourcePath.replace(regex, activeKit);
-    console.log(newSourcePath)
-    // const p = "sounds/kit_a/clap.wav";
-    // let x = p.replace("kit_a", "kit_b");
-    // console.log(x);
+    console.log(newSourcePath)    
   }
 }
-
-// use replace method?
-
-// let clap = document.getElementById('clap')
-//  ^ one for each element in the kit
-//
-//  check to see which kit is marked active
-//
-// if kit a = active
-//    clap.src='sounds/kit_a/clap.wav'
-//    clap.load()
-//
-//
-//  let soundkit = document.querySelectorAll("audio");
-//  for (i = 0; i < soundkit.length; i++) {
-//    console.log(soundkit.src)
-//
-//    check for active kit & change srcs in audio elements via string interpolation
-//  use on-click trigger function for each kit in HTML?
-//
