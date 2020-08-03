@@ -42,11 +42,14 @@ $(document).ready(function() {
 
     let audioElements = document.querySelectorAll("source");    
     for (i = 0; i < audioElements.length; i++) {
-      console.log(audioElements[i].src)             
+      let audioElement = audioElements[i].src
+      let audioSource = audioElement.split("sounds/")[1].split("/")[1]
+      // audioSource = audioSource[1]
+      audioSource = activeKit             
       };    
     }
 
-
+    // use replace method?
 
     // let clap = document.getElementById('clap')
     //  ^ one for each element in the kit
