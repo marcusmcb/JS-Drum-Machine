@@ -14,7 +14,7 @@ html {
 .keys {
   display: flex;
   flex: 1;
-  min-height: 60vh;
+  /* min-height: 60vh; */
   align-items: center;
   justify-content: center;
 }
@@ -33,11 +33,16 @@ html {
   text-shadow: 0 0 0.5rem black;
 }
 
+#keys-top {
+  margin-top: 30vh;
+}
+
 .kits {
   display: flex;
   flex: 1;
   align-items: center;
   justify-content: center;
+  min-height: 20vh;
 }
 
 .kit {

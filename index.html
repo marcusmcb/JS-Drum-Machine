@@ -9,10 +9,10 @@
 
   <body>
     <!-- div for drum pad row -->
-    <div class="keys">
+    <div class="keys" id="keys-top">
       <div data-key="65" class="key">
         <kbd>A</kbd>
-        <span class="sound">clap</span>
+        <span class="sound">kick</span>
       </div>
       <div data-key="83" class="key">
         <kbd>S</kbd>
@@ -20,7 +20,7 @@
       </div>
       <div data-key="68" class="key">
         <kbd>D</kbd>
-        <span class="sound">kick</span>
+        <span class="sound">clap</span>
       </div>
       <div data-key="70" class="key">
         <kbd>F</kbd>
@@ -30,6 +30,9 @@
         <kbd>G</kbd>
         <span class="sound">boom</span>
       </div>
+    </div>
+
+    <div class="keys" id="keys-bottom">
       <div data-key="72" class="key">
         <kbd>H</kbd>
         <span class="sound">ride</span>
@@ -61,11 +64,11 @@
     </audio>
 
     <audio data-key="65" id="data-key-65">
-    <source src="sounds/kit_a/clap.wav" />
+    <source src="sounds/kit_a/kick.wav" />
     </audio>
 
     <audio data-key="68" id="data-key-68">
-    <source src="sounds/kit_a/kick.wav" />
+    <source src="sounds/kit_a/clap.wav" />
     </audio>
 
     <audio data-key="70" id="data-key-70">
