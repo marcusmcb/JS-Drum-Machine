@@ -4,6 +4,7 @@ html {
   background-repeat: no-repeat;
   background-color: black;
 }
+
 body,
 html {
   margin: 0;
@@ -13,14 +14,13 @@ html {
 
 .keys {
   display: flex;
-  flex: 1;
-  /* min-height: 60vh; */
+  flex: 1;  
   align-items: center;
   justify-content: center;
 }
 
 .key {
-  border: 0.4rem solid black;
+  border: 0.4rem solid slategrey;
   border-radius: 0.5rem;
   margin: 1rem;
   font-size: 1.5rem;
