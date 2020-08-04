@@ -1,3 +1,7 @@
+// test code to pull text value from span element
+// let testvar = document.querySelector("span.sound").innerHTML
+// console.log(testvar)
+
 // click handler to determine active drum kit
 $(document).ready(function () {
   $(".kit").on("click", function () {
