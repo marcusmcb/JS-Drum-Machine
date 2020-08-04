@@ -13,3 +13,5 @@ Simply press the letters on your keyboard to trigger the corresponding sounds.
 Use the kit buttons below the "keyboard" to swap kits that will change the playable drum sounds.
 
 Enjoy!
+
+(favicon --> https://thenounproject.com/term/sampler/342625/)
