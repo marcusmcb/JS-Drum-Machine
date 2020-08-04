@@ -16,3 +16,5 @@ Enjoy!
 
 
 favicon credit --> <a href="https://thenounproject.com/term/sampler/342625/" target="_blank">The Noun Project</a>
+
+base concept --> <a href="https://www.youtube.com/watch?v=VuN8qwZoego" target="_blank">JavaScript30</a>
