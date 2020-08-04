@@ -1,6 +1,8 @@
 # JSP-1 | Javascript Sample Player
 
-This is a simple sample player/drum machine app built with Javascript. It was developed using the base concept from one of the JavaScript30 tutorials on YouTube.  Differences from the original code include HTML/CSS changes (to customize the look of the app) as well additional JavaScript functionality for the user to change sound kits.
+This is a simple sample player/drum machine app built with Javascript. It was developed using the base concept from one of the JavaScript30 tutorials on YouTube.  
+
+Differences from the original code include HTML/CSS changes (to customize the look and layout of the app) as well additional JavaScript functionality for the user to change sound kits.
 
 ### Link to the app:
 
