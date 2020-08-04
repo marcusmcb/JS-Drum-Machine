@@ -1,4 +1,4 @@
-# JS-Drum-Machine
+# JSP-1 | Javascript Sample Player
 
 This is a simple drum machine app built with Javascript. It was developed using one of the tutorials from the Javascript 30 series on YouTube.  I tweaked the code a bit to customize the look of the app.
 
@@ -14,4 +14,5 @@ Use the kit buttons below the "keyboard" to swap kits that will change the playa
 
 Enjoy!
 
-(favicon credit --> https://thenounproject.com/term/sampler/342625/)
+
+favicon credit --> <a href="https://thenounproject.com/term/sampler/342625/" target="_blank">The Noun Project</a>
