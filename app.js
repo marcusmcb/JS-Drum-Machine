@@ -41,8 +41,7 @@ function changeKit() {
     let currentSourcePath = audioElements[i].src;
     let newSourcePath = currentSourcePath.replace(regex, activeKit);
     audioElements[i].src = newSourcePath;
-    audioElements[i].src = audioElements[i].src.split("-Machine/")[1]    
-    console.log(newSourcePath, audioElements[i]);
+    audioElements[i].src = audioElements[i].src.split("-Machine/")[1]
   }
 }
 
