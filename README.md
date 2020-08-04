@@ -14,4 +14,4 @@ Use the kit buttons below the "keyboard" to swap kits that will change the playa
 
 Enjoy!
 
-(favicon --> https://thenounproject.com/term/sampler/342625/)
+(favicon credit --> https://thenounproject.com/term/sampler/342625/)
