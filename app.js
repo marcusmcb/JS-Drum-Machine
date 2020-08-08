@@ -34,22 +34,47 @@ window.addEventListener("keydown", playSound);
 
 // function to swap kits on button click
 function changeKit() {
-  let activeKit = document.querySelector(".active").id;  
+  let activeKit = document.querySelector(".active").id;
   let regex = /kit_\w/gi;
   let audioElements = document.querySelectorAll("source");
-  for (i = 0; i < audioElements.length; i++) {    
+  for (i = 0; i < audioElements.length; i++) {
     let currentSourcePath = audioElements[i].src;
     let newSourcePath = currentSourcePath.replace(regex, activeKit);
     audioElements[i].src = newSourcePath;
-    audioElements[i].src = audioElements[i].src.split("-Machine/")[1]
+    audioElements[i].src = audioElements[i].src.split("-Machine/")[1];
   }
 }
 
 // function to load currently selected kit
 function loadKit() {
   let kit = document.querySelectorAll("audio");
-    for (i = 0; i < kit.length; i++) {      
-      kit[i].load()
-    }
-  console.log("kit loaded")
+  for (i = 0; i < kit.length; i++) {
+    kit[i].load();
+  }
+  console.log("kit loaded");
+}
+
+// code for potential MIDI capability
+
+navigator.requestMIDIAccess()
+    .then(onMIDISuccess, onMIDIFailure);
+
+function onMIDISuccess(midiAccess) {
+    console.log(midiAccess);
+
+    var inputs = midiAccess.inputs;
+    var outputs = midiAccess.outputs;
+}
+
+function onMIDIFailure() {
+    console.log('Could not access your MIDI devices.');
+}
+
+function onMIDISuccess(midiAccess) {
+  for (var input of midiAccess.inputs.values())
+      input.onmidimessage = getMIDIMessage;
+  }
+
+function getMIDIMessage(midiEvent) {
+  console.log(midiEvent);
 }
