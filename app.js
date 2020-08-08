@@ -79,7 +79,8 @@ function onMIDISuccess(midiAccess) {
 function noteOn(note) {  
 }
 
-function noteOff(note) {}
+function noteOff(note) {  
+}
 
 function getMIDIMessage(message) {  
   console.log(message.data);
