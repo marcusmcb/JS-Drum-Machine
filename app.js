@@ -8,7 +8,7 @@ $(document).ready(function () {
     $(".kit").removeClass("active");
     $(this).addClass("active");
     changeKit();
-    loadKit();    
+    loadKit();
   });
 });
 
@@ -38,6 +38,7 @@ function changeKit() {
   let regex = /kit_\w/gi;
   let audioElements = document.querySelectorAll("source");
   for (i = 0; i < audioElements.length; i++) {
+    console.log(audioElements[i])
     let currentSourcePath = audioElements[i].src;
     let newSourcePath = currentSourcePath.replace(regex, activeKit);
     audioElements[i].src = newSourcePath;
@@ -56,49 +57,47 @@ function loadKit() {
 
 // code for potential MIDI capability
 
-navigator.requestMIDIAccess()
-    .then(onMIDISuccess, onMIDIFailure);
+navigator.requestMIDIAccess().then(onMIDISuccess, onMIDIFailure);
 
 function onMIDISuccess(midiAccess) {
-    console.log(midiAccess);
+  console.log(midiAccess);
 
-    var inputs = midiAccess.inputs;
-    var outputs = midiAccess.outputs;
+  var inputs = midiAccess.inputs;
+  var outputs = midiAccess.outputs;
 }
 
 function onMIDIFailure() {
-    console.log('Could not access your MIDI devices.');
+  console.log("Could not access your MIDI devices.");
 }
 
 function onMIDISuccess(midiAccess) {
   for (var input of midiAccess.inputs.values())
-      input.onmidimessage = getMIDIMessage;
+    input.onmidimessage = getMIDIMessage;
+}
+
+function noteOn(note) {  
+}
+
+function noteOff(note) {}
+
+function getMIDIMessage(message) {  
+  console.log(message.data);
+  var command = message.data[0];
+  var note = message.data[1];
+  var velocity = message.data.length > 2 ? message.data[2] : 0; // a velocity value might not be included with a noteOff command
+
+  switch (command) {
+    case 144: // noteOn
+      if (velocity > 0) {
+        noteOn(note, velocity);
+        console.log(`Note: ${note} | Velocity: ${velocity}`)
+      } else {
+        noteOff(note);
+      }
+      break;
+    case 128: // noteOff
+      noteOff(note);
+      break;
+    // we could easily expand this switch statement to cover other types of commands such as controllers or sysex
   }
-
-  function noteOn(note) {
-    console.log(note)
-  }
-
-  function noteOff(note) {
-  }
-
-  function getMIDIMessage(message) {
-    console.log(message)
-    var command = message.data[0];
-    var note = message.data[1];
-    var velocity = (message.data.length > 2) ? message.data[2] : 0; // a velocity value might not be included with a noteOff command
-
-    switch (command) {
-        case 144: // noteOn
-            if (velocity > 0) {
-                noteOn(note, velocity);
-            } else {
-                noteOff(note);
-            }
-            break;
-        case 128: // noteOff
-            noteOff(note);
-            break;
-        // we could easily expand this switch statement to cover other types of commands such as controllers or sysex
-    }
 }
