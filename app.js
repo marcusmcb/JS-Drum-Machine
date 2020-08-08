@@ -51,4 +51,5 @@ function loadKit() {
     for (i = 0; i < kit.length; i++) {      
       kit[i].load()
     }
+  console.log("kit loaded")
 }
