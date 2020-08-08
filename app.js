@@ -38,7 +38,7 @@ function changeKit() {
   let regex = /kit_\w/gi;
   let audioElements = document.querySelectorAll("source");
   for (i = 0; i < audioElements.length; i++) {
-    console.log(audioElements[i])
+    // console.log(audioElements[i])
     let currentSourcePath = audioElements[i].src;
     let newSourcePath = currentSourcePath.replace(regex, activeKit);
     audioElements[i].src = newSourcePath;
@@ -52,7 +52,8 @@ function loadKit() {
   for (i = 0; i < kit.length; i++) {
     kit[i].load();
   }
-  console.log("kit loaded");
+  let activeKit = document.querySelector(".active");  
+  console.log(`${activeKit.innerHTML} loaded.`);
 }
 
 // code for potential MIDI capability
@@ -97,7 +98,6 @@ function getMIDIMessage(message) {
       break;
     case 128: // noteOff
       noteOff(note);
-      break;
-    // we could easily expand this switch statement to cover other types of commands such as controllers or sysex
+      break;    
   }
 }
