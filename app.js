@@ -68,7 +68,7 @@ function onMIDISuccess(midiAccess) {
 }
 
 function onMIDIFailure() {
-  console.log("Could not access your MIDI devices.");
+  console.log("Could not access your MIDI device.");
 }
 
 function onMIDISuccess(midiAccess) {
