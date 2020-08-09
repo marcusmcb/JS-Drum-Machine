@@ -53,7 +53,7 @@ function loadKit() {
     kit[i].load();
   }
   let activeKit = document.querySelector(".active");  
-  console.log(`${activeKit.innerHTML} loaded.`);
+  console.log(`${activeKit.innerHTML} successfully loaded.`);
 }
 
 // code for potential MIDI capability
