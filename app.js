@@ -105,7 +105,21 @@ function getMIDIMessage(message) {
 }
 
 function playMIDINote(note, velocity) {
-  console.log(`Note: ${note} | Velocity: ${velocity}`)
-  // if note === specific_value
-  //  trigger corresponding value for kit
+  console.log(`Note: ${note} | Velocity: ${velocity}`)   
+  if (note === 36) {    
+    note = 65
+    let audio = document.getElementById("data-key-65")
+    let key = document.getElementById("65")
+    console.log(audio)
+    console.log(key)
+    if (!audio) return;
+    key.classList.add("playing")
+    audio.currentTime = 0;
+    audio.play();
+  } else {
+    return;
+  }
+  // figure out how to compare the MIDI note & the audio/key value dynamically
+
+  // what's above will work but will need to be implemented for each key/note value pair, leading to duplicate/unnecessary code
 }
