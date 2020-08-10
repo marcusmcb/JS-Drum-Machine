@@ -62,7 +62,6 @@ navigator.requestMIDIAccess().then(onMIDISuccess, onMIDIFailure);
 
 function onMIDISuccess(midiAccess) {
   console.log(midiAccess);
-
   var inputs = midiAccess.inputs;
   var outputs = midiAccess.outputs;
 }
@@ -120,6 +119,8 @@ function playMIDINote(note, velocity) {
     return;
   }
   // figure out how to compare the MIDI note & the audio/key value dynamically
+
+  // create an array of key values for audio elements to check MIDI note against
 
   // what's above will work but will need to be implemented for each key/note value pair, leading to duplicate/unnecessary code
 }
