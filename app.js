@@ -91,8 +91,7 @@ function getMIDIMessage(message) {
   switch (command) {
     case 144: // noteOn
       if (velocity > 0) {
-        noteOn(note, velocity);
-        console.log(`Note: ${note} | Velocity: ${velocity}`)
+        noteOn(note, velocity);        
       } else {
         noteOff(note);
       }
@@ -101,4 +100,12 @@ function getMIDIMessage(message) {
       noteOff(note);
       break;    
   }
+  playMIDINote(note, velocity);
+  // input MIDI note values 36-51 for Arturia Beatstep
+}
+
+function playMIDINote(note, velocity) {
+  console.log(`Note: ${note} | Velocity: ${velocity}`)
+  // if note === specific_value
+  //  trigger corresponding value for kit
 }
