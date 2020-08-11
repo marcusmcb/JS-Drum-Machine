@@ -136,6 +136,7 @@ function convertNote(note) {
   }
 }
 
+// MIDI event listener for noteOn/noteOff events
 function getMIDIMessage(message) {
   console.log(message.data);
   var command = message.data[0];
