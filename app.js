@@ -52,7 +52,7 @@ function loadKit() {
   for (i = 0; i < kit.length; i++) {
     kit[i].load();
   }
-  let activeKit = document.querySelector(".active");  
+  let activeKit = document.querySelector(".active");
   console.log(`${activeKit.innerHTML} successfully loaded.`);
 }
 
@@ -75,13 +75,45 @@ function onMIDISuccess(midiAccess) {
     input.onmidimessage = getMIDIMessage;
 }
 
-function noteOn(note) {  
+function noteOn(note, velocity) {
+  console.log(`Note: ${note} | Velocity: ${velocity}`);
+  let newNote = convertNote(note);
+  console.log(`Return Value: ${newNote}`);
+  let temp = "data-key-";
+  let newString = temp.concat(newNote);
+  console.log(newString);
+  let audio = document.getElementById(newString);
+  let key = document.getElementById(newNote);
+  console.log(audio);
+  console.log(key);
+  if (!audio) return;
+  key.classList.add("playing");
+  audio.currentTime = 0;
+  audio.play();
+  return;
 }
 
-function noteOff(note) {  
+function noteOff(note) {}
+
+function convertNote(note) {
+  // note = noteFromMIDI;
+  if (note === 36) {
+    let note = 65;
+    console.log(`ConvertNote: ${note}`);
+    return note;
+  } else if (note === 37) {
+    let note = 83;
+    console.log(`ConvertNote: ${note}`);
+    return note;
+  } else if (note === 38) {
+    let note = 68;
+    return note;
+  } else {
+    return;
+  }
 }
 
-function getMIDIMessage(message) {  
+function getMIDIMessage(message) {
   console.log(message.data);
   var command = message.data[0];
   var note = message.data[1];
@@ -90,37 +122,36 @@ function getMIDIMessage(message) {
   switch (command) {
     case 144: // noteOn
       if (velocity > 0) {
-        noteOn(note, velocity);        
+        noteOn(note, velocity);
       } else {
         noteOff(note);
       }
       break;
     case 128: // noteOff
       noteOff(note);
-      break;    
+      break;
   }
-  playMIDINote(note, velocity);
+  // playMIDINote(note, velocity);
   // input MIDI note values 36-51 for Arturia Beatstep
 }
 
-function playMIDINote(note, velocity) {
-  console.log(`Note: ${note} | Velocity: ${velocity}`)   
-  if (note === 36) {    
-    note = 65
-    let audio = document.getElementById("data-key-65")
-    let key = document.getElementById("65")
-    console.log(audio)
-    console.log(key)
-    if (!audio) return;
-    key.classList.add("playing")
-    audio.currentTime = 0;
-    audio.play();
-  } else {
-    return;
-  }
-  // figure out how to compare the MIDI note & the audio/key value dynamically
+// function playMIDINote(note, velocity) {
+//   console.log(`Note: ${note} | Velocity: ${velocity}`)
+//   if (note === 36) {
+//     note = 65
+//     let audio = document.getElementById("data-key-65")
+//     let key = document.getElementById("65")
+//     console.log(audio)
+//     console.log(key)
+//     if (!audio) return;
+//     key.classList.add("playing")
+//     audio.currentTime = 0;
+//     audio.play();
+//   } else {
+//     return;
+//   }
+// figure out how to compare the MIDI note & the audio/key value dynamically
 
-  // create an array of key values for audio elements to check MIDI note against
+// create an array of key values for audio elements to check MIDI note against
 
-  // what's above will work but will need to be implemented for each key/note value pair, leading to duplicate/unnecessary code
-}
+// what's above will work but will need to be implemented for each key/note value pair, leading to duplicate/unnecessary code
