@@ -73,6 +73,27 @@ function onMIDISuccess(midiAccess) {
     input.onmidimessage = getMIDIMessage;
 }
 
+// MIDI event listener for noteOn/noteOff events
+function getMIDIMessage(message) {
+  // logger to show MIDI device name
+  console.log(message.currentTarget.name);
+  var command = message.data[0];
+  var note = message.data[1];
+  var velocity = message.data.length > 2 ? message.data[2] : 0; // a velocity value might not be included with a noteOff command
+  switch (command) {
+    case 144: // noteOn
+      if (velocity > 0) {
+        noteOn(note, velocity);
+      } else {
+        noteOff(note);
+      }
+      break;
+    case 128: // noteOff
+      noteOff(note);
+      break;
+  }  
+}
+
 // triggers audio element on MIDI message
 function noteOn(note, velocity) {
   console.log(`Note: ${note} | Velocity: ${velocity}`);
@@ -134,27 +155,6 @@ function convertNote(note) {
     console.log("Sorry, no sample for that note!")
     return;
   }
-}
-
-// MIDI event listener for noteOn/noteOff events
-function getMIDIMessage(message) {
-  // logger to show MIDI device name
-  console.log(message.currentTarget.name);
-  var command = message.data[0];
-  var note = message.data[1];
-  var velocity = message.data.length > 2 ? message.data[2] : 0; // a velocity value might not be included with a noteOff command
-  switch (command) {
-    case 144: // noteOn
-      if (velocity > 0) {
-        noteOn(note, velocity);
-      } else {
-        noteOff(note);
-      }
-      break;
-    case 128: // noteOff
-      noteOff(note);
-      break;
-  }  
 }
 
 // figure out how to compare the MIDI note & the audio/key value dynamically
