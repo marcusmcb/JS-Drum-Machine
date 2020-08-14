@@ -110,7 +110,9 @@ function noteOn(note, velocity) {
 }
 
 // dummy noteOff function
-function noteOff(note) {}
+function noteOff(note) {
+  console.log("Note off")
+}
 
 // converts MIDI note value to data-key value
 function convertNote(note) {
