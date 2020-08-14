@@ -138,7 +138,8 @@ function convertNote(note) {
 
 // MIDI event listener for noteOn/noteOff events
 function getMIDIMessage(message) {
-  console.log(message.data);
+  // logger to show MIDI device name
+  console.log(message.currentTarget.name);
   var command = message.data[0];
   var note = message.data[1];
   var velocity = message.data.length > 2 ? message.data[2] : 0; // a velocity value might not be included with a noteOff command
