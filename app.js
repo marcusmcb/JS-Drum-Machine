@@ -159,6 +159,13 @@ function convertNote(note) {
   }
 }
 
+function setMIDIDevice() {
+  // set var for device selected
+  // switch(var) {
+  //  case var:
+  //    load map for var and convert MID note values as needed
+  }
+
 // figure out how to compare the MIDI note & the audio/key value dynamically
 
 // create an array of key values for audio elements to check MIDI note against
