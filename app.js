@@ -167,7 +167,6 @@ function setMIDIDevice() {
   }
 
 // figure out how to compare the MIDI note & the audio/key value dynamically
-
 // create an array of key values for audio elements to check MIDI note against
-
+// doing so will faciliate a better development flow
 // what's above will work but will need to be implemented for each key/note value pair, leading to duplicate/unnecessary code
