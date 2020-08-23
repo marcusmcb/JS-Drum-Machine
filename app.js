@@ -77,10 +77,6 @@ function onMIDISuccess(midiAccess) {
 function getMIDIMessage(message) {
   // logger to show MIDI device name
   console.log(message.currentTarget.name);
-  let controlDevice = message.currentTarget.name;
-  // call to set MIDI device and corresponding note conversions
-  setControlDevice(controlDevice);  
- 
   var command = message.data[0];
   var note = message.data[1];
   var velocity = message.data.length > 2 ? message.data[2] : 0; // a velocity value might not be included with a noteOff command
@@ -96,9 +92,6 @@ function getMIDIMessage(message) {
       noteOff(note);
       break;
   }  
-}
-
-function setControlDevice(controlDevice) {
 }
 
 // triggers audio element on MIDI message
@@ -121,10 +114,17 @@ function noteOff(note) {
   console.log("Note off")
 }
 
-// add function to dynamically convert MIDI note to audio element value
-// will need array for each MIDI controller of "playable notes"
-// order range of values in each array from lowest to highest
-// compare MIDI note input to value in array, trigger audio element on success
+// TO-DO:
+//
+// * this will all need to go in a function or two
+// * possible separate folder/file for controller value arrays
+//
+// a) create arrays from the range of possible MIDI input values for each controller
+
+// 1) determine MIDI input device
+// 2) load array for corresponding device
+// 3) compare MIDI note value to array
+// 4) trigger audio element sound on match
 
 // converts MIDI note value to data-key value
 function convertNote(note) {
@@ -170,15 +170,3 @@ function convertNote(note) {
     return;
   }
 }
-
-function setMIDIDevice() {
-  // set var for device selected
-  // switch(var) {
-  //  case var:
-  //    load map for var and convert MID note values as needed
-  }
-
-// figure out how to compare the MIDI note & the audio/key value dynamically
-// create an array of key values for audio elements to check MIDI note against
-// doing so will faciliate a better development flow
-// what's above will work but will need to be implemented for each key/note value pair, leading to duplicate/unnecessary code
