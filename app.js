@@ -77,6 +77,10 @@ function onMIDISuccess(midiAccess) {
 function getMIDIMessage(message) {
   // logger to show MIDI device name
   console.log(message.currentTarget.name);
+  let controlDevice = message.currentTarget.name;
+  // call to set MIDI device and corresponding note conversions
+  setControlDevice(controlDevice);  
+ 
   var command = message.data[0];
   var note = message.data[1];
   var velocity = message.data.length > 2 ? message.data[2] : 0; // a velocity value might not be included with a noteOff command
@@ -94,9 +98,12 @@ function getMIDIMessage(message) {
   }  
 }
 
+function setControlDevice(controlDevice) {
+}
+
 // triggers audio element on MIDI message
 function noteOn(note, velocity) {
-  console.log(`Note: ${note} | Velocity: ${velocity}`);
+  console.log(`Note: ${note} | Velocity: ${velocity}`);  
   let newNote = convertNote(note);  
   let temp = "data-key-";
   let newString = temp.concat(newNote);  
