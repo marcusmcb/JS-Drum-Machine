@@ -121,6 +121,11 @@ function noteOff(note) {
   console.log("Note off")
 }
 
+// add function to dynamically convert MIDI note to audio element value
+// will need array for each MIDI controller of "playable notes"
+// order range of values in each array from lowest to highest
+// compare MIDI note input to value in array, trigger audio element on success
+
 // converts MIDI note value to data-key value
 function convertNote(note) {
   // input MIDI note values 36-51 for Arturia Beatstep  
