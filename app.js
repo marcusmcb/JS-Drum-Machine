@@ -120,6 +120,8 @@ function noteOff(note) {
 // * possible separate folder/file for controller value arrays
 //
 // a) create arrays from the range of possible MIDI input values for each controller
+// b) alternately, create object with key/values for each note to convert
+// c) take MIDI input value & loop thru array/object to match value, convert note & trigger corresponding sound
 
 // 1) determine MIDI input device
 // 2) load array for corresponding device
