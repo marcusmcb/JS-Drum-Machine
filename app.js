@@ -172,6 +172,3 @@ function convertNote(note) {
     return;
   }
 }
-
-// rewrite above function - only a single return necessary at the end?
-// test with Beatstep to confirm
