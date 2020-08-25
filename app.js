@@ -77,12 +77,15 @@ function onMIDISuccess(midiAccess) {
 function getMIDIMessage(message) {
   // logger to show MIDI device name
   console.log(message.currentTarget.name);
+  var deviceName = message.currentTarget.name;
   var command = message.data[0];
   var note = message.data[1];
   var velocity = message.data.length > 2 ? message.data[2] : 0; // a velocity value might not be included with a noteOff command
   switch (command) {
     case 144: // noteOn
       if (velocity > 0) {
+        // set global control device here?
+        // setControlDevice(deviceName);
         noteOn(note, velocity);
       } else {
         noteOff(note);
@@ -93,6 +96,16 @@ function getMIDIMessage(message) {
       break;
   }
 }
+
+// function setControlDevice(deviceName) {
+//   switch (deviceName) {
+//     case "Arturia Beatstep":
+//       const beatStepValues = [36, 37, 38, 39, 40, 41, 42, 43, 44];
+//       const convertedBeatStepValues = [65, 83, 68, 70, 71, 72, 74, 75, 76];
+//       return beatStepValues, convertedBeatStepValues;
+//       break;
+//   }
+// }
 
 // triggers audio element on MIDI message
 function noteOn(note, velocity) {
@@ -109,7 +122,6 @@ function noteOn(note, velocity) {
   return;
 }
 
-// dummy noteOff function
 function noteOff(note) {
   console.log("Note off");
 }
