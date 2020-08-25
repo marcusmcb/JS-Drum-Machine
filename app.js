@@ -126,27 +126,6 @@ function noteOff(note) {
   console.log("Note off");
 }
 
-// TO-DO:
-//
-// * this will all need to go in a function or two
-// * possible separate folder/file for controller value arrays
-//
-// a) create arrays from the range of possible MIDI input values for each controller
-// b) alternately, create object with key/values for each note to convert
-// c) take MIDI input value & loop thru array/object to match value, convert note & trigger corresponding sound
-// *** above is tested & works ***
-// d) write function to load MIDI note value array based on device (pass array vars into function?)
-
-// 1) determine MIDI input device
-// 2) load array for corresponding device
-// 3) compare MIDI note value to array
-// 4) trigger audio element sound on match
-
-// * set global variable on window with the active MIDI device (check MIDI message prop)
-// * secondary MIDI devices could be connected apart from the global device
-// * function to set global MIDI device & ignore all inputs from any secondary devices
-// * update on dropdown selection (future UI work)
-
 // converts MIDI note value to data-key value
 function convertNote(note) {
   const beatStepValues = [36, 37, 38, 39, 40, 41, 42, 43, 44];
@@ -160,3 +139,21 @@ function convertNote(note) {
   }
   return note;
 }
+
+// set convertedMIDIValues array as global variable since each device will trigger the same DOM elements
+//
+// set MIDI device in getMIDIMessage function
+//  a) do a null check to trigger remaining code and load assets if so
+//  b) if not, bypass unnecessary code (reloading assets, etc)
+//  c) do a check to see if device has changed, proceed as necessary thereafter
+//  
+// set MIDI device as primary, add code to ignore message from any other connected MIDI devices
+//
+// check for set device at the start of noteOn function
+//
+// from that, return the MIDI values array for that device to noteOn function
+//
+// compare note received to MIDI values array
+//  a) if matched, loop through array and trigger corresponding DOM element
+//  b) if not, display error (future UI task)
+// 
