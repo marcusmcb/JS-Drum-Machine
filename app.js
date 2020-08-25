@@ -56,7 +56,7 @@ function loadKit() {
 // boilerplate MIDI setup
 navigator.requestMIDIAccess().then(onMIDISuccess, onMIDIFailure);
 
-// defines MIDI I/O 
+// defines MIDI I/O
 function onMIDISuccess(midiAccess) {
   var inputs = midiAccess.inputs;
   var outputs = midiAccess.outputs;
@@ -91,17 +91,17 @@ function getMIDIMessage(message) {
     case 128: // noteOff
       noteOff(note);
       break;
-  }  
+  }
 }
 
 // triggers audio element on MIDI message
 function noteOn(note, velocity) {
-  console.log(`Note: ${note} | Velocity: ${velocity}`);  
-  let newNote = convertNote(note);  
+  // console.log(`Note: ${note} | Velocity: ${velocity}`);
+  let newNote = convertNote(note);
   let temp = "data-key-";
-  let newString = temp.concat(newNote);  
+  let newString = temp.concat(newNote);
   let audio = document.getElementById(newString);
-  let key = document.getElementById(newNote);  
+  let key = document.getElementById(newNote);
   if (!audio) return;
   key.classList.add("playing");
   audio.currentTime = 0;
@@ -111,7 +111,7 @@ function noteOn(note, velocity) {
 
 // dummy noteOff function
 function noteOff(note) {
-  console.log("Note off")
+  console.log("Note off");
 }
 
 // TO-DO:
@@ -122,6 +122,7 @@ function noteOff(note) {
 // a) create arrays from the range of possible MIDI input values for each controller
 // b) alternately, create object with key/values for each note to convert
 // c) take MIDI input value & loop thru array/object to match value, convert note & trigger corresponding sound
+// d) write function to load MIDI note value array based on connected control device
 
 // 1) determine MIDI input device
 // 2) load array for corresponding device
@@ -130,45 +131,15 @@ function noteOff(note) {
 
 // converts MIDI note value to data-key value
 function convertNote(note) {
-  // input MIDI note values 36-51 for Arturia Beatstep  
-  if (note === 36) {
-    let note = 65;
-    console.log(`Converted Note: ${note}`);
-    return note;
-  } else if (note === 37) {
-    let note = 83;
-    console.log(`Converted Note: ${note}`);
-    return note;
-  } else if (note === 38) {
-    let note = 68;
-    console.log(`Converted Note: ${note}`);
-    return note;
-  } else if (note === 39) {
-    let note = 70;
-    console.log(`Converted Note: ${note}`);
-    return note;
-  } else if (note === 40) {
-    let note = 71;
-    console.log(`Converted Note: ${note}`);
-    return note;
-  } else if (note === 41) {
-    let note = 72;
-    console.log(`Converted Note: ${note}`);
-    return note;
-  } else if (note === 42) {
-    let note = 74;
-    console.log(`Converted Note: ${note}`);
-    return note;
-  } else if (note === 43) {
-    let note = 75;
-    console.log(`Converted Note: ${note}`);
-    return note;
-  } else if (note === 44) {
-    let note = 76;
-    console.log(`Converted Note: ${note}`);
-    return note;
-  } else {
-    console.log("Sorry, no sample for that note!")
-    return;
+  const beatStepValues = [36, 37, 38, 39, 40, 41, 42, 43, 44];
+  const convertedBeatStepValues = [65, 83, 68, 70, 71, 72, 74, 75, 76];
+  for (i = 0; i < beatStepValues.length; i++) {
+    for (j = 0; j < convertedBeatStepValues.length; j++)
+      if (note === beatStepValues[i]) {
+        note = convertedBeatStepValues[i];
+        console.log(`Converted Note: ${note}`);
+        return note;
+      } else {
+        console.log("Sorry, couldn't find that note!");
+      }
   }
-}
