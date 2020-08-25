@@ -122,12 +122,18 @@ function noteOff(note) {
 // a) create arrays from the range of possible MIDI input values for each controller
 // b) alternately, create object with key/values for each note to convert
 // c) take MIDI input value & loop thru array/object to match value, convert note & trigger corresponding sound
-// d) write function to load MIDI note value array based on device (pass array vars into function)
+// *** above is tested & works ***
+// d) write function to load MIDI note value array based on device (pass array vars into function?)
 
 // 1) determine MIDI input device
 // 2) load array for corresponding device
 // 3) compare MIDI note value to array
 // 4) trigger audio element sound on match
+
+// * set global variable on window with the active MIDI device (check MIDI message prop)
+// * secondary MIDI devices could be connected apart from the global device
+// * function to set global MIDI device & ignore all inputs from any secondary devices
+// * update on dropdown selection (future UI work)
 
 // converts MIDI note value to data-key value
 function convertNote(note) {
