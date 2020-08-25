@@ -138,9 +138,7 @@ function convertNote(note) {
       if (note === beatStepValues[i]) {
         note = convertedBeatStepValues[i];
         console.log(`Converted Note: ${note}`);
-        return note;
-      } else {
-        console.log("Sorry, couldn't find that note!");
       }
-  }  
+  }
+  return note;
 }
