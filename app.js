@@ -164,4 +164,6 @@ function convertNote(note) {
 // compare note received to MIDI values array
 //  a) if matched, loop through array and trigger corresponding DOM element
 //  b) if not, display error (future UI task)
-// 
+//
+// dynamically update "pad" names on kit load (future UI)
+// dynamically update "pad" assignments based on device connected (future UI)
