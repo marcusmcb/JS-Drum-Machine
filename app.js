@@ -1,3 +1,6 @@
+let midiConvertedValues = [65, 83, 68, 70, 71, 72, 74, 75, 76];
+let midiInputValues;
+
 // defines "keyboard" for QWERTY playback
 const keys = Array.from(document.querySelectorAll(".key"));
 keys.forEach((key) => key.addEventListener("transitionend", removeTransition));
@@ -75,9 +78,8 @@ function onMIDISuccess(midiAccess) {
 
 // MIDI event listener for noteOn/noteOff events
 function getMIDIMessage(message) {
-  // logger to show MIDI device name
-  console.log(message.currentTarget.name);
-  var deviceName = message.currentTarget.name;
+  // logger to show MIDI device name  
+  let deviceName = message.currentTarget.name;
   var command = message.data[0];
   var note = message.data[1];
   var velocity = message.data.length > 2 ? message.data[2] : 0; // a velocity value might not be included with a noteOff command
@@ -86,7 +88,7 @@ function getMIDIMessage(message) {
       if (velocity > 0) {
         // set global control device here?
         // setControlDevice(deviceName);
-        noteOn(note, velocity);
+        noteOn(note, velocity, deviceName);
       } else {
         noteOff(note);
       }
@@ -97,20 +99,27 @@ function getMIDIMessage(message) {
   }
 }
 
-// function setControlDevice(deviceName) {
-//   switch (deviceName) {
-//     case "Arturia Beatstep":
-//       const beatStepValues = [36, 37, 38, 39, 40, 41, 42, 43, 44];
-//       const convertedBeatStepValues = [65, 83, 68, 70, 71, 72, 74, 75, 76];
-//       return beatStepValues, convertedBeatStepValues;
-//       break;
-//   }
-// }
+// function to set MIDI device & load corresponding input values (unique to each device tested)
+function setMIDIDevice(deviceName) {
+  switch(deviceName) {
+    case 'Arturia BeatStep':
+      console.log("MIDI device set: Arturia BeatStep")
+      midiInputValues = [36, 37, 38, 39, 40, 41, 42, 43, 44];
+      break;
+    case 'Launchkey Mini MK3':
+      console.log("MIDI device set: Launchkey Mini MK3")
+      midiInputValues = [48, 50, 52, 53, 55, 57, 59, 60, 62];
+      break;
+    default:
+      console.log("No device found!")
+  }
+}
 
 // triggers audio element on MIDI message
-function noteOn(note, velocity) {
-  // console.log(`Note: ${note} | Velocity: ${velocity}`);
-  let newNote = convertNote(note);
+function noteOn(note, velocity, deviceName) {
+  console.log(`Note: ${note} | Velocity: ${velocity}`);
+  setMIDIDevice(deviceName);  
+  let newNote = convertNote(note, midiInputValues);
   let temp = "data-key-";
   let newString = temp.concat(newNote);
   let audio = document.getElementById(newString);
@@ -127,13 +136,11 @@ function noteOff(note) {
 }
 
 // converts MIDI note value to data-key value
-function convertNote(note) {
-  const beatStepValues = [36, 37, 38, 39, 40, 41, 42, 43, 44];
-  const convertedBeatStepValues = [65, 83, 68, 70, 71, 72, 74, 75, 76];
-  for (i = 0; i < beatStepValues.length; i++) {
-    for (j = 0; j < convertedBeatStepValues.length; j++)
-      if (note === beatStepValues[i]) {
-        note = convertedBeatStepValues[i];
+function convertNote(note) {     
+  for (i = 0; i < midiInputValues.length; i++) {
+    for (j = 0; j < midiConvertedValues.length; j++)
+      if (note === midiInputValues[i]) {
+        note = midiConvertedValues[i];
         console.log(`Converted Note: ${note}`);
       }
   }
