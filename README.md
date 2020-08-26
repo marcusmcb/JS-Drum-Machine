@@ -28,6 +28,10 @@ Supported devices (verified working in Chrome):
 * Native Instruments M32 - use the first nine white keys starting from the left to play sounds (using the default MIDI mode on boot up)
 * Arturia BeatStep - use the front pad row to play sounds (no other set up needed!)
 
+### Touchscreen Compatibility:
+
+There's none at the moment (browser-only) but it's something that I'm actively looking into.  
+
 
 Enjoy!
 

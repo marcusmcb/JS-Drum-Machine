@@ -82,3 +82,10 @@ kbd {
   letter-spacing: 0.1rem;
   color: #ffc600;
 }
+
+.blurb {
+  font-family: 'Roboto', sans-serif;
+  color: lightgoldenrodyellow;
+  text-align: center;
+  font-size: 1.6rem;
+}
