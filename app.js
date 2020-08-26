@@ -1,4 +1,7 @@
+// global array of DOM audio element key values (QWERTY playback)
 let midiConvertedValues = [65, 83, 68, 70, 71, 72, 74, 75, 76];
+
+// global var later set to a MIDI value array based on MIDI input device connected
 let midiInputValues;
 
 // defines "keyboard" for QWERTY playback
@@ -85,9 +88,7 @@ function getMIDIMessage(message) {
   var velocity = message.data.length > 2 ? message.data[2] : 0; // a velocity value might not be included with a noteOff command
   switch (command) {
     case 144: // noteOn
-      if (velocity > 0) {
-        // set global control device here?
-        // setControlDevice(deviceName);
+      if (velocity > 0) {        
         noteOn(note, velocity, deviceName);
       } else {
         noteOff(note);
