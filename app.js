@@ -13,7 +13,7 @@ const keys = Array.from(document.querySelectorAll(".key"));
 keys.forEach((key) => key.addEventListener("transitionend", removeTransition));
 window.addEventListener("keydown", playSound);
 
-// click handler to determine active drum kit
+// click handler to determine/select active drum kit
 $(document).ready(function () {
   $(".kit").on("click", function () {
     $(".kit").removeClass("active");
@@ -59,6 +59,7 @@ function loadKit() {
   for (i = 0; i < kit.length; i++) {
     kit[i].load();
   }
+  // setup/logger to confirm active drum kit change
   let activeKit = document.querySelector(".active");
   console.log(`${activeKit.innerHTML} successfully loaded.`);
 }
