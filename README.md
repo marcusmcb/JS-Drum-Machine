@@ -24,8 +24,10 @@ Connect your MIDI device to your laptop/desktop and then refresh the app in your
 
 Supported devices (verified working in Chrome):
 
-* Novation Launchkey Mini MK3 - use the first nine white key starting from the left to play sounds (using the default octave setting)
+* Novation Launchkey Mini MK3 - use the first nine white keys starting from the left to play sounds (using the default octave setting)
+* Native Instruments M32 - use the first nine white keys starting from the left to play sounds (using the default MIDI mode on boot up)
 * Arturia BeatStep - use the front pad row to play sounds (no other set up needed!)
+
 
 Enjoy!
 

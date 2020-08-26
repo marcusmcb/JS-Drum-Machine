@@ -90,6 +90,7 @@ function onMIDISuccess(midiAccess) {
 function getMIDIMessage(message) {
   // logger to show MIDI device name  
   let deviceName = message.currentTarget.name;
+  console.log(deviceName)
   var command = message.data[0];
   var note = message.data[1];
   var velocity = message.data.length > 2 ? message.data[2] : 0; // a velocity value might not be included with a noteOff command
@@ -117,6 +118,10 @@ function setMIDIDevice(deviceName) {
     case 'Launchkey Mini MK3':
       console.log("MIDI device set: Launchkey Mini MK3")
       midiInputValues = [48, 50, 52, 53, 55, 57, 59, 60, 62];
+      break;
+    case 'KOMPLETE KONTROL M32 MIDI':
+      console.log("MIDI device set: Komplete Kontrol M32");
+      midiInputValues = [41, 43, 45, 47, 48, 50, 52, 53, 55];
       break;
     default:
       console.log("No device found!")
