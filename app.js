@@ -174,3 +174,7 @@ function convertNote(note) {
 //
 // dynamically update "pad" names on kit load (future UI)
 // dynamically update "pad" assignments based on device connected (future UI)
+// add LED meters to playback (future UI)
+//  a) use git repo found and customize:
+//    1) meter div
+//    2) trigger LED function on keydown (QWERTY) or message (MIDI)
