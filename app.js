@@ -1,8 +1,12 @@
+// *** global variables ***
+
 // global array of DOM audio element key values (QWERTY playback)
 let midiConvertedValues = [65, 83, 68, 70, 71, 72, 74, 75, 76];
 
 // global var later set to a MIDI value array based on MIDI input device connected
 let midiInputValues;
+
+// *** code for QWERTY playback & click handlers ***
 
 // defines "keyboard" for QWERTY playback
 const keys = Array.from(document.querySelectorAll(".key"));
@@ -58,6 +62,8 @@ function loadKit() {
   let activeKit = document.querySelector(".active");
   console.log(`${activeKit.innerHTML} successfully loaded.`);
 }
+
+// *** code for MIDI playback and device config ***
 
 // boilerplate MIDI setup
 navigator.requestMIDIAccess().then(onMIDISuccess, onMIDIFailure);
