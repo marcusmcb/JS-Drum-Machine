@@ -130,6 +130,7 @@ function setMIDIDevice(deviceName) {
 
 // triggers audio element on MIDI message
 function noteOn(note, velocity, deviceName) {
+  const t0 = performance.now();
   console.log(`Note: ${note} | Velocity: ${velocity}`);
   if (tempMIDIDevice != deviceName) {
     tempMIDIDevice = deviceName;
@@ -144,6 +145,8 @@ function noteOn(note, velocity, deviceName) {
   key.classList.add("playing");
   audio.currentTime = 0;
   audio.play();
+  const t1 = performance.now();
+  console.log(`Latency: ${(t1 - t0).toFixed(2)} ms`);
   return;
 }
 
@@ -158,7 +161,7 @@ function convertNote(note) {
       if (note === midiInputValues[i]) {
         note = midiConvertedValues[i];
         console.log(`Converted Note: ${note}`);
-      }
+      } 
   }
   return note;
 }
