@@ -112,20 +112,22 @@ function getMIDIMessage(message) {
 function setMIDIDevice(deviceName) {
   switch(deviceName) {
     case 'Arturia BeatStep':
-      console.log("MIDI device set: Arturia BeatStep")
       midiInputValues = [36, 37, 38, 39, 40, 41, 42, 43, 44];
       break;
     case 'Launchkey Mini MK3':
-      console.log("MIDI device set: Launchkey Mini MK3")
+    case 'Launchkey Mini':
       midiInputValues = [48, 50, 52, 53, 55, 57, 59, 60, 62];
       break;
     case 'KOMPLETE KONTROL M32 MIDI':
-      console.log("MIDI device set: Komplete Kontrol M32");
       midiInputValues = [41, 43, 45, 47, 48, 50, 52, 53, 55];
       break;
+    // case 'Launchkey Mini':
+    //   midiInputValues = [48, 50, 52, 53, 55, 57, 59, 60, 62];
+    //   break;
     default:
       console.log("No device found!")
   }
+  console.log(`MIDI device set: ${deviceName}`)
 }
 
 // triggers audio element on MIDI message
