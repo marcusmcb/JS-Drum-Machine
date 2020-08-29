@@ -183,3 +183,4 @@ function convertNote(note) {
 //  a) use git repo found and customize:
 //    1) meter div
 //    2) trigger LED function on keydown (QWERTY) or message (MIDI)
+//  b) single-side, reskin overall UI (MPC/Maschine look?)
