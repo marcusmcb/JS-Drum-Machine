@@ -5,6 +5,7 @@ let midiConvertedValues = [65, 83, 68, 70, 71, 72, 74, 75, 76];
 
 // global var later set to a MIDI value array based on MIDI input device connected
 let midiInputValues;
+let tempMIDIDevice;
 
 // *** code for QWERTY playback & click handlers ***
 
@@ -88,15 +89,15 @@ function onMIDISuccess(midiAccess) {
 
 // MIDI event listener for noteOn/noteOff events
 function getMIDIMessage(message) {
-  // logger to show MIDI device name  
+  // logger to show MIDI device name
   let deviceName = message.currentTarget.name;
-  console.log(deviceName)
+  // console.log(deviceName);
   var command = message.data[0];
   var note = message.data[1];
   var velocity = message.data.length > 2 ? message.data[2] : 0; // a velocity value might not be included with a noteOff command
   switch (command) {
     case 144: // noteOn
-      if (velocity > 0) {        
+      if (velocity > 0) {
         noteOn(note, velocity, deviceName);
       } else {
         noteOff(note);
@@ -110,30 +111,30 @@ function getMIDIMessage(message) {
 
 // function to set MIDI device & load corresponding input values (unique to each device tested)
 function setMIDIDevice(deviceName) {
-  switch(deviceName) {
-    case 'Arturia BeatStep':
-      midiInputValues = [36, 37, 38, 39, 40, 41, 42, 43, 44];
-      break;
-    case 'Launchkey Mini MK3':
-    case 'Launchkey Mini':
+  switch (deviceName) {
+    case "Launchkey Mini MK3":
+    case "Launchkey Mini":
       midiInputValues = [48, 50, 52, 53, 55, 57, 59, 60, 62];
       break;
-    case 'KOMPLETE KONTROL M32 MIDI':
+    case "Arturia BeatStep":
+      midiInputValues = [36, 37, 38, 39, 40, 41, 42, 43, 44];
+      break;
+    case "KOMPLETE KONTROL M32 MIDI":
       midiInputValues = [41, 43, 45, 47, 48, 50, 52, 53, 55];
       break;
-    // case 'Launchkey Mini':
-    //   midiInputValues = [48, 50, 52, 53, 55, 57, 59, 60, 62];
-    //   break;
     default:
-      console.log("No device found!")
+      console.log("No device found!");
   }
-  console.log(`MIDI device set: ${deviceName}`)
+  console.log(`MIDI DEVICE SET: ${deviceName}`);
 }
 
 // triggers audio element on MIDI message
 function noteOn(note, velocity, deviceName) {
   console.log(`Note: ${note} | Velocity: ${velocity}`);
-  setMIDIDevice(deviceName);  
+  if (tempMIDIDevice != deviceName) {
+    tempMIDIDevice = deviceName;
+    setMIDIDevice(deviceName);
+  }
   let newNote = convertNote(note, midiInputValues);
   let temp = "data-key-";
   let newString = temp.concat(newNote);
@@ -151,7 +152,7 @@ function noteOff(note) {
 }
 
 // converts MIDI note value to data-key value
-function convertNote(note) {     
+function convertNote(note) {
   for (i = 0; i < midiInputValues.length; i++) {
     for (j = 0; j < midiConvertedValues.length; j++)
       if (note === midiInputValues[i]) {
@@ -168,7 +169,7 @@ function convertNote(note) {
 //  a) do a null check to trigger remaining code and load assets if so
 //  b) if not, bypass unnecessary code (reloading assets, etc)
 //  c) do a check to see if device has changed, proceed as necessary thereafter
-//  
+//
 // set MIDI device as primary, add code to ignore message from any other connected MIDI devices
 //
 // check for set device at the start of noteOn function
