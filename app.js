@@ -168,15 +168,6 @@ function convertNote(note) {
   return note;
 }
 
-// set convertedMIDIValues array as global variable since each device will trigger the same DOM elements
-//
-// set MIDI device in getMIDIMessage function
-//  a) do a null check to trigger remaining code and load assets if so
-//  b) if not, bypass unnecessary code (reloading assets, etc)
-//  c) do a check to see if device has changed, proceed as necessary thereafter
-//
-// set MIDI device as primary, add code to ignore message from any other connected MIDI devices
-//
 // check for set device at the start of noteOn function
 //
 // from that, return the MIDI values array for that device to noteOn function
@@ -187,6 +178,7 @@ function convertNote(note) {
 //
 // dynamically update "pad" names on kit load (future UI)
 // dynamically update "pad" assignments based on device connected (future UI)
+//
 // add LED meters to playback (future UI)
 //  a) use git repo found and customize:
 //    1) meter div
