@@ -3,7 +3,7 @@
 // global array of DOM audio element key values (QWERTY playback)
 let midiConvertedValues = [65, 83, 68, 70, 71, 72, 74, 75, 76];
 
-// global var later set to a MIDI value array based on MIDI input device connected
+// global MIDI vars set later
 let midiInputValues;
 let tempMIDIDevice;
 
@@ -132,6 +132,7 @@ function setMIDIDevice(deviceName) {
 function noteOn(note, velocity, deviceName) {
   const t0 = performance.now();
   console.log(`Note: ${note} | Velocity: ${velocity}`);
+  // check if MIDI device is currently set; if not, set it
   if (tempMIDIDevice != deviceName) {
     tempMIDIDevice = deviceName;
     setMIDIDevice(deviceName);
@@ -141,6 +142,7 @@ function noteOn(note, velocity, deviceName) {
   let newString = temp.concat(newNote);
   let audio = document.getElementById(newString);
   let key = document.getElementById(newNote);
+  // remove following line and test 
   if (!audio) return;
   key.classList.add("playing");
   audio.currentTime = 0;
