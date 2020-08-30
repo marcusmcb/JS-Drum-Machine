@@ -137,13 +137,16 @@ function noteOn(note, velocity, deviceName) {
     tempMIDIDevice = deviceName;
     setMIDIDevice(deviceName);
   }
+  // convert input note, set props & play audio via MIDI
   let newNote = convertNote(note, midiInputValues);
   let temp = "data-key-";
   let newString = temp.concat(newNote);
   let audio = document.getElementById(newString);
   let key = document.getElementById(newNote);
-  // remove following line and test 
+  // remove following line and test
+  // ****************************** 
   if (!audio) return;
+  // ******************************
   key.classList.add("playing");
   audio.currentTime = 0;
   audio.play();
@@ -158,6 +161,7 @@ function noteOff(note) {
 
 // converts MIDI note value to data-key value
 function convertNote(note) {
+  const t2 = performance.now();
   for (i = 0; i < midiInputValues.length; i++) {
     for (j = 0; j < midiConvertedValues.length; j++)
       if (note === midiInputValues[i]) {
@@ -165,6 +169,8 @@ function convertNote(note) {
         console.log(`Converted Note: ${note}`);
       } 
   }
+  const t3 = performance.now();
+  console.log(`Note Conversion Latency: ${(t3 - t2).toFixed(2)} ms`)
   return note;
 }
 
