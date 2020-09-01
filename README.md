@@ -29,7 +29,7 @@ Connect your MIDI device to your laptop/desktop and then refresh the app in your
 * Native Instruments M32: use the first nine white keys starting from the left to play sounds (using the default MIDI mode on boot up)
 * Arturia BeatStep: use the front pad row to play sounds (no other set up needed!)
 * M-Audio Keystation 49es: use C2-D3 (white keys) to play sounds
-* Akai MPK Mini Mk3: use the pads to play sounds (9th sample unavailable at the moment)
+* Akai MPK Mini Mk3: use BANK A on the pads to play sounds (9th sample unavailable at the moment)
 
 ### Touchscreen Compatibility:
 
