@@ -122,6 +122,9 @@ function setMIDIDevice(deviceName) {
     case "KOMPLETE KONTROL M32 MIDI":
       midiInputValues = [41, 43, 45, 47, 48, 50, 52, 53, 55];
       break;
+    case "Maschine MK3 Ctrl MIDI":
+      midiInputValues = [12, 13, 14, 15, 16, 17, 18, 19, 20];
+      break;
     default:
       console.log("No device found!");
   }
