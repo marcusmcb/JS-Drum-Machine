@@ -112,6 +112,7 @@ function setMIDIDevice(deviceName) {
   switch (deviceName) {
     case "Launchkey Mini MK3":
     case "Launchkey Mini":
+    case "Keystation 49es":
       midiInputValues = [48, 50, 52, 53, 55, 57, 59, 60, 62];
       break;
     case "Arturia BeatStep":
@@ -172,7 +173,6 @@ function convertNote(note) {
   return note;
 }
 
-//
 // dynamically update "pad" names on kit load (future UI)
 // dynamically update "pad" assignments based on device connected (future UI)
 //

@@ -22,12 +22,13 @@ Use the kit buttons below the key row to swap kits that will change the playable
 
 Connect your MIDI device to your laptop/desktop and then refresh the app in your browser.
 
-Supported devices (verified working in Chrome):
+#### Supported devices (verified working in Chrome):
 
-* Maschine MK3 - use pads 1-9 to trigger sounds (press Shift + Channel to set the device to MIDI mode after boot up)
-* Novation Launchkey Mini MK3 - use the first nine white keys starting from the left to play sounds (using the default octave setting)
-* Native Instruments M32 - use the first nine white keys starting from the left to play sounds (using the default MIDI mode on boot up)
-* Arturia BeatStep - use the front pad row to play sounds (no other set up needed!)
+* Maschine MK3: use pads 1-9 to trigger sounds (press Shift + Channel to set the device to MIDI mode after boot up)
+* Novation Launchkey Mini MK3: use the first nine white keys starting from the left to play sounds (using the default octave setting)
+* Native Instruments M32: use the first nine white keys starting from the left to play sounds (using the default MIDI mode on boot up)
+* Arturia BeatStep: use the front pad row to play sounds (no other set up needed!)
+* M-Audio Keystation 49es: use C2-D3 (white keys) to play sounds
 
 ### Touchscreen Compatibility:
 
