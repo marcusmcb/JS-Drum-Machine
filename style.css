@@ -89,3 +89,15 @@ kbd {
   text-align: center;
   font-size: 1.6rem;
 }
+
+a:visited {
+  color: white;  
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:hover {
+  color: pink;
+}

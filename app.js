@@ -145,10 +145,7 @@ function noteOn(note, velocity, deviceName) {
   let newString = temp.concat(newNote);
   let audio = document.getElementById(newString);
   let key = document.getElementById(newNote);
-  // remove following line and test
-  // ****************************** 
-  if (!audio) return;
-  // ******************************
+  
   key.classList.add("playing");
   audio.currentTime = 0;
   audio.play();
