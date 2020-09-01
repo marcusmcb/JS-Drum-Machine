@@ -145,13 +145,16 @@ function noteOn(note, velocity, deviceName) {
   let newString = temp.concat(newNote);
   let audio = document.getElementById(newString);
   let key = document.getElementById(newNote);
-  
-  key.classList.add("playing");
-  audio.currentTime = 0;
-  audio.play();
-  const t1 = performance.now();
-  console.log(`Latency: ${(t1 - t0).toFixed(2)} ms`);
-  return;
+  if (key === null) {
+    console.log("No sample found for that key/pad");
+  } else {
+    key.classList.add("playing");
+    audio.currentTime = 0;
+    audio.play();
+    const t1 = performance.now();
+    console.log(`Latency: ${(t1 - t0).toFixed(2)} ms`);
+    return;
+  }
 }
 
 function noteOff(note) {
@@ -165,7 +168,7 @@ function convertNote(note) {
       if (note === midiInputValues[i]) {
         note = midiConvertedValues[i];
         console.log(`Converted Note: ${note}`);
-      } 
+      }
   }
   return note;
 }
