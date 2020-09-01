@@ -95,6 +95,7 @@ function getMIDIMessage(message) {
   let velocity = message.data.length > 2 ? message.data[2] : 0; // a velocity value might not be included with a noteOff command
   switch (command) {
     case 144: // noteOn
+    case 153: // noteOn for MPK drum pads
       if (velocity > 0) {
         noteOn(note, velocity, deviceName);
       } else {
@@ -102,6 +103,7 @@ function getMIDIMessage(message) {
       }
       break;
     case 128: // noteOff
+    case 137: // noteOff for MPK drum pads
       noteOff(note);
       break;
   }
@@ -114,6 +116,9 @@ function setMIDIDevice(deviceName) {
     case "Launchkey Mini":
     case "Keystation 49es":
       midiInputValues = [48, 50, 52, 53, 55, 57, 59, 60, 62];
+      break;
+    case "MPK mini 3":
+      midiInputValues = [36, 37, 38, 39, 40, 41, 42, 43];
       break;
     case "Arturia BeatStep":
       midiInputValues = [36, 37, 38, 39, 40, 41, 42, 43, 44];
