@@ -72,8 +72,8 @@ navigator.requestMIDIAccess().then(onMIDISuccess, onMIDIFailure);
 
 // defines MIDI I/O
 function onMIDISuccess(midiAccess) {
-  var inputs = midiAccess.inputs;
-  var outputs = midiAccess.outputs;
+  let inputs = midiAccess.inputs;
+  let outputs = midiAccess.outputs;
 }
 
 // if MIDI connectivity is unsuccessful
@@ -83,18 +83,16 @@ function onMIDIFailure() {
 
 // grabs messages from device on successful MIDI connection
 function onMIDISuccess(midiAccess) {
-  for (var input of midiAccess.inputs.values())
+  for (let input of midiAccess.inputs.values())
     input.onmidimessage = getMIDIMessage;
 }
 
 // MIDI event listener for noteOn/noteOff events
 function getMIDIMessage(message) {
-  // logger to show MIDI device name
   let deviceName = message.currentTarget.name;
-  // console.log(deviceName);
-  var command = message.data[0];
-  var note = message.data[1];
-  var velocity = message.data.length > 2 ? message.data[2] : 0; // a velocity value might not be included with a noteOff command
+  let command = message.data[0];
+  let note = message.data[1];
+  let velocity = message.data.length > 2 ? message.data[2] : 0; // a velocity value might not be included with a noteOff command
   switch (command) {
     case 144: // noteOn
       if (velocity > 0) {
@@ -126,7 +124,7 @@ function setMIDIDevice(deviceName) {
       midiInputValues = [12, 13, 14, 15, 16, 17, 18, 19, 20];
       break;
     default:
-      console.log("No device found!");
+      console.log("No MIDI map found for your device!");
   }
   console.log(`MIDI DEVICE SET: ${deviceName}`);
 }
@@ -159,12 +157,11 @@ function noteOn(note, velocity, deviceName) {
 }
 
 function noteOff(note) {
-  console.log("Note off");
+  // console.log("Note off");
 }
 
 // converts MIDI note value to data-key value
 function convertNote(note) {
-  const t2 = performance.now();
   for (i = 0; i < midiInputValues.length; i++) {
     for (j = 0; j < midiConvertedValues.length; j++)
       if (note === midiInputValues[i]) {
@@ -172,8 +169,6 @@ function convertNote(note) {
         console.log(`Converted Note: ${note}`);
       } 
   }
-  const t3 = performance.now();
-  console.log(`Note Conversion Latency: ${(t3 - t2).toFixed(2)} ms`)
   return note;
 }
 
