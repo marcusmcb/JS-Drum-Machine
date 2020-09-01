@@ -145,6 +145,7 @@ function noteOn(note, velocity, deviceName) {
   let newString = temp.concat(newNote);
   let audio = document.getElementById(newString);
   let key = document.getElementById(newNote);
+  // check to see if key/pad played is out of MIDI input range
   if (key === null) {
     console.log("No sample found for that key/pad");
   } else {
