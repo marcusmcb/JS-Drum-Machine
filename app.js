@@ -172,13 +172,6 @@ function convertNote(note) {
   return note;
 }
 
-// check for set device at the start of noteOn function
-//
-// from that, return the MIDI values array for that device to noteOn function
-//
-// compare note received to MIDI values array
-//  a) if matched, loop through array and trigger corresponding DOM element
-//  b) if not, display error (future UI task)
 //
 // dynamically update "pad" names on kit load (future UI)
 // dynamically update "pad" assignments based on device connected (future UI)
