@@ -182,3 +182,7 @@ function convertNote(note) {
 //    1) meter div
 //    2) trigger LED function on keydown (QWERTY) or message (MIDI)
 //  b) single-side, reskin overall UI (MPC/Maschine look?)
+//
+//  add velocity sensitivity to sample playback (future logic integration)
+//    1) set playback volume relative to velocity input
+//    2) scale velocity & playback values, use loops to match as done with MIDI input?
