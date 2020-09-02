@@ -154,12 +154,23 @@ function noteOn(note, velocity, deviceName) {
   if (key === null) {
     console.log("No sample found for that key/pad");
   } else {
+    setVelocity(velocity, audio);
     key.classList.add("playing");
     audio.currentTime = 0;
     audio.play();
     const t1 = performance.now();
     console.log(`Latency: ${(t1 - t0).toFixed(2)} ms`);
     return;
+  }
+}
+
+function setVelocity(velocity, audio) {
+  console.log(`SET VELOCITY START: ${velocity}`)
+  if (velocity < 50) {
+    audio.volume = 0.1;
+    console.log("WORKED")
+  } else {
+    audio.volume = 1.0;
   }
 }
 
