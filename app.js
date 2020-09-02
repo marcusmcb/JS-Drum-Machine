@@ -155,7 +155,7 @@ function noteOn(note, velocity, deviceName) {
     console.log("No sample found for that key/pad");
   } else {
     // init audio volume to zero for each MIDI event
-    // uses setVelocity to determine audio volume
+    // use setVelocity to determine audio volume
     // audio.volume = 0;
     // setVelocity(velocity, audio);
     key.classList.add("playing");
@@ -310,13 +310,7 @@ function convertNote(note) {
 //     default:
 //       console.log("over 10");
 //       break;
-//   }
-  // if (velocity < 50) {
-  //   audio.volume = 0.0078;
-  //   console.log("WORKED")
-  // } else {
-  //   audio.volume = 1.0;
-  // }
+//   }  
 // }
 
 // ^ rewrite logic in setVelocity function as switch case?
@@ -331,6 +325,6 @@ function convertNote(note) {
 //    2) trigger LED function on keydown (QWERTY) or message (MIDI)
 //  b) single-side, reskin overall UI (MPC/Maschine look?)
 //
-//  add velocity sensitivity to sample playback (future logic integration)
-//    1) set playback volume relative to velocity input
-//    2) scale velocity & playback values, use loops to match as done with MIDI input?
+//  *** add click capability for playback
+//  *** add touchscreen capability for playback (this one's going to be... interesting)
+
