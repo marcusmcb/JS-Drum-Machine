@@ -154,7 +154,7 @@ function noteOn(note, velocity, deviceName) {
   if (key === null) {
     console.log("No sample found for that key/pad");
   } else {
-    setVelocity(velocity, audio);
+    // setVelocity(velocity, audio);
     key.classList.add("playing");
     audio.currentTime = 0;
     audio.play();
@@ -164,15 +164,18 @@ function noteOn(note, velocity, deviceName) {
   }
 }
 
-function setVelocity(velocity, audio) {
-  console.log(`SET VELOCITY START: ${velocity}`)
-  if (velocity < 50) {
-    audio.volume = 0.1;
-    console.log("WORKED")
-  } else {
-    audio.volume = 1.0;
-  }
-}
+// function setVelocity(velocity, audio) {
+//   console.log(`SET VELOCITY START: ${velocity}`)
+//   if (velocity < 50) {
+//     audio.volume = 0.1;
+//     console.log("WORKED")
+//   } else {
+//     audio.volume = 1.0;
+//   }
+// }
+
+// ^ rewrite logic in setVelocity function as switch case?
+// which is better, performance-wise, to minimize latency/improve UX?
 
 function noteOff(note) {
   // console.log("Note off");
