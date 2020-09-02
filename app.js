@@ -154,6 +154,8 @@ function noteOn(note, velocity, deviceName) {
   if (key === null) {
     console.log("No sample found for that key/pad");
   } else {
+    // init audio volume to zero for each MIDI event
+    // uses setVelocity to determine audio volume
     // audio.volume = 0;
     // setVelocity(velocity, audio);
     key.classList.add("playing");
@@ -163,6 +165,22 @@ function noteOn(note, velocity, deviceName) {
     console.log(`Latency: ${(t1 - t0).toFixed(2)} ms`);
     return;
   }
+}
+
+function noteOff(note) {
+  // console.log("Note off");
+}
+
+// converts MIDI note value to data-key value
+function convertNote(note) {
+  for (i = 0; i < midiInputValues.length; i++) {
+    for (j = 0; j < midiConvertedValues.length; j++)
+      if (note === midiInputValues[i]) {
+        note = midiConvertedValues[i];
+        console.log(`Converted Note: ${note}`);
+      }
+  }
+  return note;
 }
 
 // function setVelocity(velocity, audio) {
@@ -303,22 +321,6 @@ function noteOn(note, velocity, deviceName) {
 
 // ^ rewrite logic in setVelocity function as switch case?
 // which is better, performance-wise, to minimize latency/improve UX?
-
-function noteOff(note) {
-  // console.log("Note off");
-}
-
-// converts MIDI note value to data-key value
-function convertNote(note) {
-  for (i = 0; i < midiInputValues.length; i++) {
-    for (j = 0; j < midiConvertedValues.length; j++)
-      if (note === midiInputValues[i]) {
-        note = midiConvertedValues[i];
-        console.log(`Converted Note: ${note}`);
-      }
-  }
-  return note;
-}
 
 // dynamically update "pad" names on kit load (future UI)
 // dynamically update "pad" assignments based on device connected (future UI)
