@@ -154,6 +154,7 @@ function noteOn(note, velocity, deviceName) {
   if (key === null) {
     console.log("No sample found for that key/pad");
   } else {
+    // audio.volume = 0;
     // setVelocity(velocity, audio);
     key.classList.add("playing");
     audio.currentTime = 0;
@@ -165,13 +166,139 @@ function noteOn(note, velocity, deviceName) {
 }
 
 // function setVelocity(velocity, audio) {
-//   console.log(`SET VELOCITY START: ${velocity}`)
-//   if (velocity < 50) {
-//     audio.volume = 0.1;
-//     console.log("WORKED")
-//   } else {
-//     audio.volume = 1.0;
+//   console.log(`NOTE VELOCITY: ${velocity}`);
+//   console.log(audio.volume);
+//   switch (velocity) {
+//     case 1:
+//       audio.volume = 0.0078;
+//       break;
+//     case 2:
+//       audio.volume = 0.0156;
+//       break;
+//     case 3:
+//       audio.volume = 0.0234;
+//       break;
+//     case 4:
+//       audio.volume = 0.0312;
+//       break;
+//     case 5:
+//       audio.volume = 0.039;
+//       break;
+//     case 6:
+//       audio.volume = 0.0468;
+//       break;
+//     case 7:
+//       audio.volume = 0.0546;
+//       break;
+//     case 8:
+//       audio.volume = 0.0624;
+//       break;
+//     case 9:
+//       audio.volume = 0.0702;
+//       break;
+//     case 10:
+//       audio.volume = 0.078;
+//       break;
+//     case 11:
+//       audio.volume = 0.0858;
+//       break;
+//     case 12:
+//       audio.volume = 0.0936;
+//       break;
+//     case 13:
+//       audio.volume = 0.1014;
+//       break;
+//     case 14:
+//       audio.volume = 0.1092;
+//       break;
+//     case 15:
+//       audio.volume = 0.117;
+//       break;
+//     case 16:
+//       audio.volume = 0.1248;
+//       break;
+//     case 17:
+//       audio.volume = 0.1326;
+//       break;
+//     case 18:
+//       audio.volume = 0.1404;
+//       break;
+//     case 19:
+//       audio.volume = 0.1482;
+//       break;
+//     case 20:
+//       audio.volume = 0.156;
+//       break;
+//     case 21:
+//       audio.volume = 0.1638;
+//       break;
+//     case 22:
+//       audio.volume = 0.1716;
+//       break;
+//     case 23:
+//       audio.volume = 0.1794;
+//       break;
+//     case 24:
+//       audio.volume = 0.1872;
+//       break;
+//     case 25:
+//       audio.volume = 0.195;
+//       break;
+//     case 26:
+//       audio.volume = 0.2028;
+//       break;
+//     case 27:
+//       audio.volume = 0.2106;
+//       break;
+//     case 28:
+//       audio.volume = 0.2184;
+//       break;
+//     case 29:
+//       audio.volume = 0.2262;
+//       break;
+//     case 30:
+//       audio.volume = 0.234;
+//       break;
+//     case 31:
+//       audio.volume = 0.2418;
+//       break;
+//     case 32:
+//       audio.volume = 0.2496;
+//       break;
+//     case 33:
+//       audio.volume = 0.2574;
+//       break;
+//     case 34:
+//       audio.volume = 0.2652;
+//       break;
+//     case 35:
+//       audio.volume = 0.273;
+//       break;
+//     case 36:
+//       audio.volume = 0.2808;
+//       break;
+//     case 37:
+//       audio.volume = 0.2886;
+//       break;
+//     case 38:
+//       audio.volume = 0.2964;
+//       break;
+//     case 39:
+//       audio.volume = 0.3042;
+//       break;
+//     case 40:
+//       audio.volume = 0.312;
+//       break;
+//     default:
+//       console.log("over 10");
+//       break;
 //   }
+  // if (velocity < 50) {
+  //   audio.volume = 0.0078;
+  //   console.log("WORKED")
+  // } else {
+  //   audio.volume = 1.0;
+  // }
 // }
 
 // ^ rewrite logic in setVelocity function as switch case?
