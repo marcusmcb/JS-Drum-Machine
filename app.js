@@ -307,10 +307,133 @@ function convertNote(note) {
 //     case 40:
 //       audio.volume = 0.312;
 //       break;
+//     case 41:
+//       audio.volume = 0;
+//       break;
+//     case 42:
+//       audio.volume = 0;
+//       break;
+//     case 43:
+//       audio.volume = 0;
+//       break;
+//     case 44:
+//       audio.volume = 0;
+//       break;
+//     case 45:
+//       audio.volume = 0;
+//       break;
+//     case 46:
+//       audio.volume = 0;
+//       break;
+//     case 47:
+//       audio.volume = 0;
+//       break;
+//     case 48:
+//       audio.volume = 0;
+//       break;
+//     case 49:
+//       audio.volume = 0;
+//       break;
+//     case 50:
+//       audio.volume = 0;
+//       break;
+//     case 51:
+//       audio.volume = 0;
+//       break;
+//     case 52:
+//       audio.volume = 0;
+//       break;
+//     case 53:
+//       audio.volume = 0;
+//       break;
+//     case 54:
+//       audio.volume = 0;
+//       break;
+//     case 55:
+//       audio.volume = 0;
+//       break;
+//     case 56:
+//       audio.volume = 0;
+//       break;
+//     case 57:
+//       audio.volume = 0;
+//       break;
+//     case 58:
+//       audio.volume = 0;
+//       break;
+//     case 59:
+//       audio.volume = 0;
+//       break;
+//     case 60:
+//       audio.volume = 0;
+//       break;
+//     case 61:
+//       audio.volume = 0;
+//       break;
+//     case 62:
+//       audio.volume = 0;
+//       break;
+//     case 63:
+//       audio.volume = 0;
+//       break;
+//     case 64:
+//       audio.volume = 0;
+//       break;
+//     case 65:
+//       audio.volume = 0;
+//       break;
+//     case 66:
+//       audio.volume = 0;
+//       break;
+//     case 67:
+//       audio.volume = 0;
+//       break;
+//     case 68:
+//       audio.volume = 0;
+//       break;
+//     case 69:
+//       audio.volume = 0;
+//       break;
+//     case 70:
+//       audio.volume = 0;
+//       break;
+//     case 71:
+//       audio.volume = 0;
+//       break;
+//     case 72:
+//       audio.volume = 0;
+//       break;
+//     case 73:
+//       audio.volume = 0;
+//       break;
+//     case 74:
+//       audio.volume = 0;
+//       break;
+//     case 75:
+//       audio.volume = 0;
+//       break;
+//     case 76:
+//       audio.volume = 0;
+//       break;
+//     case 77:
+//       audio.volume = 0;
+//       break;
+//     case 78:
+//       audio.volume = 0;
+//       break;
+//     case 79:
+//       audio.volume = 0;
+//       break;
+//     case 80:
+//       audio.volume = 0;
+//       break;
+//     case 81:
+//       audio.volume = 0;
+//       break;
 //     default:
 //       console.log("over 10");
 //       break;
-//   }  
+//   }
 // }
 
 // ^ rewrite logic in setVelocity function as switch case?
@@ -327,4 +450,3 @@ function convertNote(note) {
 //
 //  *** add click capability for playback
 //  *** add touchscreen capability for playback (this one's going to be... interesting)
-
