@@ -111,6 +111,7 @@ function getMIDIMessage(message) {
 
 // function to set MIDI device & load corresponding input values (unique to each device tested)
 function setMIDIDevice(deviceName) {
+  console.log(`Device Name: ${deviceName}`)
   switch (deviceName) {
     case "Launchkey Mini MK3":
     case "Launchkey Mini":
@@ -129,6 +130,9 @@ function setMIDIDevice(deviceName) {
     case "Maschine MK3 Ctrl MIDI":
       midiInputValues = [12, 13, 14, 15, 16, 17, 18, 19, 20];
       break;
+    // case "Launchkey Mini Mk3":
+    //   midiInputValues = [36, 37, 38, 39, 44, 45, 46, 47];
+    //   break;
     default:
       console.log("No MIDI map found for your device!");
   }
