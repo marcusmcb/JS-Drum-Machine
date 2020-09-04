@@ -450,3 +450,5 @@ function convertNote(note) {
 //
 //  *** add click capability for playback
 //  *** add touchscreen capability for playback (this one's going to be... interesting)
+//
+//  tested moving velocity case to separate js file, didn't work
