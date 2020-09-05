@@ -47,7 +47,7 @@ function changeKit() {
   let activeKit = document.querySelector(".active").id;
   let regex = /kit_\w/gi;
   let audioElements = document.querySelectorAll("source");
-  for (i = 0; i < audioElements.length; i++) {
+  for (let i = 0; i < audioElements.length; i++) {
     // console.log(audioElements[i])
     let currentSourcePath = audioElements[i].src;
     let newSourcePath = currentSourcePath.replace(regex, activeKit);
@@ -59,7 +59,7 @@ function changeKit() {
 // function to load currently selected kit
 function loadKit() {
   let kit = document.querySelectorAll("audio");
-  for (i = 0; i < kit.length; i++) {
+  for (let i = 0; i < kit.length; i++) {
     kit[i].load();
   }
   // setup/logger to confirm active drum kit change
