@@ -2,8 +2,6 @@
 
 import { setVelocity } from './velocities.js';
 
-// *** global variables ***
-
 // global array of DOM audio element key values (QWERTY playback)
 let midiConvertedValues = [65, 83, 68, 70, 71, 72, 74, 75, 76];
 
@@ -203,3 +201,5 @@ function convertNote(note) {
 //  *** add touchscreen capability for playback (this one's going to be... interesting)
 //
 //  tested moving velocity case to separate js file, didn't work
+//
+//  create button to toggle velocity sensitivty on/off (future UI)
