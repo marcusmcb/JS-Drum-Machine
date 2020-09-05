@@ -24,7 +24,7 @@ Use the kit buttons below the key row to swap kits that will change the playable
 
 Connect your MIDI device to your laptop/desktop and then refresh the app in your browser.
 
-<u>Supported devices (verified working in Chrome):</u>
+<u>Supported devices:</u>
 
 * Maschine MK3: use pads 1-9 to trigger sounds (press Shift + Channel to set the device to MIDI mode after boot up)
 * Novation Launchkey Mini MK3: use the first nine white keys starting from the left to play sounds (using the default octave setting)
@@ -39,7 +39,7 @@ Velocity is enabled by default when using JSP-1 with a MIDI control device (unle
 
 ### Browser Compatibility:
 
-All features/functions tested and verified working in Chrome and Firefox.  CSS animations do not display w/MIDI control in Firefox at the moment (working properly for QWERTY playback).
+All features/functions and MIDI devices tested are verified as working in Chrome and Firefox.  CSS animations do not display w/MIDI control in Firefox at the moment (working properly for QWERTY playback).
 
 ### Touchscreen Compatibility:
 
