@@ -1,4 +1,7 @@
+// import setVelocity function from module
+
 import { setVelocity } from './velocities.js';
+
 // *** global variables ***
 
 // global array of DOM audio element key values (QWERTY playback)
