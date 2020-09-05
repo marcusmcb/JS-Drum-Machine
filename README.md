@@ -39,7 +39,7 @@ Velocity is enabled by default when using JSP-1 with a MIDI control device (unle
 
 ### Browser Compatibility:
 
-All features/functions tested and verified to be working in Chrome and Firefox.  CSS animations do not display w/MIDI control in Firefox at the moment (working properly for QWERTY playback).
+All features/functions tested and verified working in Chrome and Firefox.  CSS animations do not display w/MIDI control in Firefox at the moment (working properly for QWERTY playback).
 
 ### Touchscreen Compatibility:
 
