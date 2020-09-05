@@ -1,10 +1,12 @@
 # JSP-1 | Javascript Sample Player
 
-This is a sample player/drum machine app built with Javascript. It was developed using the base concept from one of the JavaScript30 tutorials on YouTube.
+This is a sample player/drum machine app built with Javascript. 
+
+It was developed using the base concept from one of the JavaScript30 tutorials on YouTube.
 
 Differences from the original code include:
 
-* NHTML/CSS changes (to customize the look and layout of the app)
+* HTML/CSS changes (to customize the look and layout of the app)
 * MIDI input with selected devices
 * additional JavaScript functionality for the user to change sound kits
 
@@ -30,6 +32,14 @@ Connect your MIDI device to your laptop/desktop and then refresh the app in your
 * Arturia BeatStep: use the front pad row to play sounds (no other set up needed!)
 * M-Audio Keystation 49es: use C2-D3 (white keys) to play sounds
 * Akai MPK Mini Mk3: use BANK A on the pads to play sounds (9th sample unavailable at the moment)
+
+### Velocity Sensitivity
+
+Velocity is enabled by default when using JSP-1 with a MIDI control device (unless the device does not send velocity data).  I may add a button at a later point to toggle this feature within the UI.  Velocity values were calculated simply by splitting the volume range for each audio element (0-1) into increments for each possible velocity within the MIDI specs (1-127). 
+
+### Browser Compatibility:
+
+All features/functions tested and verified to be working in Chrome and Firefox.  CSS animations do not display w/MIDI control in Firefox at the moment (working properly for QWERTY playback).
 
 ### Touchscreen Compatibility:
 
