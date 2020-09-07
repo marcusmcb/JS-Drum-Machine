@@ -27,12 +27,12 @@ $(document).ready(function () {
 });
 
 // click handler to toggle velocity sensitivity
-// $(document).ready(function () {
-//   $(".velocity").on("click", function () {
-//     $(".velocity").removeClass("active");
-//     $(this).addClass("active");    
-//   });
-// });
+$(document).ready(function () {
+  $(".velocity").on("click", function () {
+    $(".velocity").removeClass("active");
+    $(this).addClass("active");    
+  });
+});
 
 // css function for transition element
 function removeTransition(e) {
