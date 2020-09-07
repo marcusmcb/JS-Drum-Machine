@@ -27,12 +27,12 @@ $(document).ready(function () {
 });
 
 // click handler to toggle velocity sensitivity
-$(document).ready(function () {
-  $(".velocity").on("click", function () {
-    $(".velocity").removeClass("active");
-    $(this).addClass("active");    
-  });
-});
+// $(document).ready(function () {
+//   $(".velocity").on("click", function () {
+//     $(".velocity").removeClass("active");
+//     $(this).addClass("active");    
+//   });
+// });
 
 // css function for transition element
 function removeTransition(e) {
@@ -160,6 +160,7 @@ function noteOn(note, velocity, deviceName) {
   let newString = temp.concat(newNote);
   let audio = document.getElementById(newString);
   let key = document.getElementById(newNote);
+  let velocityStatus = document.getElementById("velocity");
   // check to see if key/pad played is out of MIDI input range
   if (key === null) {
     console.log("No sample found for that key/pad");
@@ -167,6 +168,9 @@ function noteOn(note, velocity, deviceName) {
     // init audio volume to zero for each MIDI event
     // use setVelocity to determine audio volume
     audio.volume = 0;
+    // if (velocityStatus === "active") {
+    //   setVelocity(velocity, audio)
+    // }
     setVelocity(velocity, audio);
     key.classList.add("playing");
     audio.currentTime = 0;
