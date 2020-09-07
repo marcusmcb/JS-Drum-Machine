@@ -37,6 +37,7 @@ html {
   margin-top: 30vh;
 }
 
+.velocity-toggle,
 .kits {
   display: flex;
   flex: 1;
@@ -45,6 +46,7 @@ html {
   min-height: 20vh;
 }
 
+.velocity,
 .kit {
   border: 0.4rem solid black;
   border-radius: 0.5rem;
