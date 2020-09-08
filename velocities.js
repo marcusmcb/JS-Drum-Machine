@@ -383,7 +383,7 @@ export function setVelocity(velocity, audio) {
       audio.volume = 1;
       break;
     default:
-      console.log("over 10");
+      console.log("no value");
       break;
   }
 }

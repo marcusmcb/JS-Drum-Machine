@@ -216,3 +216,5 @@ function convertNote(note) {
 //
 //  *** add click capability for playback
 //  *** add touchscreen capability for playback (this one's going to be... interesting)
+//
+// host sound kits in S3 buckets (or comparable alternative)
