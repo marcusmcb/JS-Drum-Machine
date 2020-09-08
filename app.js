@@ -153,7 +153,8 @@ function setMIDIDevice(deviceName) {
 // triggers audio element on MIDI note message/event
 function noteOn(note, velocity, deviceName) {
   const t0 = performance.now();
-  console.log(`Note: ${note} | Velocity: ${velocity}`);
+  console.log("-------------------------------------");
+  console.log(`NOTE: ${note}`);
   // check if MIDI device is currently set; if not, set it
   if (tempMIDIDevice != deviceName) {
     tempMIDIDevice = deviceName;
@@ -199,7 +200,7 @@ function convertNote(note) {
     for (let j = 0; j < midiConvertedValues.length; j++)
       if (note === midiInputValues[i]) {
         note = midiConvertedValues[i];
-        console.log(`Converted Note: ${note}`);
+        console.log(`Converted Note Value: ${note}`);
       }
   }
   return note;
