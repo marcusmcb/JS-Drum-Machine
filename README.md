@@ -36,7 +36,9 @@ Connect your MIDI device to your laptop/desktop and then refresh the app in your
 
 ### Velocity Sensitivity
 
-Velocity is enabled by default when using JSP-1 with a MIDI control device (unless the device does not send velocity data).  I may add a button at a later point to toggle this feature within the UI.  Velocity values were calculated simply by splitting the volume range for each audio element (0-1) into increments for each possible velocity within the MIDI specs (1-127). 
+Velocity is enabled by default after the page loads when using JSP-1 with a MIDI control device (unless the device does not send velocity data).  Use the button to toggle velocity sensitivity on/off.
+
+Velocity values were calculated simply by splitting the volume range for each audio element (0-1) into increments for each possible velocity within the MIDI specs (1-127). 
 
 ### Browser Compatibility:
 

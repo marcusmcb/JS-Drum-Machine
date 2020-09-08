@@ -29,8 +29,13 @@ $(document).ready(function () {
 // click handler to toggle velocity sensitivity
 $(document).ready(function () {
   $(".velocity").on("click", function () {
-    $(".velocity").removeClass("active");
-    $(this).addClass("active");    
+    if($(this).text() == "Velocity On") {
+      $(this).text("Velocity Off")
+      $(".velocity").removeClass("active")
+    } else {
+      $(this).text("Velocity On")
+      $(".velocity").addClass("active")
+    };        
   });
 });
 
@@ -153,25 +158,26 @@ function noteOn(note, velocity, deviceName) {
   if (tempMIDIDevice != deviceName) {
     tempMIDIDevice = deviceName;
     setMIDIDevice(deviceName);
-  }
+  };
   // convert input note, set props & play audio via MIDI
   let newNote = convertNote(note, midiInputValues);
+  // set vars to pass return values to audio elements
   let temp = "data-key-";
   let newString = temp.concat(newNote);
   let audio = document.getElementById(newString);
   let key = document.getElementById(newNote);
-  let velocityStatus = document.getElementById("velocity");
+  let velocityStatus = document.getElementById("velocity-btn");  
   // check to see if key/pad played is out of MIDI input range
   if (key === null) {
     console.log("No sample found for that key/pad");
-  } else {
-    // init audio volume to zero for each MIDI event
-    // use setVelocity to determine audio volume
-    audio.volume = 0;
-    // if (velocityStatus === "active") {
-    //   setVelocity(velocity, audio)
-    // }
-    setVelocity(velocity, audio);
+  // check current velocity button setting
+  } else if (velocityStatus.classList[1] === "active") {
+      // init audio playback volume to 0, run function to set volume based on input velocity
+      audio.volume = 0;
+      setVelocity(velocity, audio);
+    } else {
+      audio.volume = 1;
+    }
     key.classList.add("playing");
     audio.currentTime = 0;
     audio.play();
@@ -179,7 +185,6 @@ function noteOn(note, velocity, deviceName) {
     console.log(`Latency: ${(t1 - t0).toFixed(2)} ms`);
     return;
   }
-}
 
 function noteOff(note) {
   // console.log("Note off");
@@ -211,7 +216,3 @@ function convertNote(note) {
 //
 //  *** add click capability for playback
 //  *** add touchscreen capability for playback (this one's going to be... interesting)
-//
-//  tested moving velocity case to separate js file, didn't work
-//
-//  create button to toggle velocity sensitivty on/off (future UI)
