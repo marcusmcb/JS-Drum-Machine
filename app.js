@@ -32,9 +32,11 @@ $(document).ready(function () {
     if($(this).text() == "Velocity On") {
       $(this).text("Velocity Off")
       $(".velocity").removeClass("active")
+      console.log("Velocity OFF")
     } else {
       $(this).text("Velocity On")
       $(".velocity").addClass("active")
+      console.log("Velocity ON")
     };        
   });
 });
@@ -61,7 +63,6 @@ function changeKit() {
   let regex = /kit_\w/gi;
   let audioElements = document.querySelectorAll("source");
   for (let i = 0; i < audioElements.length; i++) {
-    // console.log(audioElements[i])
     let currentSourcePath = audioElements[i].src;
     let newSourcePath = currentSourcePath.replace(regex, activeKit);
     audioElements[i].src = newSourcePath;
@@ -75,9 +76,8 @@ function loadKit() {
   for (let i = 0; i < kit.length; i++) {
     kit[i].load();
   }
-  // setup/logger to confirm active drum kit change
-  let activeKit = document.querySelector(".active");
-  console.log(`${activeKit.innerHTML} successfully loaded.`);
+  // logger to confirm drum kit change
+  console.log(`${document.querySelector(".active").innerHTML} successfully loaded.`);
 }
 
 // *** code for MIDI playback and device config ***
@@ -103,9 +103,10 @@ function getMIDIMessage(message) {
   let deviceName = message.currentTarget.name;
   let command = message.data[0];
   let note = message.data[1];
-  let velocity = message.data.length > 2 ? message.data[2] : 0; // a velocity value might not be included with a noteOff command
+  // check to see if velocity value is present in message (it may not be for certain devices)
+  let velocity = message.data.length > 2 ? message.data[2] : 0; 
   switch (command) {
-    case 144: // noteOn
+    case 144: // noteOn (general use)
     case 153: // noteOn for MPK drum pads
       if (velocity > 0) {
         noteOn(note, velocity, deviceName);
@@ -113,14 +114,14 @@ function getMIDIMessage(message) {
         noteOff(note);
       }
       break;
-    case 128: // noteOff
+    case 128: // noteOff (general use)
     case 137: // noteOff for MPK drum pads
       noteOff(note);
       break;
   }
 }
 
-// function to set MIDI device & load corresponding input values (unique to each device tested)
+// function to set MIDI device & load corresponding input values (unique to most devices)
 function setMIDIDevice(deviceName) {
   console.log(`Device Name: ${deviceName}`)
   switch (deviceName) {
@@ -147,10 +148,11 @@ function setMIDIDevice(deviceName) {
     default:
       console.log("No MIDI map found for your device!");
   }
+  // logger to confirm MIDI device set
   console.log(`MIDI DEVICE SET: ${deviceName}`);
 }
 
-// triggers audio element on MIDI message
+// triggers audio element on MIDI note message/event
 function noteOn(note, velocity, deviceName) {
   const t0 = performance.now();
   console.log(`Note: ${note} | Velocity: ${velocity}`);
@@ -161,21 +163,22 @@ function noteOn(note, velocity, deviceName) {
   };
   // convert input note, set props & play audio via MIDI
   let newNote = convertNote(note, midiInputValues);
-  // set vars to pass return values to audio elements
+  // set vars to pass return values to audio elements in DOM
   let temp = "data-key-";
   let newString = temp.concat(newNote);
   let audio = document.getElementById(newString);
   let key = document.getElementById(newNote);
   let velocityStatus = document.getElementById("velocity-btn");  
-  // check to see if key/pad played is out of MIDI input range
+  // check to see if key/pad played is out of MIDI input range for device
   if (key === null) {
     console.log("No sample found for that key/pad");
-  // check current velocity button setting
+  // check current velocity button setting & adjust playback volume accordingly
   } else if (velocityStatus.classList[1] === "active") {
       // init audio playback volume to 0, run function to set volume based on input velocity
       audio.volume = 0;
       setVelocity(velocity, audio);
     } else {
+      // init audio playback to full volume if velocity setting is off
       audio.volume = 1;
     }
     key.classList.add("playing");
@@ -205,14 +208,14 @@ function convertNote(note) {
 // rewrite logic in setVelocity function to minimize playback latency
 // which is better, performance-wise, to minimize latency/improve UX?
 
-// dynamically update "pad" names on kit load (future UI)
-// dynamically update "pad" assignments based on device connected (future UI)
+// dynamically update pad/key names on kit load (future UI)
+// dynamically update pad/key assignments based on device connected (future UI)
 //
 // add LED meters to playback (future UI)
 //  a) use git repo found and customize:
 //    1) meter div
 //    2) trigger LED function on keydown (QWERTY) or message (MIDI)
-//  b) single-side, reskin overall UI (MPC/Maschine look?)
+//  b) reskin overall UI (MPC/Maschine look?)
 //
 //  *** add click capability for playback
 //  *** add touchscreen capability for playback (this one's going to be... interesting)
