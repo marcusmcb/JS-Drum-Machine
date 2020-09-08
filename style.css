@@ -42,7 +42,10 @@ html {
   display: flex;
   flex: 1;
   align-items: center;
-  justify-content: center;
+  justify-content: center;  
+}
+
+.kits {
   min-height: 15vh;
 }
 
@@ -62,7 +65,7 @@ html {
 }
 
 .velocity-toggle {
-  min-height: 5vh !important;
+  min-height: 5vh;
 }
 
 .active {
