@@ -99,10 +99,10 @@ function onMIDIFailure() {
 }
 
 // MIDI event listener for noteOn/noteOff events
-function getMIDIMessage(message) {
+function getMIDIMessage(message) {  
   let deviceName = message.currentTarget.name;
   let command = message.data[0];
-  let note = message.data[1];
+  let note = message.data[1];  
   // check to see if velocity value is present in message (it may not be for certain devices)
   let velocity = message.data.length > 2 ? message.data[2] : 0; 
   switch (command) {
@@ -122,15 +122,16 @@ function getMIDIMessage(message) {
 }
 
 // function to set MIDI device & load corresponding input values (unique to most devices)
-function setMIDIDevice(deviceName) {
-  console.log(`Device Name: ${deviceName}`)
-  switch (deviceName) {
-    case "Launchkey Mini MK3":
-    case "Launchkey Mini":
+function setMIDIDevice(deviceName) {  
+  switch (deviceName) {    
     case "Keystation 49es":
       midiInputValues = [48, 50, 52, 53, 55, 57, 59, 60, 62];
       break;
-    case "MPK mini 3":
+    case "LKMK3 MIDI": // Launchkey MK3
+    case "Launchkey Mini MK3":
+      midiInputValues = [36, 37, 38, 39, 44, 45, 46, 47, 40];
+      break;
+    case "MPK mini 3": // Akai MPK Mini Mk3
       midiInputValues = [36, 37, 38, 39, 40, 41, 42, 43];
       break;
     case "Arturia BeatStep":
@@ -141,10 +142,7 @@ function setMIDIDevice(deviceName) {
       break;
     case "Maschine MK3 Ctrl MIDI":
       midiInputValues = [12, 13, 14, 15, 16, 17, 18, 19, 20];
-      break;
-    // case "Launchkey Mini Mk3":
-    //   midiInputValues = [36, 37, 38, 39, 44, 45, 46, 47];
-    //   break;
+      break;      
     default:
       console.log("No MIDI map found for your device!");
   }
@@ -172,8 +170,10 @@ function noteOn(note, velocity, deviceName) {
   // check to see if key/pad played is out of MIDI input range for device
   if (key === null) {
     console.log("No sample found for that key/pad");
-  // check current velocity button setting & adjust playback volume accordingly
-  } else if (velocityStatus.classList[1] === "active") {
+    return;  
+  } 
+  // check current velocity setting & adjust playback volume accordingly
+  if (velocityStatus.classList[1] === "active") {
       // init audio playback volume to 0, run function to set volume based on input velocity
       audio.volume = 0;
       setVelocity(velocity, audio);
