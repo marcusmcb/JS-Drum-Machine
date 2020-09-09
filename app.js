@@ -116,6 +116,9 @@ function getMIDIMessage(message) {
     case 144: // noteOn (general use)
     case 153: // noteOn for MPK drum pads
       if (velocity > 0) {
+        // ***********************************************************
+        // add logic to skip the following if velocity is set as "off"
+        // ***********************************************************
         noteOn(note, velocity, deviceName);
       } else {
         noteOff(note);
@@ -238,6 +241,8 @@ function convertNote(note) {
 //    1) on selection/toggle, update background image/video
 //    2) image/video storage on S3 (depending on file size)
 //      x) figure out max storage on static Github site (thanks, btw!)
+//    3) ambient background noise relative to "mood" setting?
+//      x) might not be a draw but imagine some producers may actually like this option
 //  b) light/dark mode - will need to research doability here (browser compatibility, etc)
 
 // test to-dos:
