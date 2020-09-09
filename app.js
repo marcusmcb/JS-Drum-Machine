@@ -7,12 +7,7 @@ let midiConvertedValues = [65, 83, 68, 70, 71, 72, 74, 75, 76];
 let midiInputValues;
 let tempMIDIDevice;
 
-// *** code for QWERTY playback & click handlers ***
-
-// defines "keyboard" for QWERTY playback
-const keys = Array.from(document.querySelectorAll(".key"));
-keys.forEach((key) => key.addEventListener("transitionend", removeTransition));
-window.addEventListener("keydown", playSound);
+// *** click handlers ***
 
 // click handler to determine/select active drum kit
 $(document).ready(function () {
@@ -39,6 +34,13 @@ $(document).ready(function () {
   });
 });
 
+// *** code for QWERTY playback ***
+
+// defines "keyboard" for QWERTY playback
+const keys = Array.from(document.querySelectorAll(".key"));
+keys.forEach((key) => key.addEventListener("transitionend", removeTransition));
+window.addEventListener("keydown", playSound);
+
 // css function for transition element
 function removeTransition(e) {
   if (e.propertyName !== "transform") return;
@@ -60,6 +62,10 @@ function changeKit() {
   let activeKit = document.querySelector(".active").id;
   let regex = /kit_\w/gi;
   let audioElements = document.querySelectorAll("source");
+  let audioTags = document.querySelectorAll(".sound");
+  for (let i = 0; i < audioTags.length; i++) {
+    console.log(audioTags[i].innerHTML)
+  }
   for (let i = 0; i < audioElements.length; i++) {
     let currentSourcePath = audioElements[i].src;
     let newSourcePath = currentSourcePath.replace(regex, activeKit);
@@ -207,19 +213,35 @@ function convertNote(note) {
   return note;
 }
 
+// *** FUTURE DEVELOPMENT NOTES ***
+
 // rewrite logic in setVelocity function to minimize playback latency
 // which is better, performance-wise, to minimize latency/improve UX?
 
 // dynamically update pad/key names on kit load (future UI)
-// dynamically update pad/key assignments based on device connected (future UI)
-//
+// dynamically update pad/key assignments based on device connected (future UI, possibly extensive)
+
 // add LED meters to playback (future UI)
 //  a) use git repo found and customize:
 //    1) meter div
 //    2) trigger LED function on keydown (QWERTY) or message (MIDI)
 //  b) reskin overall UI (MPC/Maschine look?)
-//
+//  c) log latency to see if there is any effect
+
 //  *** add click capability for playback
 //  *** add touchscreen capability for playback (this one's going to be... interesting)
-//
-// host sound kits in S3 buckets (or comparable alternative)
+
+// host sound kits in S3 buckets (or comparable alternative?)
+
+// future background concept:
+//  a) add "mood" selector/button/toggle-through
+//    1) on selection/toggle, update background image/video
+//    2) image/video storage on S3 (depending on file size)
+//      x) figure out max storage on static Github site (thanks, btw!)
+//  b) light/dark mode - will need to research doability here (browser compatibility, etc)
+
+// test to-dos:
+//  a) win 8 machine
+//  b) mbp of some sort
+//  c) chromebook (not sure if/how MIDI even works here)
+//  d) raspberry pi (not sure how well Raspian plays with MIDI)
