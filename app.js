@@ -9,6 +9,8 @@ let tempMIDIDevice;
 
 // *** click handlers ***
 
+// rewrite as vanilla JS or leave as is?
+
 // click handler to determine/select active drum kit
 $(document).ready(function () {
   $(".kit").on("click", function () {
