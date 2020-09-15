@@ -103,8 +103,10 @@ function onMIDISuccess(midiAccess) {
 }
 
 // if MIDI connectivity is unsuccessful
-function onMIDIFailure() {
+function onMIDIFailure(message) {
   console.log("Could not access your MIDI device.");
+  console.log("----------------------------------");
+  console.log(`Error: ${message}`)
 }
 
 // MIDI event listener for noteOn/noteOff events
