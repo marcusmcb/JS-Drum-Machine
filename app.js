@@ -1,4 +1,4 @@
-import { setVelocity } from './velocities.js';
+import { setVelocity } from "./velocities.js";
 
 // global array of DOM audio element key values (QWERTY playback)
 let midiConvertedValues = [65, 83, 68, 70, 71, 72, 74, 75, 76];
@@ -24,15 +24,23 @@ $(document).ready(function () {
 // click handler to toggle velocity sensitivity
 $(document).ready(function () {
   $(".velocity").on("click", function () {
-    if($(this).text() == "Velocity On") {
-      $(this).text("Velocity Off")
-      $(".velocity").removeClass("active")
-      console.log("Velocity OFF")
+    if ($(this).text() == "Velocity On") {
+      $(this).text("Velocity Off");
+      $(".velocity").removeClass("active");
+      console.log("Velocity OFF");
     } else {
-      $(this).text("Velocity On")
-      $(".velocity").addClass("active")
-      console.log("Velocity ON")
-    };        
+      $(this).text("Velocity On");
+      $(".velocity").addClass("active");
+      console.log("Velocity ON");
+    }
+  });
+});
+
+// click handler for mouse playback
+$(document).ready(function () {
+  $(".key").on("click", function () {
+    let e = this.id;
+    playSound(e);
   });
 });
 
@@ -51,8 +59,15 @@ function removeTransition(e) {
 
 // function to trigger individual sounds via QWERTY
 function playSound(e) {
-  const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-  const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+  let audio, key;
+  // determines input type (key or click) and assigns values to DOM element accordingly
+  if (e.type === "keydown") {    
+    audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    key = document.querySelector(`div[data-key="${e.keyCode}"]`);    
+  } else {
+    audio = document.querySelector(`audio[data-key="${e}"]`);
+    key = document.querySelector(`div[data-key="${e}"]`); 
+  }  
   if (!audio) return;
   key.classList.add("playing");
   audio.currentTime = 0;
@@ -66,7 +81,7 @@ function changeKit() {
   let audioElements = document.querySelectorAll("source");
   let audioTags = document.querySelectorAll(".sound");
   for (let i = 0; i < audioTags.length; i++) {
-    console.log(audioTags[i].innerHTML)
+    console.log(audioTags[i].innerHTML);
   }
   for (let i = 0; i < audioElements.length; i++) {
     let currentSourcePath = audioElements[i].src;
@@ -74,7 +89,7 @@ function changeKit() {
     audioElements[i].src = newSourcePath;
     // add code to swap out audio sample names on kit change within this loop
     // use HTML ids to match sample to correct div element
-    console.log((newSourcePath).split(`${activeKit}/`)[1])
+    console.log(newSourcePath.split(`${activeKit}/`)[1]);
     audioElements[i].src = audioElements[i].src.split("-Machine/")[1];
   }
 }
@@ -86,7 +101,9 @@ function loadKit() {
     kit[i].load();
   }
   // logger to confirm drum kit change
-  console.log(`${document.querySelector(".active").innerHTML} successfully loaded.`);
+  console.log(
+    `${document.querySelector(".active").innerHTML} successfully loaded.`
+  );
 }
 
 // *** code for MIDI playback and device config ***
@@ -106,16 +123,16 @@ function onMIDISuccess(midiAccess) {
 function onMIDIFailure(message) {
   console.log("Could not access your MIDI device.");
   console.log("----------------------------------");
-  console.log(`Error: ${message}`)
+  console.log(`Error: ${message}`);
 }
 
 // MIDI event listener for noteOn/noteOff events
-function getMIDIMessage(message) {  
+function getMIDIMessage(message) {
   let deviceName = message.currentTarget.name;
   let command = message.data[0];
-  let note = message.data[1];  
+  let note = message.data[1];
   // check to see if velocity value is present in message (it may not be for certain devices)
-  let velocity = message.data.length > 2 ? message.data[2] : 0; 
+  let velocity = message.data.length > 2 ? message.data[2] : 0;
   switch (command) {
     case 144: // noteOn (general use)
     case 153: // noteOn for MPK drum pads
@@ -136,8 +153,8 @@ function getMIDIMessage(message) {
 }
 
 // function to set MIDI device & load corresponding input values (unique to most devices)
-function setMIDIDevice(deviceName) {  
-  switch (deviceName) {    
+function setMIDIDevice(deviceName) {
+  switch (deviceName) {
     case "Keystation 49es":
       midiInputValues = [48, 50, 52, 53, 55, 57, 59, 60, 62];
       break;
@@ -156,7 +173,7 @@ function setMIDIDevice(deviceName) {
       break;
     case "Maschine MK3 Ctrl MIDI":
       midiInputValues = [12, 13, 14, 15, 16, 17, 18, 19, 20];
-      break;      
+      break;
     default:
       console.log("No MIDI map found for your device!");
   }
@@ -173,7 +190,7 @@ function noteOn(note, velocity, deviceName) {
   if (tempMIDIDevice != deviceName) {
     tempMIDIDevice = deviceName;
     setMIDIDevice(deviceName);
-  };
+  }
   // convert input note, set props & play audio via MIDI
   let newNote = convertNote(note, midiInputValues);
   // set vars to pass return values to audio elements in DOM
@@ -181,28 +198,28 @@ function noteOn(note, velocity, deviceName) {
   let newString = temp.concat(newNote);
   let audio = document.getElementById(newString);
   let key = document.getElementById(newNote);
-  let velocityStatus = document.getElementById("velocity-btn");  
+  let velocityStatus = document.getElementById("velocity-btn");
   // check to see if key/pad played is out of MIDI input range for device
   if (key === null) {
     console.log("No sample found for that key/pad");
-    return;  
-  } 
-  // check current velocity setting & adjust playback volume accordingly
-  if (velocityStatus.classList[1] === "active") {
-      // init audio playback volume to 0, run function to set volume based on input velocity
-      audio.volume = 0;
-      setVelocity(velocity, audio);
-    } else {
-      // init audio playback to full volume if velocity setting is off
-      audio.volume = 1;
-    }
-    key.classList.add("playing");
-    audio.currentTime = 0;
-    audio.play();
-    const t1 = performance.now();
-    console.log(`Latency: ${(t1 - t0).toFixed(2)} ms`);
     return;
   }
+  // check current velocity setting & adjust playback volume accordingly
+  if (velocityStatus.classList[1] === "active") {
+    // init audio playback volume to 0, run function to set volume based on input velocity
+    audio.volume = 0;
+    setVelocity(velocity, audio);
+  } else {
+    // init audio playback to full volume if velocity setting is off
+    audio.volume = 1;
+  }
+  key.classList.add("playing");
+  audio.currentTime = 0;
+  audio.play();
+  const t1 = performance.now();
+  console.log(`Latency: ${(t1 - t0).toFixed(2)} ms`);
+  return;
+}
 
 function noteOff(note) {
   // console.log("Note off");
