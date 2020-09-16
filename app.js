@@ -101,9 +101,7 @@ function loadKit() {
     kit[i].load();
   }
   // logger to confirm drum kit change
-  console.log(
-    `${document.querySelector(".active").innerHTML} successfully loaded.`
-  );
+  console.log(`${document.querySelector(".active").innerHTML} successfully loaded.`);
 }
 
 // *** code for MIDI playback and device config ***
@@ -137,9 +135,6 @@ function getMIDIMessage(message) {
     case 144: // noteOn (general use)
     case 153: // noteOn for MPK drum pads
       if (velocity > 0) {
-        // ***********************************************************
-        // add logic to skip the following if velocity is set as "off"
-        // ***********************************************************
         noteOn(note, velocity, deviceName);
       } else {
         noteOff(note);
