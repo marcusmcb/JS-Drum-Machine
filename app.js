@@ -44,7 +44,7 @@ $(document).ready(function () {
 
 $(document).ready(function() {
   $(".key").on("touchstart", function() {
-    alert("WORKED")
+    playSound(this.id);
   })
 })
 
