@@ -36,9 +36,8 @@ $(document).ready(function () {
 
 // click handler for mouse playback
 $(document).ready(function () {
-  $(".key").on("click", function () {
-    let e = this.id;
-    playSound(e);
+  $(".key").on("click", function () {    
+    playSound(this.id);
   });
 });
 
