@@ -3,15 +3,13 @@ import { setVelocity } from "./velocities.js";
 // global array of DOM audio element key values (QWERTY playback)
 let midiConvertedValues = [65, 83, 68, 70, 71, 72, 74, 75, 76];
 
-// global MIDI vars set later
+// global MIDI vars (set later)
 let midiInputValues;
 let tempMIDIDevice;
 
 // *** click handlers ***
 
-// rewrite as vanilla JS or leave as is?
-
-// click handler to determine/select active drum kit
+// click handler to select drum kit
 $(document).ready(function () {
   $(".kit").on("click", function () {
     $(".kit").removeClass("active");
@@ -60,7 +58,7 @@ function removeTransition(e) {
 // function to trigger individual sounds via QWERTY
 function playSound(e) {
   let audio, key;
-  // determines input type (key or click) and assigns values to DOM element accordingly
+  // determines input type (key or click) and assigns values to DOM elements accordingly
   if (e.type === "keydown") {    
     audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
     key = document.querySelector(`div[data-key="${e.keyCode}"]`);    
