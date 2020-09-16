@@ -42,6 +42,12 @@ $(document).ready(function () {
   });
 });
 
+$(document).ready(function() {
+  $(".key").on("touchstart", function() {
+    alert("WORKED")
+  })
+})
+
 // *** code for QWERTY playback ***
 
 // defines "keyboard" for QWERTY playback
