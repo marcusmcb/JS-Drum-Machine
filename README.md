@@ -9,6 +9,7 @@ Differences from the original code include:
 * HTML/CSS changes (to customize the look and layout of the app)
 * MIDI input with selected devices
 * additional JavaScript functionality for the user to change sound kits
+* added Javascript functionality to allow mouse (click) playback
 * added JavaScript module to enable MIDI velocity sensitivity
 
 ### Link to the app:
