@@ -15,9 +15,9 @@ Differences from the original code include:
 
 https://marcusmcb.github.io/JS-Drum-Machine/
 
-### Using the sampler (QWERTY):
+### Using the sampler (QWERTY/Mouse):
 
-Simply press the letters on your keyboard to trigger the corresponding sounds.
+Simply press the letters on your keyboard or click the pads to trigger the corresponding sounds.
 
 Use the kit buttons below the key row to swap kits that will change the playable drum sounds.
 
