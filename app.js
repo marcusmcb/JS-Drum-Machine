@@ -251,9 +251,6 @@ function convertNote(note) {
 //  b) reskin overall UI (MPC/Maschine look?)
 //  c) log latency to see if there is any effect
 
-//  *** add click capability for playback
-//  *** add touchscreen capability for playback (this one's going to be... interesting)
-
 // host sound kits in S3 buckets (or comparable alternative?)
 
 // future background concept:
