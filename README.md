@@ -47,7 +47,7 @@ All features/functions and MIDI devices tested are verified as working in Chrome
 
 ### Touchscreen Compatibility:
 
-There's none at the moment (browser-only) but it's something that I'm actively looking into.  
+Basic touch capability is verified working (tested with a 2018 iPad Mini) though the lag/latency in playback left this feature somewhat lacking in the original tests I conducted.  Currently researching alternatives to improve touch performance.
 
 
 Enjoy!
