@@ -242,6 +242,10 @@ function convertNote(note) {
 // which is better, performance-wise, to minimize latency/improve UX?
 
 // dynamically update pad/key names on kit load (future UI)
+//  a) use ordering system for each sample (01_kick.wav, etc)
+//    1) allows for ordering scheme (01_, etc) for easy file management
+//    2) can slice pad/key name from each, set to upper case, update UI via DOM
+//  b) group kits by type or genre
 // dynamically update pad/key assignments based on device connected (future UI, possibly extensive)
 
 // add LED meters to playback (future UI)
@@ -267,3 +271,6 @@ function convertNote(note) {
 //  b) mbp of some sort
 //  c) chromebook (not sure if/how MIDI even works here)
 //  d) raspberry pi (not sure how well Raspian plays with MIDI)
+
+// rewrite as React app?
+
