@@ -2,11 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width" />
     <title>JSP-1 | JavaScript Sampler Player</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
@@ -52,16 +55,16 @@
         <kbd>L</kbd>
         <span class="sound">perc</span>
       </div>
-    </div>    
+    </div>
 
     <!-- audio elements for individual drum pads -->
     <audio data-key="65" id="data-key-65">
       <source src="sounds/kit_a/kick.wav" />
     </audio>
-    
+
     <audio data-key="83" id="data-key-83">
       <source src="sounds/kit_a/hihat.wav" />
-    </audio>    
+    </audio>
 
     <audio data-key="68" id="data-key-68">
       <source src="sounds/kit_a/clap.wav" />
@@ -96,26 +99,34 @@
       <button type="button" class="kit active" id="kit_a">KIT A</button>
       <button type="button" class="kit" id="kit_b">KIT B</button>
       <button type="button" class="kit" id="kit_c">KIT C</button>
-      <button type="button" class="kit" id="kit_d">KIT D</button>
+      <!-- <button type="button" class="kit" id="kit_d">KIT D</button> -->
     </div>
 
     <!-- div for velocity toggle -->
     <div class="velocity-toggle">
-      <button type="button" class="velocity active" id="velocity-btn">Velocity On</button>
+      <button type="button" class="velocity active" id="velocity-btn">
+        Velocity On
+      </button>
     </div>
 
     <div class="blurb">
-      <p>For a list of MIDI devices supported and set up, click <a href="https://github.com/marcusmcb/JS-Drum-Machine" target="_blank">here</a>.</p>
-      <p>Simply connect your device and reload this page to play sounds via MIDI</p>
+      <p>
+        For a list of MIDI devices supported and set up, click
+        <a href="https://github.com/marcusmcb/JS-Drum-Machine" target="_blank"
+          >here</a
+        >.
+      </p>
+      <p>
+        Simply connect your device and reload this page to play sounds via MIDI
+      </p>
     </div>
 
     <script
       src="https://code.jquery.com/jquery-3.5.1.js"
       integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-      crossorigin="anonymous">
-    </script>
+      crossorigin="anonymous"
+    ></script>
 
     <script type="module" src="app.js"></script>
-
   </body>
 </html>

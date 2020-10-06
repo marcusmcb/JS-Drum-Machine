@@ -82,18 +82,21 @@ function changeKit() {
   let activeKit = document.querySelector('.active').id
   let regex = /kit_\w/gi
   let audioElements = document.querySelectorAll('source')
+
+  // code to pull current pad name values from DOM
   let audioTags = document.querySelectorAll('.sound')
   for (let i = 0; i < audioTags.length; i++) {
     console.log(audioTags[i].innerHTML)
   }
+
   for (let i = 0; i < audioElements.length; i++) {
     let currentSourcePath = audioElements[i].src
+    console.log(`CSP - ${currentSourcePath}`)
     let newSourcePath = currentSourcePath.replace(regex, activeKit)
     audioElements[i].src = newSourcePath
-    // add code to swap out audio sample names on kit change within this loop
-    // use HTML ids to match sample to correct div element
-    console.log(newSourcePath.split(`${activeKit}/`)[1])
-    audioElements[i].src = audioElements[i].src
+
+    // logger to pull pad name from source path for dynamic update (future UI)
+    console.log(newSourcePath.split(`${activeKit}/`)[1].split('.')[0])
     // audioElements[i].src = audioElements[i].src.split("-Machine/")[1];
   }
 }
@@ -245,10 +248,10 @@ function convertNote(note) {
 // which is better, performance-wise, to minimize latency/improve UX?
 
 // dynamically update pad/key names on kit load (future UI)
-//  a) use ordering system for each sample (01_kick.wav, etc)
-//    1) allows for ordering scheme (01_, etc) for easy file management
-//    2) can slice pad/key name from each, set to upper case, update UI via DOM
-//  b) group kits by type or genre
+//  a) is there a way to loop through kit folder and push each file name to an array?
+//  b) if so, using loop matching to update pad names in UI
+//  c) use fetch to retrieve kits from s3 buckets?
+
 // dynamically update pad/key assignments based on device connected (future UI, possibly extensive)
 
 // add LED meters to playback (future UI)
