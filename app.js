@@ -91,12 +91,12 @@ function changeKit() {
 
   for (let i = 0; i < audioElements.length; i++) {
     let currentSourcePath = audioElements[i].src
-    console.log(`CSP - ${currentSourcePath}`)
+    // console.log(`CSP - ${currentSourcePath}`)
     let newSourcePath = currentSourcePath.replace(regex, activeKit)
     audioElements[i].src = newSourcePath
 
     // logger to pull pad name from source path for dynamic update (future UI)
-    console.log(newSourcePath.split(`${activeKit}/`)[1].split('.')[0])
+    // console.log(newSourcePath.split(`${activeKit}/`)[1].split('.')[0])
     // audioElements[i].src = audioElements[i].src.split("-Machine/")[1];
   }
 }
