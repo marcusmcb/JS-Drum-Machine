@@ -251,6 +251,7 @@ function convertNote(note) {
 //  a) is there a way to loop through kit folder and push each file name to an array?
 //  b) if so, using loop matching to update pad names in UI
 //  c) use fetch to retrieve kits from s3 buckets?
+//    1) use XHR to load kits?
 
 // dynamically update pad/key assignments based on device connected (future UI, possibly extensive)
 
