@@ -247,6 +247,11 @@ function convertNote(note) {
 // rewrite logic in setVelocity function to minimize playback latency
 // which is better, performance-wise, to minimize latency/improve UX?
 
+// function to calculate average latency
+//  a) add individual note latencies to array
+//  b) calc avg from array once it hits x # of total values
+//  c) empty array and reset counter
+
 // dynamically update pad/key names on kit load (future UI)
 //  a) is there a way to loop through kit folder and push each file name to an array?
 //  b) if so, using loop matching to update pad names in UI
