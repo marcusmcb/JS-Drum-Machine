@@ -7,6 +7,33 @@ let midiConvertedValues = [65, 83, 68, 70, 71, 72, 74, 75, 76]
 let midiInputValues
 let tempMIDIDevice
 
+// async function fetchItem() { 
+//   let response = await fetch('https://mcb-bucket-js.s3-us-west-1.amazonaws.com/jive_122_01.wav')
+//   console.log(response)
+//   console.log(response.statusText)
+//   if (response.status === 200) {
+//     let url = response.url
+//     printURL(url)
+//   } else {
+//     console.log(response.status)
+//   }  
+// }
+
+// function printURL(url) {
+//   let newSound = document.getElementById("testAudio")
+//   newSound.src = url
+//   console.log(`New sound: ${newSound.src}`)
+//   playAudio(newSound)
+// }
+
+// function playAudio(newSound) {
+//   console.log(`Play Audio: ${newSound}`)  
+//   newSound.currentTime = 0
+//   newSound.play()
+// }
+
+// fetchItem()
+
 // *** click handlers ***
 
 // click handler to select drum kit
