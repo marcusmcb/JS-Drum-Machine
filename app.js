@@ -122,6 +122,7 @@ function playSound(e) {
 // function to swap kits on button click
 function changeKit() {
   let activeKit = document.querySelector('.active').id
+  console.log(activeKit)
   let regex = /kit_\w/gi
   let audioElements = document.querySelectorAll('source')
 
