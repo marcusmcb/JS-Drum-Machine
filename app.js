@@ -127,10 +127,10 @@ function changeKit() {
   let audioElements = document.querySelectorAll('source')
 
   // code to pull current pad name values from DOM
-  let audioTags = document.querySelectorAll('.sound')
-  for (let i = 0; i < audioTags.length; i++) {
-    console.log(audioTags[i].innerHTML)
-  }
+  // let audioTags = document.querySelectorAll('.sound')
+  // for (let i = 0; i < audioTags.length; i++) {
+  //   console.log(audioTags[i].innerHTML)
+  // }
 
   for (let i = 0; i < audioElements.length; i++) {
     let currentSourcePath = audioElements[i].src
@@ -284,47 +284,3 @@ function convertNote(note) {
   }
   return note
 }
-
-// *** FUTURE DEVELOPMENT NOTES ***
-
-// rewrite logic in setVelocity function to minimize playback latency
-// which is better, performance-wise, to minimize latency/improve UX?
-
-// function to calculate average latency
-//  a) add individual note latencies to array
-//  b) calc avg from array once it hits x # of total values
-//  c) empty array and reset counter
-
-// dynamically update pad/key names on kit load (future UI)
-//  a) is there a way to loop through kit folder and push each file name to an array?
-//  b) if so, using loop matching to update pad names in UI
-//  c) use fetch to retrieve kits from s3 buckets?
-//    1) use XHR to load kits?
-
-// dynamically update pad/key assignments based on device connected (future UI, possibly extensive)
-
-// add LED meters to playback (future UI)
-//  a) use git repo found and customize:
-//    1) meter div
-//    2) trigger LED function on keydown (QWERTY) or message (MIDI)
-//  b) reskin overall UI (MPC/Maschine look?)
-//  c) log latency to see if there is any effect
-
-// host sound kits in S3 buckets (or comparable alternative?)
-
-// future background concept:
-//  a) add "mood" selector/button/toggle-through
-//    1) on selection/toggle, update background image/video
-//    2) image/video storage on S3 (depending on file size)
-//      x) figure out max storage on static Github site (thanks, btw!)
-//    3) ambient background noise relative to "mood" setting?
-//      x) might not be a draw but imagine some producers may actually like this option
-//  b) light/dark mode - will need to research doability here (browser compatibility, etc)
-
-// test to-dos:
-//  a) win 8 machine
-//  b) mbp of some sort
-//  c) chromebook (not sure if/how MIDI even works here)
-//  d) raspberry pi (not sure how well Raspian plays with MIDI)
-
-// rewrite as React app?
