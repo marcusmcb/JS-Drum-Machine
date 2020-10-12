@@ -4,8 +4,8 @@ import { setVelocity } from './velocities.js'
 let midiConvertedValues = [65, 83, 68, 70, 71, 72, 74, 75, 76]
 
 // global MIDI vars (set later)
-let midiInputValues
-let tempMIDIDevice
+let midiInputValues;
+let tempMIDIDevice;
 
 // async function fetchItem() {
 //   // fetch requests
