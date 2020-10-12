@@ -115,6 +115,7 @@ function playSound(e) {
   }
   if (!audio) return
   key.classList.add('playing')
+  audio.volume = 1
   audio.currentTime = 0
   audio.play()
 }
