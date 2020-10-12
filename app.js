@@ -4,50 +4,8 @@ import { setVelocity } from './velocities.js'
 let midiConvertedValues = [65, 83, 68, 70, 71, 72, 74, 75, 76]
 
 // global MIDI vars (set later)
-let midiInputValues;
-let tempMIDIDevice;
-
-// async function fetchItem() {
-//   // fetch requests
-//   let response = await fetch(
-//     'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_a/boom.wav'
-//   )
-//   let response1 = await fetch(
-//     'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_a/clap.wav'
-//   )
-//   let response2 = await fetch(
-//     'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_a/snare.wav'
-//   )
-//   console.log(response.statusText)
-//   if (response.status === 200) {
-//     // dummy array
-//     let array = []
-//     // push urls to array
-//     array.push(response.url, response1.url, response2.url)
-//     // loop array and match to audio element in html
-//     //
-//     console.log(array)
-//     console.log(response)
-//     let url = response.url
-//     printURL(url)
-//   } else {
-//     console.log(response.status)
-//   }
-// }
-
-// function printURL(url) {
-//   let newSound = document.getElementById('testAudio')
-//   newSound.src = url
-//   console.log(`New sound: ${newSound.src}`)
-//   playAudio(newSound)
-// }
-
-// function playAudio(newSound) {
-//   newSound.currentTime = 0
-//   newSound.play()
-// }
-
-// fetchItem()
+let midiInputValues
+let tempMIDIDevice
 
 // *** click handlers ***
 
@@ -115,6 +73,7 @@ function playSound(e) {
   }
   if (!audio) return
   key.classList.add('playing')
+  audio.volume = 1
   audio.currentTime = 0
   audio.play()
 }
@@ -122,25 +81,12 @@ function playSound(e) {
 // function to swap kits on button click
 function changeKit() {
   let activeKit = document.querySelector('.active').id
-  console.log(activeKit)
   let regex = /kit_\w/gi
   let audioElements = document.querySelectorAll('source')
-
-  // code to pull current pad name values from DOM
-  // let audioTags = document.querySelectorAll('.sound')
-  // for (let i = 0; i < audioTags.length; i++) {
-  //   console.log(audioTags[i].innerHTML)
-  // }
-
   for (let i = 0; i < audioElements.length; i++) {
-    let currentSourcePath = audioElements[i].src
-    // console.log(`CSP - ${currentSourcePath}`)
+    let currentSourcePath = audioElements[i].src    
     let newSourcePath = currentSourcePath.replace(regex, activeKit)
     audioElements[i].src = newSourcePath
-
-    // logger to pull pad name from source path for dynamic update (future UI)
-    // console.log(newSourcePath.split(`${activeKit}/`)[1].split('.')[0])
-    // audioElements[i].src = audioElements[i].src.split("-Machine/")[1];
   }
 }
 
