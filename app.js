@@ -1,4 +1,4 @@
-import { setVelocity } from './velocities.js'
+import { setVelocity } from './modules/velocities.js'
 
 // global array of DOM audio element key values (QWERTY playback)
 let midiConvertedValues = [65, 83, 68, 70, 71, 72, 74, 75, 76]
