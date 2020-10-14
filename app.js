@@ -7,47 +7,61 @@ let midiConvertedValues = [65, 83, 68, 70, 71, 72, 74, 75, 76]
 let midiInputValues
 let tempMIDIDevice
 
-// async function fetchItem() {
-//   // fetch requests
-//   let response = await fetch(
-//     'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_a/boom.wav'
-//   )
-//   let response1 = await fetch(
-//     'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_a/clap.wav'
-//   )
-//   let response2 = await fetch(
-//     'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_a/snare.wav'
-//   )
-//   console.log(response.statusText)
-//   if (response.status === 200) {
-//     // dummy array
-//     let array = []
-//     // push urls to array
-//     array.push(response.url, response1.url, response2.url)
-//     // loop array and match to audio element in html
-//     //
-//     console.log(array)
-//     console.log(response)
-//     let url = response.url
-//     printURL(url)
-//   } else {
-//     console.log(response.status)
-//   }
-// }
+let myArray = []
 
-// function printURL(url) {
-//   let newSound = document.getElementById('testAudio')
-//   newSound.src = url
-//   console.log(`New sound: ${newSound.src}`)
-//   playAudio(newSound)
-// }
+const urls = ['https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_b/boom.wav', 'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_b/clap.wav', 'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_b/snare.wav']
 
-// function playAudio(newSound) {
-//   newSound.currentTime = 0
-//   newSound.play()
-// }
+Promise.all(urls.map(url =>
+  fetch(url, {mode: 'cors'})
+  .then(response => response).then(data => {
+    console.log(data.url)
+    myArray.push(data.url)
+  })))
+  
+console.log(myArray)
 
-// fetchItem()
+async function fetchItem() {
+  // fetch requests
+  let response = await fetch(
+    'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_b/boom.wav'
+  )
+  let response1 = await fetch(
+    'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_b/clap.wav'
+  )
+  let response2 = await fetch(
+    'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_b/snare.wav'
+  )
+  
+  console.log(response.statusText)
+  if (response.status === 200) {
+    // dummy array
+    let array = []
+    // push urls to array
+    array.push(response.url, response1.url, response2.url)
+    // loop array and match to audio element in html
+    //
+    console.log(`PATH ARRAY: ${array}`)
+    console.log(response)
+    let url = response.url
+    printURL(url)
+  } else {
+    console.log(response.status)
+  }
+}
+
+function printURL(url) {
+  let newSound = document.getElementById('testAudio')
+  newSound.src = url
+  console.log(`New sound: ${newSound.src}`)
+  playAudio(newSound)
+}
+
+function playAudio(newSound) {
+  newSound.currentTime = 0
+  newSound.play()
+}
+
+fetchItem()
 
 // *** click handlers ***
 
