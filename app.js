@@ -146,32 +146,40 @@ function changeKit() {
       'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_b/tom.wav',
       'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_b/tink.wav',
     ]
-    Promise.all(
-      urls.map((url) =>
-        fetch(url, { mode: 'cors' })
-          .then((response) => response)
-          .then((data) => {
-            // console.log(data.url)
-            // kitBPaths.push(data.url)
-            for (let i = 0; i < audioElements.length; i++) {              
-              console.log(audioElements[i].src)
-              for (let j = 0; j < urls.length; j++) {
-                
-                audioElements[i].src = urls[j]
-                
-              }
-              console.log(audioElements[i].src)
-            }
-          })
-      )
-    )
+
+    for (let i = 0; i < audioElements.length; i++) {
+      for (let j = 0; j < urls.length; j++) {
+        if (audioElements[i].src != urls[j]) {
+          audioElements[i].src = urls[i]
+          console.log(audioElements[i].src)
+        }       
+      }
+    }
+
+    // Promise.all(
+    //   urls.map((url) =>
+    //     fetch(url, { mode: 'cors' })
+    //       .then((response) => response)
+    //       .then((data) => {
+    //         // console.log(data.url)
+    //         // kitBPaths.push(data.url)
+    //         console.log(urls[1])            
+    //         for (let i = 0; i < audioElements.length; i++) {              
+    //           console.log(audioElements[i].src)
+    //           for (let j = 0; j < urls.length; j++) {                
+    //             audioElements[i].src = urls[j]
+    //           }              
+    //         }
+    //       })
+    //   )
+    // )
 
     // need function or logic check to update DOM ***after*** kit_b is used to set source paths
     // will NOT need this function if all kits are hosted via S3
     // only needed during testing when kits are not all stored in the same place
     
-    console.log(kitBPaths)
-    updateKitB(audioElements, kitBPaths)    
+    // console.log(kitBPaths)
+    // updateKitB(audioElements, kitBPaths)    
   } else {
     for (let i = 0; i < audioElements.length; i++) {
       let currentSourcePath = audioElements[i].src
