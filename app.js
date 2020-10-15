@@ -152,10 +152,22 @@ function changeKit() {
           .then((response) => response)
           .then((data) => {
             console.log(data.url)
-            kitBPaths.push(data.url)
+            // kitBPaths.push(data.url)
+            for (let i = 0; i < audioElements.length; i++) {
+              console.log(audioElements[i].src)
+              for (let j = 0; j < urls.length; j++) {
+                audioElements[i].src = urls[j]
+                console.log(audioElements[i].src)
+              }
+            }
           })
       )
     )
+
+    // need function or logic check to update DOM ***after*** kit_b is used to set source paths
+    // will NOT need this function if all kits are hosted via S3
+    // only needed during testing when kits are not all stored in the same place
+    
     console.log(kitBPaths)
     updateKitB(audioElements, kitBPaths)    
   } else {
