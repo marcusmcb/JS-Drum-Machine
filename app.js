@@ -8,48 +8,48 @@ let midiInputValues
 let tempMIDIDevice
 let kitBPaths = []
 
-async function fetchItem() {
-  // fetch requests
-  let response = await fetch(
-    'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_b/boom.wav'
-  )
-  let response1 = await fetch(
-    'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_b/clap.wav'
-  )
-  let response2 = await fetch(
-    'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_b/snare.wav'
-  )
+// async function fetchItem() {
+//   // fetch requests
+//   let response = await fetch(
+//     'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_b/boom.wav'
+//   )
+//   let response1 = await fetch(
+//     'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_b/clap.wav'
+//   )
+//   let response2 = await fetch(
+//     'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_b/snare.wav'
+//   )
 
-  console.log(response.statusText)
-  if (response.status === 200) {
-    // dummy array
-    let array = []
-    // push urls to array
-    array.push(response.url, response1.url, response2.url)
-    // loop array and match to audio element in html
-    //
-    console.log(`PATH ARRAY: ${array}`)
-    console.log(response)
-    let url = response.url
-    printURL(url)
-  } else {
-    console.log(response.status)
-  }
-}
+//   console.log(response.statusText)
+//   if (response.status === 200) {
+//     // dummy array
+//     let array = []
+//     // push urls to array
+//     array.push(response.url, response1.url, response2.url)
+//     // loop array and match to audio element in html
+//     //
+//     console.log(`PATH ARRAY: ${array}`)
+//     console.log(response)
+//     let url = response.url
+//     printURL(url)
+//   } else {
+//     console.log(response.status)
+//   }
+// }
 
-function printURL(url) {
-  let newSound = document.getElementById('testAudio')
-  newSound.src = url
-  // console.log(`New sound: ${newSound.src}`)
-  playAudio(newSound)
-}
+// function printURL(url) {
+//   let newSound = document.getElementById('testAudio')
+//   newSound.src = url
+//   // console.log(`New sound: ${newSound.src}`)
+//   playAudio(newSound)
+// }
 
-function playAudio(newSound) {
-  newSound.currentTime = 0
-  newSound.play()
-}
+// function playAudio(newSound) {
+//   newSound.currentTime = 0
+//   newSound.play()
+// }
 
-fetchItem()
+// fetchItem()
 
 // *** click handlers ***
 
@@ -151,14 +151,16 @@ function changeKit() {
         fetch(url, { mode: 'cors' })
           .then((response) => response)
           .then((data) => {
-            console.log(data.url)
+            // console.log(data.url)
             // kitBPaths.push(data.url)
-            for (let i = 0; i < audioElements.length; i++) {
+            for (let i = 0; i < audioElements.length; i++) {              
               console.log(audioElements[i].src)
               for (let j = 0; j < urls.length; j++) {
+                
                 audioElements[i].src = urls[j]
-                console.log(audioElements[i].src)
+                
               }
+              console.log(audioElements[i].src)
             }
           })
       )
