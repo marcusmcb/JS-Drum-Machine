@@ -1,4 +1,5 @@
 import { setVelocity } from './modules/velocities.js'
+import { setKitPath } from './modules/kitPaths.js'
 
 // global array of DOM audio element key values (QWERTY playback)
 let midiConvertedValues = [65, 83, 68, 70, 71, 72, 74, 75, 76]
@@ -6,49 +7,6 @@ let midiConvertedValues = [65, 83, 68, 70, 71, 72, 74, 75, 76]
 // global MIDI vars (set later)
 let midiInputValues
 let tempMIDIDevice
-
-// async function fetchItem() {
-//   // fetch requests
-//   let response = await fetch(
-//     'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_b/boom.wav'
-//   )
-//   let response1 = await fetch(
-//     'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_b/clap.wav'
-//   )
-//   let response2 = await fetch(
-//     'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_b/snare.wav'
-//   )
-
-//   console.log(response.statusText)
-//   if (response.status === 200) {
-//     // dummy array
-//     let array = []
-//     // push urls to array
-//     array.push(response.url, response1.url, response2.url)
-//     // loop array and match to audio element in html
-//     //
-//     console.log(`PATH ARRAY: ${array}`)
-//     console.log(response)
-//     let url = response.url
-//     printURL(url)
-//   } else {
-//     console.log(response.status)
-//   }
-// }
-
-// function printURL(url) {
-//   let newSound = document.getElementById('testAudio')
-//   newSound.src = url
-//   // console.log(`New sound: ${newSound.src}`)
-//   playAudio(newSound)
-// }
-
-// function playAudio(newSound) {
-//   newSound.currentTime = 0
-//   newSound.play()
-// }
-
-// fetchItem()
 
 // *** click handlers ***
 
@@ -127,44 +85,24 @@ function changeKit() {
   console.log(activeKit)
   let regex = /kit_\w/gi
   let audioElements = document.querySelectorAll('source')
-
-  // code to pull current pad name values from DOM
-  // let audioTags = document.querySelectorAll('.sound')
-  // for (let i = 0; i < audioTags.length; i++) {
-  //   console.log(audioTags[i].innerHTML)
-  // }
   if (activeKit === 'kit_b') {
-    const urls = [
-      'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_b/kick.wav',
-      'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_b/hihat.wav',
-      'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_b/clap.wav',
-      'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_b/openhat.wav',
-      'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_b/boom.wav',
-      'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_b/ride.wav',
-      'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_b/snare.wav',
-      'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_b/tom.wav',
-      'https://mcb-bucket-js.s3-us-west-1.amazonaws.com/kit_b/tink.wav',
-    ]
+    let urls = []    
+    setKitPath(activeKit, urls)
+    urls.forEach(url => console.log(url))
     for (let i = 0; i < audioElements.length; i++) {
       for (let j = 0; j < urls.length; j++) {
         if (audioElements[i].src != urls[j]) {
-          audioElements[i].src = urls[i]
-          console.log(audioElements[i].src)
+          audioElements[i].src = urls[i]          
         }       
       }
     }        
   } else {
     for (let i = 0; i < audioElements.length; i++) {
       let currentSourcePath = audioElements[i].src
-      // console.log(`CSP - ${currentSourcePath}`)
       let newSourcePath = currentSourcePath.replace(regex, activeKit)
       audioElements[i].src = newSourcePath      
     }
   }
-}
-
-function updateKitB(audioElements, kitBPaths) {
-  console.log("WORKED")
 }
 
 // function to load currently selected kit
