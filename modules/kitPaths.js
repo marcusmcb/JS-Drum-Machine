@@ -13,18 +13,11 @@ var s3 = new AWS.S3({
   params: { Bucket: s3BucketName },
 })
 
-let filePaths = []
-let fileUrl
-
-function setArray(fileUrl) {
-  filePaths.push(fileUrl) 
-}
-
 // main function export
-export function setKitPath(activeKit, urls) {
+export function setKitPath(activeKit) {
   
   // set var to return array of file paths from S3
-  // let filePaths = []
+  let filePaths = []
 
   // add slash to activeKit value for later S3 return comparison
   let newActiveKit = activeKit + '/'
@@ -35,7 +28,7 @@ export function setKitPath(activeKit, urls) {
     if (err) {
       console.log(err)
     } else {
-      console.log(data)      
+      // console.log(data)      
       let folders = data.CommonPrefixes.map(function (commonPrefix) {
         let prefix = commonPrefix.Prefix
         let folderName = decodeURIComponent(prefix.replace('/', ''))
@@ -49,9 +42,7 @@ export function setKitPath(activeKit, urls) {
             
             // logic to select S3 folder based on user kit selection and set filepath array accordingly
             if (data.Prefix === activeKit + '/') {
-
-              // let temp = data.Contents
-              // console.log(temp)
+              
               // "this" refers to data.Prefix in this instance
               let href = this.request.httpRequest.endpoint.href
               let bucketUrl = href + s3BucketName + '/'
@@ -60,7 +51,7 @@ export function setKitPath(activeKit, urls) {
                 let fileUrl = bucketUrl + encodeURIComponent(fileKey)
                 fileUrl.toString()
                 // console.log(fileUrl)
-                setArray(fileUrl)                               
+                filePaths.push(fileUrl)                                 
               })
             }
           }
@@ -69,5 +60,6 @@ export function setKitPath(activeKit, urls) {
     }
   })
   console.log(filePaths)
-  console.log(typeof filePaths)    
+  console.log(typeof filePaths)
+  return filePaths    
 }

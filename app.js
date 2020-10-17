@@ -85,14 +85,18 @@ function changeKit() {
   console.log(activeKit)
   let regex = /kit_\w/gi
   let audioElements = document.querySelectorAll('source')
-  if (activeKit === 'kit_b') {
-    let urls = []    
-    setKitPath(activeKit, urls)
-    urls.forEach(url => console.log(url))
+  
+  if (activeKit === 'kit_b') {      
+    let filePaths = setKitPath(activeKit)
+
+    console.log(" ***** returned array? ***** ")
+    console.log(filePaths)
+        
+    filePaths.forEach(filePath => console.log(filePath))
     for (let i = 0; i < audioElements.length; i++) {
-      for (let j = 0; j < urls.length; j++) {
-        if (audioElements[i].src != urls[j]) {
-          audioElements[i].src = urls[i]          
+      for (let j = 0; j < filePaths.length; j++) {
+        if (audioElements[i].src != filePaths[j]) {
+          audioElements[i].src = filePaths[i]          
         }       
       }
     }        
