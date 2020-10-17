@@ -13,7 +13,10 @@ var s3 = new AWS.S3({
   params: { Bucket: s3BucketName },
 })
 
-// main function export
+// *** main function export ***
+//
+// returns an array of file paths from S3 to update the DOM
+
 export function setKitPath(activeKit) {
   
   // set var to return array of file paths from S3
@@ -27,8 +30,7 @@ export function setKitPath(activeKit) {
   s3.listObjects({ Delimiter: '/' }, function (err, data) {
     if (err) {
       console.log(err)
-    } else {
-      // console.log(data)      
+    } else {            
       let folders = data.CommonPrefixes.map(function (commonPrefix) {
         let prefix = commonPrefix.Prefix
         let folderName = decodeURIComponent(prefix.replace('/', ''))
@@ -42,17 +44,21 @@ export function setKitPath(activeKit) {
             
             // logic to select S3 folder based on user kit selection and set filepath array accordingly
             if (data.Prefix === activeKit + '/') {
+              let temp = []
               
               // "this" refers to data.Prefix in this instance
               let href = this.request.httpRequest.endpoint.href
               let bucketUrl = href + s3BucketName + '/'
               let soundFiles = data.Contents.map(function (soundFile) {
+                
                 let fileKey = soundFile.Key
                 let fileUrl = bucketUrl + encodeURIComponent(fileKey)
-                fileUrl.toString()
-                // console.log(fileUrl)
+                temp.push(fileUrl)
                 filePaths.push(fileUrl)                                 
               })
+              console.log(temp)
+              console.log(typeof temp)
+              console.log((temp[1]))  
             }
           }
         })
@@ -60,6 +66,5 @@ export function setKitPath(activeKit) {
     }
   })
   console.log(filePaths)
-  console.log(typeof filePaths)
   return filePaths    
 }

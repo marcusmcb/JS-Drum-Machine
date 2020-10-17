@@ -88,11 +88,12 @@ function changeKit() {
   
   if (activeKit === 'kit_b') {      
     let filePaths = setKitPath(activeKit)
-
-    console.log(" ***** returned array? ***** ")
+    
+    console.log(" ***** returned array? ***** ")    
     console.log(filePaths)
-        
-    filePaths.forEach(filePath => console.log(filePath))
+    console.log(" ***** comes back as object? ***** ")
+    console.log(typeof filePaths)   
+
     for (let i = 0; i < audioElements.length; i++) {
       for (let j = 0; j < filePaths.length; j++) {
         if (audioElements[i].src != filePaths[j]) {
