@@ -83,17 +83,8 @@ function playSound(e) {
 function changeKit() {
   let activeKit = document.querySelector('.active').id  
   let regex = /kit_\w/gi
-  let audioElements = document.querySelectorAll('source')
-  
-  if (activeKit === 'kit_b') {      
-    setKitPath(activeKit, audioElements)           
-  } else {
-    for (let i = 0; i < audioElements.length; i++) {
-      let currentSourcePath = audioElements[i].src
-      let newSourcePath = currentSourcePath.replace(regex, activeKit)
-      audioElements[i].src = newSourcePath      
-    }
-  }
+  let audioElements = document.querySelectorAll('source')        
+  setKitPath(activeKit, audioElements)             
 }
 
 // function to load currently selected kit
