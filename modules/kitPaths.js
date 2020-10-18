@@ -24,7 +24,7 @@ function NewItem(url, pad) {
 
 export function setKitPath(activeKit, audioElements) {
   // set var to return array of file paths from S3
-  var filePaths = []
+  let filePaths = {}
 
   // add slash to activeKit value for later S3 return comparison
   let newActiveKit = activeKit + '/'
@@ -55,34 +55,36 @@ export function setKitPath(activeKit, audioElements) {
               let soundFiles = data.Contents.map(function (soundFile) {
                 let fileKey = soundFile.Key
                 let fileURL = bucketURL + encodeURIComponent(fileKey)
-                fileURL = fileURL.replace('%2F', '/')                
-                let fileName = fileKey.replace(newActiveKit, '')                
+                fileURL = fileURL.replace('%2F', '/')
+                let fileName = fileKey.replace(newActiveKit, '')
 
                 let params = {
                   Bucket: s3BucketName,
                   Key: fileKey,
-                }
+                }                
 
                 // code to get pad values from tags in s3 files
                 s3.getObjectTagging(params, function (err, data) {
                   if (err) {
                     console.log(err)
-                  } else {                    
-                    if (data.TagSet.length === 0) {                      
+                  } else {
+                    if (data.TagSet.length === 0) {
                       return
                     } else {
-                      let padNo = data.TagSet[0].Value                      
+                      
+                      let padNo = data.TagSet[0].Value
                       let x = new NewItem(fileURL, padNo)
-                      filePaths.push(x)
+                      console.log(x)
+                      // filePaths.push(x)  
                     }
                   }
-                })
-              })              
-              
+                })                
+              })
+
               for (let i = 0; i < audioElements.length; i++) {
                 for (let j = 0; j < filePaths.length; j++) {
                   console.log(filePaths[i])
-                  if (audioElements[i].src != filePaths[j]) {                    
+                  if (audioElements[i].src != filePaths[j]) {
                     audioElements[i].src = filePaths[i]
                   }
                 }
@@ -99,7 +101,19 @@ export function setKitPath(activeKit, audioElements) {
       })
     }
   })
-  console.log(filePaths) 
+  // console.log(Object(filePaths.pathData))
+  console.log(filePaths)
+
+  // let array = [
+  //   { url: 'http://www.site1.com', pad: '2' },
+  //   { url: 'http://www.site2.com', pad: '3' },
+  //   { url: 'http://www.site3.com', pad: '4' },
+  // ]
+
+  // console.log(array)
+
+
+
+
+
 }
-
-
