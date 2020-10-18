@@ -22,8 +22,7 @@ export function setKitPath(activeKit, audioElements) {
   var temp = []
 
   // add slash to activeKit value for later S3 return comparison
-  let newActiveKit = activeKit + '/'
-  console.log(`NEW ACTIVE KIT: ${newActiveKit}`)
+  let newActiveKit = activeKit + '/'  
 
   // S3 code to list folders in bucket
   s3.listObjects({ Delimiter: '/' }, function (err, data) {

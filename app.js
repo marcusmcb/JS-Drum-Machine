@@ -81,14 +81,12 @@ function playSound(e) {
 
 // function to swap kits on button click
 function changeKit() {
-  let activeKit = document.querySelector('.active').id
-  console.log(activeKit)
+  let activeKit = document.querySelector('.active').id  
   let regex = /kit_\w/gi
   let audioElements = document.querySelectorAll('source')
   
   if (activeKit === 'kit_b') {      
-    setKitPath(activeKit, audioElements)
-           
+    setKitPath(activeKit, audioElements)           
   } else {
     for (let i = 0; i < audioElements.length; i++) {
       let currentSourcePath = audioElements[i].src
@@ -99,8 +97,7 @@ function changeKit() {
 }
 
 // function to load currently selected kit
-function loadKit() {
-  console.log("LOAD KIT STARTED")
+function loadKit() {  
   let kit = document.querySelectorAll('audio')
   for (let i = 0; i < kit.length; i++) {
     kit[i].load()
