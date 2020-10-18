@@ -87,20 +87,8 @@ function changeKit() {
   let audioElements = document.querySelectorAll('source')
   
   if (activeKit === 'kit_b') {      
-    let filePaths = setKitPath(activeKit)
-    
-    console.log(" ***** returned array? ***** ")    
-    console.log(filePaths)
-    console.log(" ***** comes back as object? ***** ")
-    console.log(typeof filePaths)   
-
-    for (let i = 0; i < audioElements.length; i++) {
-      for (let j = 0; j < filePaths.length; j++) {
-        if (audioElements[i].src != filePaths[j]) {
-          audioElements[i].src = filePaths[i]          
-        }       
-      }
-    }        
+    setKitPath(activeKit, audioElements)
+           
   } else {
     for (let i = 0; i < audioElements.length; i++) {
       let currentSourcePath = audioElements[i].src
@@ -112,6 +100,7 @@ function changeKit() {
 
 // function to load currently selected kit
 function loadKit() {
+  console.log("LOAD KIT STARTED")
   let kit = document.querySelectorAll('audio')
   for (let i = 0; i < kit.length; i++) {
     kit[i].load()
