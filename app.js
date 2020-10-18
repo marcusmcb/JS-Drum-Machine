@@ -4,19 +4,25 @@ import { setKitPath } from './modules/kitPaths.js'
 // global array of DOM audio element key values (QWERTY playback)
 let midiConvertedValues = [65, 83, 68, 70, 71, 72, 74, 75, 76]
 
-// global MIDI vars (set later)
+// global vars (set later)
 let midiInputValues
 let tempMIDIDevice
+let currentKit
 
 // *** click handlers ***
 
 // click handler to select drum kit
 $(document).ready(function () {
   $('.kit').on('click', function () {
-    $('.kit').removeClass('active')
-    $(this).addClass('active')
-    changeKit()
-    loadKit()
+    if (this.id === currentKit) {      
+      return
+    } else {
+      currentKit = this.id
+      $('.kit').removeClass('active')
+      $(this).addClass('active')
+      changeKit()
+      loadKit()
+    }    
   })
 })
 
@@ -81,14 +87,14 @@ function playSound(e) {
 
 // function to swap kits on button click
 function changeKit() {
-  let activeKit = document.querySelector('.active').id  
+  let activeKit = document.querySelector('.active').id
   let regex = /kit_\w/gi
-  let audioElements = document.querySelectorAll('source')        
-  setKitPath(activeKit, audioElements)             
+  let audioElements = document.querySelectorAll('source')
+  setKitPath(activeKit, audioElements)
 }
 
 // function to load currently selected kit
-function loadKit() {  
+function loadKit() {
   let kit = document.querySelectorAll('audio')
   for (let i = 0; i < kit.length; i++) {
     kit[i].load()

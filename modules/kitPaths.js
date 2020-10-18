@@ -27,7 +27,11 @@ export function setKitPath(activeKit, audioElements) {
   // S3 code to list folders in bucket
   s3.listObjects({ Delimiter: '/' }, function (err, data) {
     if (err) {
+
+      // future dev: redirect to fallback audio source (GitHub, etc)
+      // set as function or re-direct user back to app.js ?
       console.log(err)
+
     } else {
       let folders = data.CommonPrefixes.map(function (commonPrefix) {
         let prefix = commonPrefix.Prefix
@@ -36,6 +40,8 @@ export function setKitPath(activeKit, audioElements) {
 
         // S3 code to list files in folders
         s3.listObjects({ Prefix: folderKey }, function (err, data) {
+          
+          // future dev: redirect to fallback audio source (GitHub, etc)
           if (err) {
             console.log(err)
           } else {
@@ -45,10 +51,26 @@ export function setKitPath(activeKit, audioElements) {
               let href = this.request.httpRequest.endpoint.href
               let bucketURL = href + s3BucketName + '/'
               let soundFiles = data.Contents.map(function (soundFile) {
-                let fileKey = soundFile.Key
+                let fileKey = soundFile.Key                                
                 let fileURL = bucketURL + encodeURIComponent(fileKey)
                 fileURL = fileURL.replace('%2F', '/')
-                filePaths.push(fileURL)                
+                filePaths.push(fileURL)
+                
+                // let fileName = fileKey.replace(newActiveKit, '')
+                // console.log(fileName) 
+                
+                // let params = {
+                //   Bucket: s3BucketName,
+                //   Key: fileKey
+                // }
+
+                // s3.getObjectTagging(params, function(err, data) {
+                //   if (err) {
+                //     console.log(err)
+                //   } else {
+                //     console.log(data.TagSet[0].Value)
+                //   }
+                // })
               })
               filePaths.shift()              
               for (let i = 0; i < audioElements.length; i++) {
