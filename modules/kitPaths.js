@@ -14,7 +14,7 @@ var s3 = new AWS.S3({
 })
 
 // *** main function export ***
-//
+
 // returns an array of file paths from S3 to update the DOM
 
 export function setKitPath(activeKit, audioElements) {
