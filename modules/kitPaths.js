@@ -19,7 +19,7 @@ var s3 = new AWS.S3({
 
 export function setKitPath(activeKit, audioElements) {
   // set var to return array of file paths from S3
-  var temp = []
+  var filePaths = []
 
   // add slash to activeKit value for later S3 return comparison
   let newActiveKit = activeKit + '/'  
@@ -43,22 +43,23 @@ export function setKitPath(activeKit, audioElements) {
             if (data.Prefix === activeKit + '/') {
               // "this" refers to data.Prefix in this instance
               let href = this.request.httpRequest.endpoint.href
-              let bucketUrl = href + s3BucketName + '/'
+              let bucketURL = href + s3BucketName + '/'
               let soundFiles = data.Contents.map(function (soundFile) {
                 let fileKey = soundFile.Key
-                let fileUrl = bucketUrl + encodeURIComponent(fileKey)
-                fileUrl = fileUrl.replace('%2F', '/')
-                temp.push(fileUrl)                
+                let fileURL = bucketURL + encodeURIComponent(fileKey)
+                fileURL = fileURL.replace('%2F', '/')
+                filePaths.push(fileURL)                
               })
-              temp.shift()              
+              filePaths.shift()              
               for (let i = 0; i < audioElements.length; i++) {
-                for (let j = 0; j < temp.length; j++) {
-                  if (audioElements[i].src != temp[j]) {
-                    audioElements[i].src = temp[i]
-                    
+                for (let j = 0; j < filePaths.length; j++) {
+                  if (audioElements[i].src != filePaths[j]) {
+                    audioElements[i].src = filePaths[i]                    
                   }
                 }
               }
+              
+              // load audio elements after source URLs are updated
               let kit = document.querySelectorAll('audio')
               for (let i = 0; i < kit.length; i++) {
                 kit[i].load()
