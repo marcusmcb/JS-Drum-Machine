@@ -18,8 +18,10 @@ const pushToPaths = item => filePaths.push(item)
 
 // function to create new object for URL & pad number
 function NewItem(url, pad) {
-  this.url = url
-  this.pad = pad
+  return {
+    "url": url,
+    "pad": pad
+  }
 }
 
 // global vars
@@ -81,11 +83,11 @@ function getTags(fileKey, fileURL) {
     } else {
       if (data.TagSet.length === 0) {
         return
-      } else {
+      } else {        
         let padNo = data.TagSet[0].Value
-        let x =  new NewItem(fileURL, padNo)
+        let x =  new NewItem(fileURL, padNo)        
         pushToPaths(x)
-        goHere(x)
+        goHere(x)        
       }
     }
   })
