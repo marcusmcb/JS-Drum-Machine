@@ -55,8 +55,8 @@ function listFiles(folderKey, activeKitGlobal) {
         let soundFiles = data.Contents.map(function(soundFile) {
           let fileKey = soundFile.Key
           let fileURL = bucketURL + encodeURIComponent(fileKey)
-          fileURL 
-          fileURL = fileURL.replace(newActiveKit, '')
+          console.log(fileURL)          
+          fileURL = fileURL.replace('%2F', '/')
           getTags(fileKey, fileURL)
         })
       }
