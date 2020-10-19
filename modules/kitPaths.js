@@ -13,18 +13,21 @@ var s3 = new AWS.S3({
   params: { Bucket: s3BucketName },
 })
 
+// function to push objected returned to array
 const pushToPaths = item => filePaths.push(item)
 
+// function to create new object for URL & pad number
 function NewItem(url, pad) {
   this.url = url
   this.pad = pad
 }
 
+// global vars
 let filePaths = []
 let activeKitGlobal
 
-function listFolders(activeKitGlobal) {
-  console.log(activeKitGlobal)  
+// S3 function to list kit folders
+function listFolders(activeKitGlobal) {    
   s3.listObjects({ Delimiter: '/' }, function(err, data) {
     if (err) {
       console.log(err)
@@ -39,6 +42,7 @@ function listFolders(activeKitGlobal) {
   })
 }
 
+// S3 function to create and list file paths
 function listFiles(folderKey, activeKitGlobal) {
   let newActiveKit = activeKitGlobal + '/'
   s3.listObjects({ Prefix: folderKey }, function (err, data) {
@@ -60,6 +64,7 @@ function listFiles(folderKey, activeKitGlobal) {
   })
 }
 
+// S3 function to get pad assignment within audio object tags
 function getTags(fileKey, fileURL) {
   let params = {
     Bucket: s3BucketName,
@@ -80,15 +85,20 @@ function getTags(fileKey, fileURL) {
   })
 }
 
+// updates audio src with S3 file path of kit selected
+function setKitPaths(audioElements, filePaths) {
+  console.log("***** FILE PATH ARRAY *****")
+  console.log(filePaths)
+  console.log("***************************")
+}
+
 // *** main function export ***
 
-// returns an array of file paths from S3 to update the DOM
-
 export function setKitPath(activeKit, audioElements) {  
-  activeKitGlobal = activeKit
-  console.log(activeKitGlobal)
-  listFolders(activeKitGlobal)
-  console.log(filePaths)
+  // set global var to activeKit to pass to S3 functions
+  activeKitGlobal = activeKit  
+  listFolders(activeKitGlobal)  
+  setKitPaths(audioElements, filePaths)
 }
   
               // for (let i = 0; i < audioElements.length; i++) {
