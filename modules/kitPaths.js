@@ -54,14 +54,19 @@ function listFiles(folderKey, activeKitGlobal) {
         let bucketURL = href + s3BucketName + '/'
         let soundFiles = data.Contents.map(function(soundFile) {
           let fileKey = soundFile.Key
-          let fileURL = bucketURL + encodeURIComponent(fileKey)
-          console.log(fileURL)          
+          let fileURL = bucketURL + encodeURIComponent(fileKey)                   
           fileURL = fileURL.replace('%2F', '/')
           getTags(fileKey, fileURL)
         })
       }
     }
   })
+}
+
+function goHere(x) {
+  console.log(x)
+  // console.log(x.pad)
+  // console.log(x.url)
 }
 
 // S3 function to get pad assignment within audio object tags
@@ -80,6 +85,7 @@ function getTags(fileKey, fileURL) {
         let padNo = data.TagSet[0].Value
         let x =  new NewItem(fileURL, padNo)
         pushToPaths(x)
+        goHere(x)
       }
     }
   })
