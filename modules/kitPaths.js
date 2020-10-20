@@ -70,12 +70,6 @@ function listFiles(folderKey, activeKitGlobal) {
   })
 }
 
-function goHere(x) {
-  console.log(x)
-  // console.log(x.pad)
-  // console.log(x.url)
-}
-
 // S3 function to get pad assignment within audio object tags
 function getTags(fileKey, fileURL) {
   let params = {
@@ -106,25 +100,15 @@ function setKitPaths(audioElements, filePaths) {
   console.log("***************************")
 }
 
-function doStuff(activeKitGlobal) {
-  console.log(activeKitGlobal)
-  return activeKitGlobal
-}
-
 function doWork(activeKitGlobal, audioElements) {
   return new Promise(function(resolve, reject) {
-    let x = listFolders(activeKitGlobal)
-    console.log(x)
+    let x = listFolders(activeKitGlobal)    
     if (x.length === 0) {
       reject("Something went wrong")
     } else {
       resolve(x)
     }
   })  
-}
-
-function getResponse(response) {
-  console.log(response)
 }
 
 export function setKitPath(activeKit, audioElements) {
