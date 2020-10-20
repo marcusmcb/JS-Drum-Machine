@@ -29,8 +29,9 @@ let filePaths = []
 let activeKitGlobal
 
 // S3 function to list kit folders
-function listFolders(activeKitGlobal) {    
-  s3.listObjects({ Delimiter: '/' }, function(err, data) {
+async function listFolders(activeKitGlobal) {
+  let folderKeys = []    
+  let response = s3.listObjects({ Delimiter: '/' }, function(err, data) {
     if (err) {
       console.log(err)
     } else {
@@ -38,10 +39,14 @@ function listFolders(activeKitGlobal) {
         let prefix = commonPrefix.Prefix
         let folderName = decodeURIComponent(prefix.replace('/', ''))
         let folderKey = encodeURIComponent(folderName) + '/'
-        listFiles(folderKey, activeKitGlobal)
-      })
+        // listFiles(folderKey, activeKitGlobal)        
+        console.log(folderKey)
+        folderKeys.push(folderKey)        
+      })                 
     }
-  })
+    console.log(folderKeys)
+  })  
+  return folderKeys 
 }
 
 // S3 function to create and list file paths
@@ -97,17 +102,40 @@ function getTags(fileKey, fileURL) {
 function setKitPaths(audioElements, filePaths) {
   console.log("***** FILE PATH ARRAY *****")
   console.log(filePaths)
+  console.log(audioElements)
   console.log("***************************")
 }
 
-// *** main function export ***
-
-export function setKitPath(activeKit, audioElements) {  
-  // set global var to activeKit to pass to S3 functions
-  activeKitGlobal = activeKit  
-  listFolders(activeKitGlobal)  
-  setKitPaths(audioElements, filePaths)
+function doStuff(activeKitGlobal) {
+  console.log(activeKitGlobal)
+  return activeKitGlobal
 }
+
+function doWork(activeKitGlobal, audioElements) {
+  return new Promise(function(resolve, reject) {
+    let x = listFolders(activeKitGlobal)
+    console.log(x)
+    if (x.length === 0) {
+      reject("Something went wrong")
+    } else {
+      resolve(x)
+    }
+  })  
+}
+
+function getResponse(response) {
+  console.log(response)
+}
+
+export function setKitPath(activeKit, audioElements) {
+  activeKitGlobal = activeKit 
+  doWork(activeKitGlobal, audioElements).then(response => console.log(response))
+  
+  // listFolders(activeKitGlobal)  
+  // setKitPaths(audioElements, filePaths)}
+}
+
+
   
               // for (let i = 0; i < audioElements.length; i++) {
               //   for (let j = 0; j < filePaths.length; j++) {
