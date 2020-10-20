@@ -31,7 +31,7 @@ let activeKitGlobal
 // S3 function to list kit folders
 async function listFolders(activeKitGlobal) {
   let folderKeys = []    
-  let response = s3.listObjects({ Delimiter: '/' }, function(err, data) {
+  let response = await s3.listObjects({ Delimiter: '/' }, function(err, data) {
     if (err) {
       console.log(err)
     } else {
