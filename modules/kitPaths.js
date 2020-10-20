@@ -117,7 +117,7 @@ async function doWork(activeKitGlobal, audioElements) {
 export function setKitPath(activeKit, audioElements) {
   activeKitGlobal = activeKit 
   // need to set async and/or promise(s) to return response *after* the folderKeys arr has been properly populated
-  doWork(activeKitGlobal, audioElements).then(response => setTimeout(function(){console.log(response[1])}, 1000))
+  doWork(activeKitGlobal, audioElements).then(response => setTimeout(function(){console.log(response[1])}, 350))
   
   // listFolders(activeKitGlobal)  
   // setKitPaths(audioElements, filePaths)}
