@@ -30,7 +30,9 @@ let activeKitGlobal
 
 // S3 function to list kit folders
 async function listFolders(activeKitGlobal) {
-  let folderKeys = []    
+  let folderKeys = []
+  
+  // SET PROMISE HERE AS YOU DID IN THE DOWORK FUNCTION
   let response = await s3.listObjects({ Delimiter: '/' }, function(err, data) {
     if (err) {
       console.log(err)
@@ -100,8 +102,9 @@ function setKitPaths(audioElements, filePaths) {
   console.log("***************************")
 }
 
-function doWork(activeKitGlobal, audioElements) {
-  return new Promise(function(resolve, reject) {
+async function doWork(activeKitGlobal, audioElements) {
+  let foo
+  return foo = await new Promise(function(resolve, reject) {
     let x = listFolders(activeKitGlobal)    
     if (x.length === 0) {
       reject("Something went wrong")
