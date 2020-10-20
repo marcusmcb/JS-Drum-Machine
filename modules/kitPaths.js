@@ -33,7 +33,7 @@ async function listFolders(activeKitGlobal) {
   let folderKeys = []
   
   // SET PROMISE HERE AS YOU DID IN THE DOWORK FUNCTION
-  let response = await s3.listObjects({ Delimiter: '/' }, function(err, data) {
+  let response = s3.listObjects({ Delimiter: '/' }, function(err, data) {
     if (err) {
       console.log(err)
     } else {
@@ -116,7 +116,8 @@ async function doWork(activeKitGlobal, audioElements) {
 
 export function setKitPath(activeKit, audioElements) {
   activeKitGlobal = activeKit 
-  doWork(activeKitGlobal, audioElements).then(response => console.log(response))
+  // need to set async and/or promise(s) to return response *after* the folderKeys arr has been properly populated
+  doWork(activeKitGlobal, audioElements).then(response => setTimeout(function(){console.log(response[1])}, 1000))
   
   // listFolders(activeKitGlobal)  
   // setKitPaths(audioElements, filePaths)}
