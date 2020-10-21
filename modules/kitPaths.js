@@ -30,10 +30,8 @@ let activeKitGlobal
 
 // S3 function to list kit folders
 async function listFolders(activeKitGlobal) {
-  let folderKeys = []
-  
-  // SET PROMISE HERE AS YOU DID IN THE DOWORK FUNCTION
-  let response = s3.listObjects({ Delimiter: '/' }, function(err, data) {
+  let folderKeys = []  
+  await s3.listObjects({ Delimiter: '/' }, function(err, data) {
     if (err) {
       console.log(err)
     } else {
@@ -44,10 +42,11 @@ async function listFolders(activeKitGlobal) {
         // listFiles(folderKey, activeKitGlobal)        
         console.log(folderKey)
         folderKeys.push(folderKey)        
-      })                 
-    }
+      })                      
+    }    
     console.log(folderKeys)
-  })  
+  })
+  console.log(folderKeys)  
   return folderKeys 
 }
 
@@ -94,21 +93,10 @@ function getTags(fileKey, fileURL) {
   })
 }
 
-// updates audio src with S3 file path of kit selected
-function setKitPaths(audioElements, filePaths) {
-  console.log("***** FILE PATH ARRAY *****")
-  console.log(filePaths)
-  console.log(audioElements)
-  console.log("***************************")
-}
-
 export function setKitPath(activeKit, audioElements) {
   activeKitGlobal = activeKit 
   // need to set async and/or promise(s) to return response *after* the folderKeys arr has been properly populated
-  listFolders(activeKitGlobal, audioElements).then(response => setTimeout(function(){console.log(response)}, 100))
-  
-  // listFolders(activeKitGlobal)  
-  // setKitPaths(audioElements, filePaths)}
+  listFolders(activeKitGlobal, audioElements).then(response => setTimeout(function(){console.log(response)}, 400))
 }
 
 
