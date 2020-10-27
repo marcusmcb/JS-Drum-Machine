@@ -1,5 +1,4 @@
 // *** S3 SDK config ***
-
 var s3BucketName = 'jsp-1'
 
 AWS.config.region = 'us-west-2' // Region
