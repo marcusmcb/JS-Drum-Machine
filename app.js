@@ -158,7 +158,7 @@ function setMIDIDevice(deviceName) {
     case 'MPK mini 3': // Akai MPK Mini Mk3
       midiInputValues = [36, 37, 38, 39, 40, 41, 42, 43]
       break
-    case 'Arturia BeatStep':
+    case 'Arturia BeatStep ':
       midiInputValues = [36, 37, 38, 39, 40, 41, 42, 43, 44]
       break
     case 'KOMPLETE KONTROL M32 MIDI':
