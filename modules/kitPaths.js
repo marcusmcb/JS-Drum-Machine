@@ -51,10 +51,13 @@ export function setKitPath(activeKit, audioElements) {
               let href = this.request.httpRequest.endpoint.href
               let bucketURL = href + s3BucketName + '/'
               let soundFiles = data.Contents.map(function (soundFile) {
+                let tempObj = {}
                 let fileKey = soundFile.Key                                
                 let fileURL = bucketURL + encodeURIComponent(fileKey)
                 fileURL = fileURL.replace('%2F', '/')
-                filePaths.push(fileURL)
+                // filePaths.push(fileURL)
+                tempObj.url = fileURL
+                // filePaths.push(tempObj)
                 
                 let fileName = fileKey.replace(newActiveKit, '')
                 console.log(fileName) 
@@ -72,15 +75,17 @@ export function setKitPath(activeKit, audioElements) {
                   if (err) {
                     console.log(err)
                   } else {
-                    console.log(data.TagSet[0].Value)
+                    // console.log(data.TagSet[0].Value)
+                    tempObj.padNumber = data.TagSet[0].Value               
                   }
-                })
+                })                
+                filePaths.push(tempObj)
               })
               filePaths.shift()              
               for (let i = 0; i < audioElements.length; i++) {
                 for (let j = 0; j < filePaths.length; j++) {
-                  if (audioElements[i].src != filePaths[j]) {
-                    audioElements[i].src = filePaths[i]                    
+                  if (audioElements[i].src != filePaths[j].url) {
+                    audioElements[i].src = filePaths[i].url                    
                   }
                 }
               }
