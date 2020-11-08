@@ -56,21 +56,25 @@ export function setKitPath(activeKit, audioElements) {
                 fileURL = fileURL.replace('%2F', '/')
                 filePaths.push(fileURL)
                 
-                // let fileName = fileKey.replace(newActiveKit, '')
-                // console.log(fileName) 
+                let fileName = fileKey.replace(newActiveKit, '')
+                console.log(fileName) 
                 
-                // let params = {
-                //   Bucket: s3BucketName,
-                //   Key: fileKey
-                // }
+                let params = {
+                  Bucket: s3BucketName,
+                  Key: fileKey
+                }
 
-                // s3.getObjectTagging(params, function(err, data) {
-                //   if (err) {
-                //     console.log(err)
-                //   } else {
-                //     console.log(data.TagSet[0].Value)
-                //   }
-                // })
+                // build array of objects
+                // set fileURL and pad values within each object
+                // push each object to array
+
+                s3.getObjectTagging(params, function(err, data) {
+                  if (err) {
+                    console.log(err)
+                  } else {
+                    console.log(data.TagSet[0].Value)
+                  }
+                })
               })
               filePaths.shift()              
               for (let i = 0; i < audioElements.length; i++) {
@@ -80,6 +84,7 @@ export function setKitPath(activeKit, audioElements) {
                   }
                 }
               }
+              console.log(filePaths)
               
               // load audio elements after source URLs are updated
               let kit = document.querySelectorAll('audio')
