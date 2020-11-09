@@ -54,10 +54,8 @@ export function setKitPath(activeKit, audioElements) {
                 let tempObj = {}
                 let fileKey = soundFile.Key                                
                 let fileURL = bucketURL + encodeURIComponent(fileKey)
-                fileURL = fileURL.replace('%2F', '/')
-                // filePaths.push(fileURL)
-                tempObj.url = fileURL
-                // filePaths.push(tempObj)
+                fileURL = fileURL.replace('%2F', '/')                
+                tempObj.url = fileURL                
                 
                 let fileName = fileKey.replace(newActiveKit, '')
                 console.log(fileName) 
@@ -65,22 +63,20 @@ export function setKitPath(activeKit, audioElements) {
                 let params = {
                   Bucket: s3BucketName,
                   Key: fileKey
-                }
-
-                // build array of objects
-                // set fileURL and pad values within each object
-                // push each object to array
+                }                
 
                 s3.getObjectTagging(params, function(err, data) {
                   if (err) {
                     console.log(err)
-                  } else {
-                    // console.log(data.TagSet[0].Value)
+                  } else if (data.TagSet.length === 0) {
+                    return
+                  } else {                    
                     tempObj.padNumber = data.TagSet[0].Value               
                   }
                 })                
                 filePaths.push(tempObj)
               })
+              console.log(filePaths)
               filePaths.shift()              
               for (let i = 0; i < audioElements.length; i++) {
                 for (let j = 0; j < filePaths.length; j++) {
