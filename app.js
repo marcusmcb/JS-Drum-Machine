@@ -234,5 +234,4 @@ function convertNote(note) {
   return note
 }
 
-
 // add event listener for DOMContentLoaded to eliminate first MIDI note error on kit load
