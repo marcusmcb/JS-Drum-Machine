@@ -84,7 +84,7 @@ function changeKit() {
   let regex = /kit_\w/gi
   let audioElements = document.querySelectorAll('source')
   for (let i = 0; i < audioElements.length; i++) {
-    let currentSourcePath = audioElements[i].src    
+    let currentSourcePath = audioElements[i].src
     let newSourcePath = currentSourcePath.replace(regex, activeKit)
     audioElements[i].src = newSourcePath
   }
