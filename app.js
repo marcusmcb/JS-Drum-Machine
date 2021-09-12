@@ -1,3 +1,4 @@
+// function to scale MIDI velocity values to playback volume
 import { setVelocity } from './modules/velocities.js'
 
 // global array of DOM audio element key values (QWERTY playback)
@@ -6,8 +7,6 @@ let midiConvertedValues = [65, 83, 68, 70, 71, 72, 74, 75, 76]
 // global MIDI vars (set later)
 let midiInputValues
 let tempMIDIDevice
-
-// *** click handlers ***
 
 // handler to select drum kit
 export function setActiveKit(e) {
@@ -35,25 +34,25 @@ export function toggleVelocity() {
   }
 }
 
-// click handler for mouse playback
+// handler for mouse playback
 $(document).ready(function () {
   $('.key').on('click', function () {
     playSound(this.id)
   })
 })
 
+// handler for touch/tap playback
 $(document).ready(function () {
   $('.key').on('touchstart', function () {
     playSound(this.id)
   })
 })
 
-// *** code for QWERTY playback ***
+// ****** code for QWERTY playback ******
 
 // defines "keyboard" for QWERTY playback
 const keys = Array.from(document.querySelectorAll('.key'))
 keys.forEach((key) => key.addEventListener('transitionend', removeTransition))
-let fired = false;
 window.addEventListener('keydown', playSound)
 
 // css function for transition element
@@ -66,6 +65,7 @@ function removeTransition(e) {
 function playSound(e) {
   let audio, key
   // determines input type (key or click) and assigns values to DOM elements accordingly
+  // needs additional code to prevent spamming of individual keys but preserves playback polyphony
   if (e.type === 'keydown') {
     audio = document.querySelector(`audio[data-key="${e.keyCode}"]`)
     key = document.querySelector(`div[data-key="${e.keyCode}"]`)
@@ -107,6 +107,7 @@ function loadKit() {
 // *** code for MIDI playback and device config ***
 
 // boilerplate MIDI setup
+// requires HTTPS to access properly, will disable MIDI playback otherwise
 navigator.requestMIDIAccess().then(onMIDISuccess, onMIDIFailure)
 
 // defines MIDI I/O
@@ -148,6 +149,7 @@ function getMIDIMessage(message) {
 }
 
 // function to set MIDI device & load corresponding input values (unique to most devices)
+// future dev - move to export module as additional device keymaps are added 
 function setMIDIDevice(deviceName) {
   switch (deviceName) {
     case 'Keystation 49es':
@@ -179,6 +181,7 @@ function setMIDIDevice(deviceName) {
 
 // triggers audio element on MIDI note message/event
 function noteOn(note, velocity, deviceName) {
+  // performance code is here to measure playback latency on devices
   const t0 = performance.now()
   console.log('-------------------------------------')
   console.log(`NOTE: ${note}`)

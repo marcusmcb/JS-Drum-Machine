@@ -118,13 +118,16 @@
       crossorigin="anonymous">
     </script>
 
+    <!-- -->
     <script type="module" src="app.js"></script>
-
+    
+    <!-- handler import for kit change row -->
     <script type="module">
       import { setActiveKit } from './app.js'
       document.querySelector('.kits').addEventListener('click', setActiveKit)
     </script>
 
+    <!-- handler import for velocity button -->
     <script type="module">
       import { toggleVelocity } from './app.js'
       document.querySelector('#velocity-btn').addEventListener('click', toggleVelocity)
