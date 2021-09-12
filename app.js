@@ -25,12 +25,12 @@ export function setActiveKit(e) {
 
 // handler to toggle velocity on/off
 export function toggleVelocity() {
-  if (this.innerHTML != 'Velocity On') {
+  if (this.innerHTML != 'velocity on') {
     this.classList.toggle('velo-active')
-    this.innerHTML = 'Velocity On'
+    this.innerHTML = 'velocity on'
   } else {
     this.classList.toggle('velo-active')
-    this.innerHTML = 'Velocity Off'
+    this.innerHTML = 'velocity off'
   }
 }
 
@@ -77,7 +77,7 @@ function playSound(e) {
   key.classList.add('playing')
   audio.volume = 1
   audio.currentTime = 0
-  audio.play()  
+  audio.play()
 }
 
 // function to swap kits on button click
@@ -149,7 +149,7 @@ function getMIDIMessage(message) {
 }
 
 // function to set MIDI device & load corresponding input values (unique to most devices)
-// future dev - move to export module as additional device keymaps are added 
+// future dev - move to export module as additional device keymaps are added
 function setMIDIDevice(deviceName) {
   switch (deviceName) {
     case 'Keystation 49es':

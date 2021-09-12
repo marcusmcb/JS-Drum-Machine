@@ -12,11 +12,24 @@ html {
   font-family: sans-serif;
 }
 
+.jsp1-body {
+  background-color: rgb(54, 52, 51);
+  margin-left: 10vw;
+  margin-right: 10vw;  
+  padding-bottom: 20px;
+  padding-right: 20px;
+  padding-left: 20px;  
+  border-radius: 15px;
+  border: 0.1rem solid #ffc600;
+  margin-top: 10vh;
+}
+
 .keys {
   display: flex;
   flex: 1;  
-  align-items: center;
+  align-items: center;  
   justify-content: center;
+  padding: 10px;
 }
 
 .key {
@@ -33,25 +46,21 @@ html {
   text-shadow: 0 0 0.5rem black;
 }
 
-#keys-top {
+/* #keys-top {
   margin-top: 20vh;
-}
+} */
 
 .velocity-toggle,
 .kits {
   display: flex;
   flex: 1;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;    
 }
 
 .kits {
   min-height: 10vh;
 }
-
-/* .velocity-toggle {
-  min-height: 10vh !important;
-} */
 
 .velocity,
 .kit {
@@ -64,19 +73,15 @@ html {
   width: 15rem;
   text-align: center;
   color: #ffc600;
-  background: slategrey; 
+  background: rgb(114, 109, 107); 
   text-shadow: 0 0 0.5rem black;
-}
-
-.velocity-toggle {
-  min-height: 5vh;
 }
 
 .active,
 .velo-active {
-  background-color: darkslategrey;
-  border: 0.4rem solid lightskyblue;
-  color: lightseagreen;
+  background-color: #614c01;;
+  border: 0.4rem solid #37a4c5;
+  color: #ffc600;
 }
 
 .playing {
@@ -92,8 +97,8 @@ kbd {
 
 .sound {
   font-size: 1.2rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1rem;
+  /* text-transform: uppercase; */
+  letter-spacing: 0.1em;  
   color: #ffc600;
 }
 

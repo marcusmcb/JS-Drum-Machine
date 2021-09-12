@@ -6,121 +6,132 @@
     <title>JSP-1 | JavaScript Sampler Player</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" type="text/css"/>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+      type="text/css"
+    />
   </head>
 
   <body>
-    <!-- div for drum pad row (top) -->
-    <div class="keys" id="keys-top">
-      <div data-key="65" id="65" class="key">
-        <kbd>A</kbd>
-        <span class="sound">kick</span>
+    <div class="jsp1-body">
+      <!-- div for drum pad row (top) -->
+      <div class="keys" id="keys-top">
+        <div data-key="65" id="65" class="key">
+          <kbd>A</kbd>
+          <span class="sound">kick</span>
+        </div>
+        <div data-key="83" id="83" class="key">
+          <kbd>S</kbd>
+          <span class="sound">hihat</span>
+        </div>
+        <div data-key="68" id="68" class="key">
+          <kbd>D</kbd>
+          <span class="sound">clap</span>
+        </div>
+        <div data-key="70" id="70" class="key">
+          <kbd>F</kbd>
+          <span class="sound">openhat</span>
+        </div>
+        <div data-key="71" id="71" class="key">
+          <kbd>G</kbd>
+          <span class="sound">kick 2</span>
+        </div>
       </div>
-      <div data-key="83" id="83" class="key">
-        <kbd>S</kbd>
-        <span class="sound">hihat</span>
+
+      <!-- div for drum pad row (bottom) -->
+      <div class="keys" id="keys-bottom">
+        <div data-key="72" id="72" class="key">
+          <kbd>H</kbd>
+          <span class="sound">perc</span>
+        </div>
+        <div data-key="74" id="74" class="key">
+          <kbd>J</kbd>
+          <span class="sound">snare</span>
+        </div>
+        <div data-key="75" id="75" class="key">
+          <kbd>K</kbd>
+          <span class="sound">thud/perc</span>
+        </div>
+        <div data-key="76" id="76" class="key">
+          <kbd>L</kbd>
+          <span class="sound">perc 2</span>
+        </div>
       </div>
-      <div data-key="68" id="68" class="key">
-        <kbd>D</kbd>
-        <span class="sound">clap</span>
+
+      <!-- audio elements for individual drum pads -->
+      <audio data-key="65" id="data-key-65">
+        <source src="sounds/kit_a/kick.wav" />
+      </audio>
+
+      <audio data-key="83" id="data-key-83">
+        <source src="sounds/kit_a/hihat.wav" />
+      </audio>
+
+      <audio data-key="68" id="data-key-68">
+        <source src="sounds/kit_a/clap.wav" />
+      </audio>
+
+      <audio data-key="70" id="data-key-70">
+        <source src="sounds/kit_a/openhat.wav" />
+      </audio>
+
+      <audio data-key="71" id="data-key-71">
+        <source src="sounds/kit_a/boom.wav" />
+      </audio>
+
+      <audio data-key="72" id="data-key-72">
+        <source src="sounds/kit_a/ride.wav" />
+      </audio>
+
+      <audio data-key="74" id="data-key-74">
+        <source src="sounds/kit_a/snare.wav" />
+      </audio>
+
+      <audio data-key="75" id="data-key-75">
+        <source src="sounds/kit_a/tom.wav" />
+      </audio>
+
+      <audio data-key="76" id="data-key-76">
+        <source src="sounds/kit_a/tink.wav" />
+      </audio>
+
+      <!-- div for kit selector buttons -->
+      <div class="kits">
+        <button type="button" class="kit active" id="kit_a">kit a</button>
+        <button type="button" class="kit" id="kit_b">kit b</button>
+        <button type="button" class="kit" id="kit_c">kit c</button>
       </div>
-      <div data-key="70" id="70" class="key">
-        <kbd>F</kbd>
-        <span class="sound">openhat</span>
+
+      <!-- div for velocity toggle -->
+      <div class="velocity-toggle">
+        <button type="button" class="velocity velo-active" id="velocity-btn">
+          velocity on
+        </button>
       </div>
-      <div data-key="71" id="71" class="key">
-        <kbd>G</kbd>
-        <span class="sound">kick 2</span>
-      </div>
-    </div>
-
-    <!-- div for drum pad row (bottom) -->
-    <div class="keys" id="keys-bottom">
-      <div data-key="72" id="72" class="key">
-        <kbd>H</kbd>
-        <span class="sound">perc</span>
-      </div>
-      <div data-key="74" id="74" class="key">
-        <kbd>J</kbd>
-        <span class="sound">snare</span>
-      </div>
-      <div data-key="75" id="75" class="key">
-        <kbd>K</kbd>
-        <span class="sound">thud/perc</span>
-      </div>
-      <div data-key="76" id="76" class="key">
-        <kbd>L</kbd>
-        <span class="sound">perc 2</span>
-      </div>
-    </div>
-
-    <!-- audio elements for individual drum pads -->
-    <audio data-key="65" id="data-key-65">
-      <source src="sounds/kit_a/kick.wav" />
-    </audio>
-
-    <audio data-key="83" id="data-key-83">
-      <source src="sounds/kit_a/hihat.wav" />
-    </audio>
-
-    <audio data-key="68" id="data-key-68">
-      <source src="sounds/kit_a/clap.wav" />
-    </audio>
-
-    <audio data-key="70" id="data-key-70">
-      <source src="sounds/kit_a/openhat.wav" />
-    </audio>
-
-    <audio data-key="71" id="data-key-71">
-      <source src="sounds/kit_a/boom.wav" />
-    </audio>
-
-    <audio data-key="72" id="data-key-72">
-      <source src="sounds/kit_a/ride.wav" />
-    </audio>
-
-    <audio data-key="74" id="data-key-74">
-      <source src="sounds/kit_a/snare.wav" />
-    </audio>
-
-    <audio data-key="75" id="data-key-75">
-      <source src="sounds/kit_a/tom.wav" />
-    </audio>
-
-    <audio data-key="76" id="data-key-76">
-      <source src="sounds/kit_a/tink.wav" />
-    </audio>
-    
-    <!-- div for kit selector buttons -->
-    <div class="kits">
-      <button type="button" class="kit active" id="kit_a">KIT A</button>
-      <button type="button" class="kit" id="kit_b" >KIT B</button>
-      <button type="button" class="kit" id="kit_c" >KIT C</button>      
-    </div>
-
-    <!-- div for velocity toggle -->
-    <div class="velocity-toggle">
-      <button type="button" class="velocity velo-active" id="velocity-btn">Velocity On</button>
     </div>
 
     <div class="blurb">
       <p>
         For a list of MIDI devices supported and set up, click
-        <a href="https://github.com/marcusmcb/JS-Drum-Machine" target="_blank">here</a>.
+        <a href="https://github.com/marcusmcb/JS-Drum-Machine" target="_blank"
+          >here</a
+        >.
       </p>
       <p>
         Simply connect your device and reload this page to play sounds via MIDI
       </p>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js"
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
       integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-      crossorigin="anonymous">
-    </script>
+      crossorigin="anonymous"
+    ></script>
 
     <!-- -->
     <script type="module" src="app.js"></script>
-    
+
     <!-- handler import for kit change row -->
     <script type="module">
       import { setActiveKit } from './app.js'
@@ -130,8 +141,9 @@
     <!-- handler import for velocity button -->
     <script type="module">
       import { toggleVelocity } from './app.js'
-      document.querySelector('#velocity-btn').addEventListener('click', toggleVelocity)
+      document
+        .querySelector('#velocity-btn')
+        .addEventListener('click', toggleVelocity)
     </script>
-
   </body>
 </html>
