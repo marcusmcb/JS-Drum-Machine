@@ -98,9 +98,8 @@
     <!-- div for kit selector buttons -->
     <div class="kits">
       <button type="button" class="kit active" id="kit_a">KIT A</button>
-      <button type="button" class="kit" id="kit_b">KIT B</button>
-      <button type="button" class="kit" id="kit_c">KIT C</button>
-      <!-- <button type="button" class="kit" id="kit_d">KIT D</button> -->
+      <button type="button" class="kit" id="kit_b" >KIT B</button>
+      <button type="button" class="kit" id="kit_c" >KIT C</button>      
     </div>
 
     <!-- div for velocity toggle -->
@@ -126,5 +125,11 @@
     </script>
 
     <script type="module" src="app.js"></script>
+
+    <script type="module">
+      import { setActiveKit } from './app.js'
+      document.querySelector('.kits').addEventListener('click', setActiveKit)
+    </script>
+
   </body>
 </html>

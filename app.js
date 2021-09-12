@@ -9,15 +9,20 @@ let tempMIDIDevice
 
 // *** click handlers ***
 
-// click handler to select drum kit
-$(document).ready(function () {
-  $('.kit').on('click', function () {
-    $('.kit').removeClass('active')
-    $(this).addClass('active')
-    changeKit()
-    loadKit()
-  })
-})
+// handler to select drum kit
+export function setActiveKit(e) {
+  if (e.target.className === 'kits') {
+    return
+  } else {
+    let getKits = document.querySelectorAll('.active')
+    getKits.forEach((kit) => {
+      kit.classList.remove('active')
+    })
+    e.target.className += ' active'
+  }
+  changeKit()
+  loadKit()
+}
 
 // click handler to toggle velocity sensitivity
 $(document).ready(function () {
