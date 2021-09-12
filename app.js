@@ -53,6 +53,7 @@ $(document).ready(function () {
 // defines "keyboard" for QWERTY playback
 const keys = Array.from(document.querySelectorAll('.key'))
 keys.forEach((key) => key.addEventListener('transitionend', removeTransition))
+let fired = false;
 window.addEventListener('keydown', playSound)
 
 // css function for transition element
@@ -76,7 +77,7 @@ function playSound(e) {
   key.classList.add('playing')
   audio.volume = 1
   audio.currentTime = 0
-  audio.play()
+  audio.play()  
 }
 
 // function to swap kits on button click
