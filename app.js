@@ -24,20 +24,16 @@ export function setActiveKit(e) {
   loadKit()
 }
 
-// click handler to toggle velocity sensitivity
-$(document).ready(function () {
-  $('.velocity').on('click', function () {
-    if ($(this).text() == 'Velocity On') {
-      $(this).text('Velocity Off')
-      $('.velocity').removeClass('active')
-      console.log('Velocity OFF')
-    } else {
-      $(this).text('Velocity On')
-      $('.velocity').addClass('active')
-      console.log('Velocity ON')
-    }
-  })
-})
+// handler to toggle velocity on/off
+export function toggleVelocity() {
+  if (this.innerHTML != 'Velocity On') {
+    this.classList.toggle('velo-active')
+    this.innerHTML = 'Velocity On'
+  } else {
+    this.classList.toggle('velo-active')
+    this.innerHTML = 'Velocity Off'
+  }
+}
 
 // click handler for mouse playback
 $(document).ready(function () {
@@ -204,7 +200,7 @@ function noteOn(note, velocity, deviceName) {
     return
   }
   // check current velocity setting & adjust playback volume accordingly
-  if (velocityStatus.classList[1] === 'active') {
+  if (velocityStatus.classList[1] === 'velo-active') {
     // init audio playback volume to 0, run function to set volume based on input velocity
     audio.volume = 0
     setVelocity(velocity, audio)

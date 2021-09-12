@@ -68,7 +68,8 @@ html {
   min-height: 5vh;
 }
 
-.active {
+.active,
+.velo-active {
   background-color: darkslategrey;
   border: 0.4rem solid lightskyblue;
   color: lightseagreen;

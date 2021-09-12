@@ -104,9 +104,7 @@
 
     <!-- div for velocity toggle -->
     <div class="velocity-toggle">
-      <button type="button" class="velocity active" id="velocity-btn">
-        Velocity On
-      </button>
+      <button type="button" class="velocity velo-active" id="velocity-btn">Velocity On</button>
     </div>
 
     <div class="blurb">
@@ -129,6 +127,11 @@
     <script type="module">
       import { setActiveKit } from './app.js'
       document.querySelector('.kits').addEventListener('click', setActiveKit)
+    </script>
+
+    <script type="module">
+      import { toggleVelocity } from './app.js'
+      document.querySelector('#velocity-btn').addEventListener('click', toggleVelocity)
     </script>
 
   </body>
