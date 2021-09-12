@@ -12,6 +12,17 @@ html {
   font-family: sans-serif;
 }
 
+.jsp1-title {
+  color: white;
+  font-size: 2em;
+  margin-left: 10vw;
+  margin-right: 10vh;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  padding: 20px;
+  text-align: center;  
+}
+
 .jsp1-body {
   background-color: rgb(54, 52, 51);
   margin-left: 10vw;
@@ -21,7 +32,7 @@ html {
   padding-left: 20px;  
   border-radius: 15px;
   border: 0.1rem solid #ffc600;
-  margin-top: 10vh;
+  /* margin-top: 10vh; */
 }
 
 .keys {
@@ -33,7 +44,7 @@ html {
 }
 
 .key {
-  border: 0.4rem solid slategrey;
+  border: 0.2rem solid slategrey;
   border-radius: 0.5rem;
   margin: 1rem;
   font-size: 1.5rem;
@@ -64,7 +75,7 @@ html {
 
 .velocity,
 .kit {
-  border: 0.4rem solid black;
+  border: 0.3rem solid black;
   border-radius: 0.5rem;
   margin: 1rem;
   font-size: 1.5rem; 
@@ -80,7 +91,7 @@ html {
 .active,
 .velo-active {
   background-color: #614c01;;
-  border: 0.4rem solid #37a4c5;
+  border: 0.3rem solid #37a4c5;
   color: #ffc600;
 }
 
@@ -96,9 +107,7 @@ kbd {
 }
 
 .sound {
-  font-size: 1.2rem;
-  /* text-transform: uppercase; */
-  letter-spacing: 0.1em;  
+  font-size: 1.3rem;  
   color: #ffc600;
 }
 
