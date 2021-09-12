@@ -28,12 +28,12 @@ Connect your MIDI device to your laptop/desktop and then refresh the app in your
 
 <u>Supported devices:</u>
 
-* Maschine MK3: use pads 1-9 to trigger sounds (press Shift + Channel to set the device to MIDI mode after boot up)
-* Novation Launchkey MK3 (Mini & Full-Size): use launch pads 1-9 (lower row + upper row, far left) to trigger sounds
-* Native Instruments M32: use the first nine white keys starting from the left to play sounds (using the default MIDI mode on boot up)
+* Maschine MK3: use pads 1-8 to trigger sounds (press Shift + Channel to set the device to MIDI mode after boot up)
+* Novation Launchkey MK3 (Mini & Full-Size): use launch pads 1-8 (lower row + upper row, far left) to trigger sounds
+* Native Instruments M32: use the first eight white keys starting from the left to play sounds (using the default MIDI mode on boot up)
 * Arturia BeatStep: use the front pad row to play sounds (no other set up needed!)
 * M-Audio Keystation 49es: use C2-D3 (white keys) to play sounds
-* Akai MPK Mini Mk3: use BANK A on the pads to play sounds (9th sample unavailable at the moment)
+* Akai MPK Mini Mk3: use BANK A on the pads to play sounds
 
 ### Velocity Sensitivity
 
