@@ -46,8 +46,12 @@ html {
 }
 
 .kits {
-  min-height: 15vh;
+  min-height: 10vh;
 }
+
+/* .velocity-toggle {
+  min-height: 10vh !important;
+} */
 
 .velocity,
 .kit {
@@ -95,7 +99,7 @@ kbd {
 
 .blurb {
   font-family: 'Roboto', sans-serif;
-  color: lightgoldenrodyellow;
+  color: lightcyan;
   text-align: center;
   font-size: 1.6rem;
 }
@@ -109,5 +113,5 @@ a:link {
 }
 
 a:hover {
-  color: pink;
+  color: darkcyan;
 }
