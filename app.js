@@ -137,7 +137,7 @@ function getMIDIMessage(message) {
   let command = message.data[0]
   let note = message.data[1]
   // check to see if velocity value is present in message (it may not be for certain devices)
-  let velocity = message.data.length > 2 ? message.data[2] : 0
+  let velocity = message.data.length > 2 ? message.data[2] : 0 
   switch (command) {
     case 144: // noteOn (general use)
     case 153: // noteOn for MPK drum pads
