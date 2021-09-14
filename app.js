@@ -34,6 +34,10 @@ export function toggleVelocity() {
   }
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("YO!")
+})
+
 // handler for mouse playback
 $(document).ready(function () {
   $('.key').on('click', function () {

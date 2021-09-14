@@ -35,7 +35,7 @@
         <div data-key="70" id="70" class="key">
           <kbd>F</kbd>
           <span class="sound">openhat</span>
-        </div>        
+        </div>
       </div>
 
       <!-- div for drum pad row (bottom) -->
@@ -55,7 +55,7 @@
         <div data-key="75" id="75" class="key">
           <kbd>K</kbd>
           <span class="sound">thud/perc</span>
-        </div>        
+        </div>
       </div>
 
       <!-- audio elements for individual drum pads -->
@@ -128,7 +128,7 @@
       crossorigin="anonymous"
     ></script>
 
-    <!-- -->
+    <!-- main js module -->
     <script type="module" src="app.js"></script>
 
     <!-- handler import for kit change row -->
@@ -140,9 +140,7 @@
     <!-- handler import for velocity button -->
     <script type="module">
       import { toggleVelocity } from './app.js'
-      document
-        .querySelector('#velocity-btn')
-        .addEventListener('click', toggleVelocity)
+      document.querySelector('#velocity-btn').addEventListener('click', toggleVelocity)
     </script>
   </body>
 </html>

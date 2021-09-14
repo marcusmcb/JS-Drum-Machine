@@ -14,7 +14,7 @@ html {
   color: white;
   font-size: 2em;
   margin-left: 10vw;
-  margin-right: 10vh;
+  margin-right: 10vw;
   margin-top: 2vh;
   margin-bottom: 2vh;
   padding: 20px;
@@ -23,8 +23,8 @@ html {
 
 .jsp1-body {
   background-color: rgb(54, 52, 51);
-  margin-left: 10vw;
-  margin-right: 10vw;
+  margin-left: 20vw;
+  margin-right: 20vw;
   padding-bottom: 20px;
   padding-right: 20px;
   padding-left: 20px;
@@ -120,4 +120,18 @@ a:link {
 
 a:hover {
   color: darkcyan;
+}
+
+@media screen and (min-width: 1200px) {
+  .jsp1-body {
+    margin-left: 25vw;
+    margin-right: 25vw;
+  }
+}
+
+@media screen and (max-width: 800px){
+  .jsp1-body {
+    margin-left: 2vw;
+    margin-right: 2vw;
+  }
 }
