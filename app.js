@@ -34,20 +34,22 @@ export function toggleVelocity() {
   }
 }
 
+// global event listener for click playback
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("YO!")
-})
-
-// handler for mouse playback
-$(document).ready(function () {
-  $('.key').on('click', function () {
-    playSound(this.id)
+  document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('key')) {
+      playSound(e.target.id)
+    } else if (e.target.tagName === 'KBD') {
+      playSound(e.target.parentNode.id)      
+    } else {
+      return
+    }
   })
 })
 
 // handler for touch/tap playback
 $(document).ready(function () {
-  $('.key').on('touchstart', function () {
+  $('.key').on('touchstart', function () {    
     playSound(this.id)
   })
 })
