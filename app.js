@@ -47,14 +47,17 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 })
 
-// handler for touch/tap playback
+// global event listener for touch/tap playback
+// future dev - rewrite as pure JS
 $(document).ready(function () {
   $('.key').on('touchstart', function () {    
     playSound(this.id)
   })
 })
 
+// **************************************
 // ****** code for QWERTY playback ******
+// **************************************
 
 // defines "keyboard" for QWERTY playback
 const keys = Array.from(document.querySelectorAll('.key'))
@@ -110,7 +113,9 @@ function loadKit() {
   )
 }
 
-// *** code for MIDI playback and device config ***
+// ******************************************************
+// ****** code for MIDI playback and device config ******
+// ******************************************************
 
 // boilerplate MIDI setup
 // requires HTTPS to access properly, will disable MIDI playback otherwise
