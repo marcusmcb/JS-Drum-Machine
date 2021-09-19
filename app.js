@@ -24,7 +24,7 @@ export function setActiveKit(e) {
 }
 
 // handler to toggle velocity on/off
-export function toggleVelocity() {
+export function toggleVelocity() {  
   if (this.innerHTML != 'velocity on') {
     this.classList.toggle('velo-active')
     this.innerHTML = 'velocity on'
