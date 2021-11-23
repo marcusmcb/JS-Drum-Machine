@@ -138,10 +138,10 @@ function onMIDIFailure(message) {
 
 // MIDI event listener for noteOn/noteOff events
 function getMIDIMessage(message) {
+  console.log('MIDI Message: ', message)  
   let deviceName = message.currentTarget.name
   let command = message.data[0]
-  let note = message.data[1]
-  // check to see if velocity value is present in message (it may not be for certain devices)
+  let note = message.data[1]  
   let velocity = message.data.length > 2 ? message.data[2] : 0 
   switch (command) {
     case 144: // noteOn (general use)
@@ -196,33 +196,37 @@ function noteOn(note, velocity, deviceName) {
   const t0 = performance.now()
   console.log('-------------------------------------')
   console.log(`NOTE: ${note}`)
+  
   // check if MIDI device is currently set; if not, set it
   if (tempMIDIDevice != deviceName) {
     tempMIDIDevice = deviceName
     setMIDIDevice(deviceName)
   }
+
   // convert input note, set props & play audio via MIDI
   let newNote = convertNote(note, midiInputValues)
+
   // set vars to pass return values to audio elements in DOM
   let temp = 'data-key-'
   let newString = temp.concat(newNote)
   let audio = document.getElementById(newString)
   let key = document.getElementById(newNote)
   let velocityStatus = document.getElementById('velocity-btn')
+
   // check to see if key/pad played is out of MIDI input range for device
   if (key === null) {
     console.log('No sample found for that key/pad')
     return
   }
+
   // check current velocity setting & adjust playback volume accordingly
-  if (velocityStatus.classList[1] === 'velo-active') {
-    // init audio playback volume to 0, run function to set volume based on input velocity
+  if (velocityStatus.classList[1] === 'velo-active') {    
     audio.volume = 0
     setVelocity(velocity, audio)
-  } else {
-    // init audio playback to full volume if velocity setting is off
+  } else {    
     audio.volume = 1
   }
+
   key.classList.add('playing')
   audio.currentTime = 0
   audio.play()
