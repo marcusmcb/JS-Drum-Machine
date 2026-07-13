@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Geist+Pixel:wght@400..700&family=IBM+Plex+Sans:wght@400;500;600&family=Orbitron:wght@500;700&display=swap"
       rel="stylesheet"
       type="text/css"
     />
@@ -15,46 +15,102 @@
 
   <body>
     <div class="jsp1-title">
-      <span>JSP-1 | JavaScript Sample Player</span>
+      <span>JSP-1</span>
+      <small>browser sampler workstation</small>
     </div>
     <div class="jsp1-body">
-      <!-- div for drum pad row (top) -->
-      <div class="keys" id="keys-top">
-        <div data-key="65" id="65" class="key">
-          <kbd>A</kbd>
-          <span class="sound">kick</span>
-        </div>
-        <div data-key="83" id="83" class="key">
-          <kbd>S</kbd>
-          <span class="sound">hihat</span>
-        </div>
-        <div data-key="68" id="68" class="key">
-          <kbd>D</kbd>
-          <span class="sound">clap</span>
-        </div>
-        <div data-key="70" id="70" class="key">
-          <kbd>F</kbd>
-          <span class="sound">openhat</span>
-        </div>
-      </div>
+      <div class="sampler-panel">
+        <div class="sampler-top">
+          <div class="display-panel" aria-live="polite">
+            <div class="display-label">Performance Display</div>
+            <div class="display-screen">
+              <div class="display-row">
+                <span class="display-key">Kit</span>
+                <span class="display-value" id="display-kit">KIT A</span>
+              </div>
+              <div class="display-row">
+                <span class="display-key">Velocity</span>
+                <span class="display-value" id="display-velocity">ON</span>
+              </div>
+              <div class="display-row">
+                <span class="display-key">Volume</span>
+                <span class="display-value" id="display-volume">85%</span>
+              </div>
+            </div>
+          </div>
 
-      <!-- div for drum pad row (bottom) -->
-      <div class="keys" id="keys-bottom">
-        <div data-key="71" id="71" class="key">
-          <kbd>G</kbd>
-          <span class="sound">kick 2</span>
+          <div class="kits control-cluster" aria-label="Kit and velocity controls">
+            <button type="button" class="panel-button kit active" id="kit_a">kit a</button>
+            <button type="button" class="panel-button kit" id="kit_b">kit b</button>
+            <button type="button" class="panel-button kit" id="kit_c">kit c</button>
+            <button type="button" class="panel-button velocity velo-active" id="velocity-btn">velocity on</button>
+          </div>
         </div>
-        <div data-key="72" id="72" class="key">
-          <kbd>H</kbd>
-          <span class="sound">perc</span>
-        </div>
-        <div data-key="74" id="74" class="key">
-          <kbd>J</kbd>
-          <span class="sound">snare</span>
-        </div>
-        <div data-key="75" id="75" class="key">
-          <kbd>K</kbd>
-          <span class="sound">thud/perc</span>
+
+        <div class="sampler-main">
+          <div class="pad-bank">
+            <div class="keys" id="keys-top">
+              <div data-key="65" id="65" class="key">
+                <span class="pad-index">pad 1</span>
+                <kbd>A</kbd>
+                <span class="sound">kick</span>
+              </div>
+              <div data-key="83" id="83" class="key">
+                <span class="pad-index">pad 2</span>
+                <kbd>S</kbd>
+                <span class="sound">hihat</span>
+              </div>
+              <div data-key="68" id="68" class="key">
+                <span class="pad-index">pad 3</span>
+                <kbd>D</kbd>
+                <span class="sound">clap</span>
+              </div>
+              <div data-key="70" id="70" class="key">
+                <span class="pad-index">pad 4</span>
+                <kbd>F</kbd>
+                <span class="sound">openhat</span>
+              </div>
+            </div>
+
+            <div class="keys" id="keys-bottom">
+              <div data-key="71" id="71" class="key">
+                <span class="pad-index">pad 5</span>
+                <kbd>G</kbd>
+                <span class="sound">kick 2</span>
+              </div>
+              <div data-key="72" id="72" class="key">
+                <span class="pad-index">pad 6</span>
+                <kbd>H</kbd>
+                <span class="sound">perc</span>
+              </div>
+              <div data-key="74" id="74" class="key">
+                <span class="pad-index">pad 7</span>
+                <kbd>J</kbd>
+                <span class="sound">snare</span>
+              </div>
+              <div data-key="75" id="75" class="key">
+                <span class="pad-index">pad 8</span>
+                <kbd>K</kbd>
+                <span class="sound">thud/perc</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="volume-section">
+            <span class="volume-label">Master</span>
+            <div class="volume-track">
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value="85"
+                class="master-volume"
+                id="master-volume"
+                aria-label="Master volume"
+              />
+            </div>
+            <span class="volume-readout" id="volume-readout">85%</span>
+          </div>
         </div>
       </div>
 
@@ -95,17 +151,6 @@
         <source src="sounds/kit_a/tink.wav" />
       </audio>
 
-      <!-- div for kit selector buttons -->
-      <div class="kits">
-        <button type="button" class="kit active" id="kit_a">kit a</button>
-        <button type="button" class="kit" id="kit_b">kit b</button>
-        <button type="button" class="kit" id="kit_c">kit c</button>
-      </div>
-
-      <!-- div for velocity toggle -->
-      <div class="velocity-toggle">
-        <button type="button" class="velocity velo-active" id="velocity-btn">velocity on</button>
-      </div>
     </div>
 
     <div class="blurb">

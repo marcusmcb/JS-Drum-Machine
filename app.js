@@ -7,44 +7,115 @@ let midiConvertedValues = [65, 83, 68, 70, 71, 72, 74, 75, 76]
 // global MIDI vars (set later)
 let midiInputValues
 let tempMIDIDevice
+let masterVolume = 0.85
+
+const displayKit = document.getElementById('display-kit')
+const displayVelocity = document.getElementById('display-velocity')
+const displayVolume = document.getElementById('display-volume')
+const volumeReadout = document.getElementById('volume-readout')
+const masterVolumeSlider = document.getElementById('master-volume')
+
+function clampVolume(volume) {
+  return Math.max(0, Math.min(1, volume))
+}
+
+function applyMasterVolume(volume) {
+  return clampVolume(volume * masterVolume)
+}
+
+function updateKitDisplay() {
+  let activeKit = document.querySelector('.kit.active')
+  if (!activeKit || !displayKit) {
+    return
+  }
+  displayKit.textContent = activeKit.textContent.toUpperCase()
+}
+
+function updateVelocityDisplay() {
+  let velocityButton = document.getElementById('velocity-btn')
+  if (!velocityButton || !displayVelocity) {
+    return
+  }
+  displayVelocity.textContent = velocityButton.classList.contains('velo-active')
+    ? '---'
+    : 'OFF'
+}
+
+function showVelocityValue(value) {
+  if (!displayVelocity) {
+    return
+  }
+  displayVelocity.textContent = `${value}`
+}
+
+function updateVolumeDisplay() {
+  let percentage = Math.round(masterVolume * 100)
+  if (displayVolume) {
+    displayVolume.textContent = `${percentage}%`
+  }
+  if (volumeReadout) {
+    volumeReadout.textContent = `${percentage}%`
+  }
+}
+
+function initializePanelState() {
+  if (masterVolumeSlider) {
+    masterVolume = Number(masterVolumeSlider.value) / 100
+  }
+  updateKitDisplay()
+  updateVelocityDisplay()
+  updateVolumeDisplay()
+}
+
+function setMasterVolume(event) {
+  masterVolume = Number(event.target.value) / 100
+  updateVolumeDisplay()
+}
 
 // handler to select drum kit
 export function setActiveKit(e) {
-  if (e.target.className === 'kits') {
+  let selectedKit = e.target.closest('.kit')
+  if (!selectedKit) {
     return
-  } else {
-    let getKits = document.querySelectorAll('.active')
-    getKits.forEach((kit) => {
-      kit.classList.remove('active')
-    })
-    e.target.className += ' active'
   }
+
+  let getKits = document.querySelectorAll('.kit.active')
+  getKits.forEach((kit) => {
+    kit.classList.remove('active')
+  })
+  selectedKit.classList.add('active')
   changeKit()
   loadKit()
+  updateKitDisplay()
 }
 
 // handler to toggle velocity on/off
-export function toggleVelocity() {  
-  if (this.innerHTML != 'velocity on') {
+export function toggleVelocity() {
+  if (this.textContent !== 'velocity on') {
     this.classList.toggle('velo-active')
-    this.innerHTML = 'velocity on'
+    this.textContent = 'velocity on'
   } else {
     this.classList.toggle('velo-active')
-    this.innerHTML = 'velocity off'
+    this.textContent = 'velocity off'
   }
+  updateVelocityDisplay()
 }
 
 // global event listener for click playback
 document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener('click', (e) => {
-    if (e.target.classList.contains('key')) {
-      playSound(e.target.id)
-    } else if (e.target.tagName === 'KBD') {
-      playSound(e.target.parentNode.id)      
-    } else {
+    let pad = e.target.closest('.key')
+    if (!pad) {
       return
     }
+    playSound(pad.id)
   })
+
+  initializePanelState()
+
+  if (masterVolumeSlider) {
+    masterVolumeSlider.addEventListener('input', setMasterVolume)
+  }
 })
 
 // global event listener for touch/tap playback
@@ -84,7 +155,10 @@ function playSound(e) {
   }
   if (!audio) return
   key.classList.add('playing')
-  audio.volume = 1
+  if (document.getElementById('velocity-btn')?.classList.contains('velo-active')) {
+    showVelocityValue(127)
+  }
+  audio.volume = applyMasterVolume(1)
   audio.currentTime = 0
   audio.play()
 }
@@ -223,8 +297,10 @@ function noteOn(note, velocity, deviceName) {
   if (velocityStatus.classList[1] === 'velo-active') {    
     audio.volume = 0
     setVelocity(velocity, audio)
+    audio.volume = applyMasterVolume(audio.volume)
+    showVelocityValue(velocity)
   } else {    
-    audio.volume = 1
+    audio.volume = applyMasterVolume(1)
   }
 
   key.classList.add('playing')
