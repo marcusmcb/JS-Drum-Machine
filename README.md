@@ -52,7 +52,5 @@ Basic touch capability is verified working (tested with a 2018 iPad Mini) though
 
 Enjoy!
 
-
-favicon credit --> <a href="https://thenounproject.com/term/sampler/342625/" target="_blank">The Noun Project</a>
-
-base concept --> <a href="https://www.youtube.com/watch?v=VuN8qwZoego" target="_blank">JavaScript30</a>
+Marcus McBride, 2026
+Made in California ✌️
